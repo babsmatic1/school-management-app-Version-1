@@ -18,22 +18,7 @@ if (isset($_COOKIE['user_cookie'])) {
 }
 
 $start = microtime(true);
-$page = "loginview.php";
-$cacheMaxage = 86400 * 365;// One Year
-
-$cacheData = cacheread($page, $cacheMaxage);
-
-if ($cacheData !=null) {
-    echo $cacheData;
-    # code...
-}else {
-    ob_start();
-    include $page;
-    $page_content = ob_get_contents();
-    cachewrite($page, $page_content);
-    ob_end_flush();
-}
-
+getcache("loginview.php");
 echo "Execution time: ".round(microtime(true)- $start, 3);
 ?>
 

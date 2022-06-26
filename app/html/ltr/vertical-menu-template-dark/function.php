@@ -74,3 +74,19 @@ function cacheread($cachename, $maxAge=0, $deleteExpired = true){
     }
     return null;
 }
+
+
+function getcache($page, $cacheMaxage = 86400 * 365){
+    $cacheData = cacheread($page, $cacheMaxage);
+
+    if ($cacheData !=null) {
+        echo $cacheData;
+        # code...
+    }else {
+        ob_start();
+        include $page;
+        $page_content = ob_get_contents();
+        cachewrite($page, $page_content);
+        ob_end_flush();
+    }
+}
