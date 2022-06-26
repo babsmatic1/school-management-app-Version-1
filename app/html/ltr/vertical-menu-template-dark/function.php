@@ -72,4 +72,5 @@ function cacheread($cachename, $maxAge=0, $deleteExpired = true){
         }
         # code...
     }
+    return null;
 }
