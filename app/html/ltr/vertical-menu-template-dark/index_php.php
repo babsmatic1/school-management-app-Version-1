@@ -1,8 +1,8 @@
 <?php
 //DISABLE WARNING
-// error_reporting(E_ERROR | E_PARSE);
+error_reporting(E_ERROR | E_PARSE);
 //DISABLE ERROR
-// error_reporting(0);
+error_reporting(0);
 require 'classe_package.php';
 require 'database_connection.php';
 // VERIFY IF THE COOKIE EXIST EITHER GO TO THE LOGIN PAGE
