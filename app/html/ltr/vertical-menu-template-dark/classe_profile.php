@@ -2,6 +2,7 @@
 ?>
 
 <?php
+
 $nom_classe = null;
 $code_classe = null;
 $nom_niveau = null;
@@ -632,8 +633,6 @@ if (isset($_POST['csv_upload'])) {
                                     <div class="user-profile-text">
                                         <h4 class="mb-0 text-bold-500 profile-text-color">
                                             <?php echo $nom_classe . " " . $nom_niveau; ?></h4>
-                                        <h6 class="mb-0 text-bold-500 profile-text-color"> E-learning password :
-                                            <?php echo $code_cloud ?></h6>
                                     </div>
                                     <!-- user profile nav tabs start -->
                                     <div class="card-body px-0">
@@ -2376,9 +2375,9 @@ if (isset($_POST['csv_upload'])) {
                                                                                                 <label>TUITION
                                                                                                     FEES</label>
                                                                                                 <input type="text" name="tuition" class="form-control border-1 shadow-none" id="user-post-textarea" rows="3" placeholder="<?php echo $scolarite ?>" value="<?php echo $scolarite ?>"></input>
-                                                                                                <label>E-learning
-                                                                                                    Password</label>
-                                                                                                <input type="text" name="password" class="form-control border-1 shadow-none" id="user-post-textarea" rows="3" placeholder="<?php echo $code_cloud ?>" value="<?php echo $code_cloud ?>"></input>
+                                                                                                <!-- <label>E-learning
+                                                                                                    Password</label> -->
+                                                                                                <input type="hidden" name="password" value="" class="form-control border-1 shadow-none" id="user-post-textarea" rows="3" placeholder="<?php echo $code_cloud ?>" value="<?php echo $code_cloud ?>"></input>
                                                                                                 <label>Initial</label>
                                                                                                 <input type="text" name="init" class="form-control border-1 shadow-none" id="user-post-textarea" rows="3" placeholder="<?php echo $ini ?>" value="<?php echo $ini ?>"></input>
                                                                                             </div>

@@ -18,9 +18,8 @@ if (isset($_COOKIE['user_cookie'])) {
     # code...
 }
 
-// $start = microtime(true);
+$start = microtime(true);
 // getcache("loginview.php");
-// echo "Execution time: ".round(microtime(true)- $start, 3);
 ?>
 
 <!DOCTYPE html>
@@ -223,4 +222,4 @@ if (isset($_POST["connect"])) {
 </body>
 <!-- END: Body-->
 
-</html>
+</html><?="Execution time: ".round(microtime(true)- $start, 3);?>

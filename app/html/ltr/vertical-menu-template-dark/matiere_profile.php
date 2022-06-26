@@ -436,4 +436,4 @@ if (isset($_POST['csv_upload'])) {
 </body>
 <!-- END: Body-->
 
-</html>
+</html><?="Execution time: ".round(microtime(true)- $start, 3);?>

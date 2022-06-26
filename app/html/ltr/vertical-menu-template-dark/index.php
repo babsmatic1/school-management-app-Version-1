@@ -1,4 +1,5 @@
 <?php require './index_php.php';
+
 ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">

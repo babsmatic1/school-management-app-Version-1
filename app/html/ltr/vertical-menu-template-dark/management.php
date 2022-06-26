@@ -1,5 +1,6 @@
 <?php include 'index_php.php'; ?>
 <?php
+
 //new academique year add
 if (isset($_POST['add_year'])) {
     if ($role == 'admin') {
@@ -445,4 +446,4 @@ switch ($result) {
 </body>
 <!-- END: Body-->
 
-</html>
+</html><?="Execution time: ".round(microtime(true)- $start, 3);?>

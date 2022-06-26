@@ -1,4 +1,6 @@
 <?php
+$start = microtime(true);
+
 //DISABLE WARNING
 error_reporting(E_ERROR | E_PARSE);
 //DISABLE ERROR

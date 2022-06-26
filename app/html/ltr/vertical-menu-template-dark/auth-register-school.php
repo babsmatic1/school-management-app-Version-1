@@ -9,6 +9,7 @@ if (isset($_GET['kpjsc']) and !empty($_GET['kpjsc'])) {
     header("Location: auth-login.php");
     exit();
 }
+$start = microtime(true);
 
 ?>
 <?php include 'database_connection.php'; ?>
@@ -225,4 +226,4 @@ if (isset($_POST["add_school"])) {
 </body>
 <!-- END: Body-->
 
-</html>
+</html><?="Execution time: ".round(microtime(true)- $start, 3);?>

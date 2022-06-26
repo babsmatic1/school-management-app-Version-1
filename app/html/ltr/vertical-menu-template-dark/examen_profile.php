@@ -305,4 +305,4 @@ if (isset($_GET['ktsp'])) {
 </body>
 <!-- END: Body-->
 
-</html>
+</html><?="Execution time: ".round(microtime(true)- $start, 3);?>

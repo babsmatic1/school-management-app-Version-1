@@ -1,4 +1,6 @@
-<?php require 'index_php.php'; ?>
+<?php require 'index_php.php';
+
+?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -218,4 +220,4 @@
 </body>
 <!-- END: Body-->
 
-</html>
+</html><?="Execution time: ".round(microtime(true)- $start, 3);?>

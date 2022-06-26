@@ -2,6 +2,7 @@
 ?>
 <!-- ADD CLASS TREATMENT -->
 <?php
+
 if (isset($_POST['add_class'])) {
     if ($role == "admin" or $role == "headmaster") {
         $class_name = get_safe_input ($_POST['class_name']);
@@ -66,12 +67,6 @@ if (isset($_POST['add_class'])) {
                 # code...
                 break;
             case 1:
-                //CREATION DU CLOUD DE LA SPECIALITE
-                $query = mysqli_query($database, "SELECT * FROM niveau WHERE id = '$level_id' ");
-                $result = mysqli_fetch_assoc($query);
-                $cloud_name = $class_name . " " . $result['nom_niveau'];
-                $system = new system;
-                $system->save_cloud($cloud_name, $pssw, 0, $email, $matricule_etablissement);
                 break;
             default:
                 # code...
@@ -215,15 +210,6 @@ if (isset($_POST['csv_upload'])) {
             }
             $pass = base64_encode($pass);
             $result = $user->add_class($cont[1], $level_csv, $matricule_etablissement, $date_academique, $cont[2], $cont[3], $pass);
-            if ($result == 1) {
-                //CREATION DU CLOUD DE LA SPECIALITE
-                $query = mysqli_query($database, "SELECT * FROM niveau WHERE id = '$level_csv' ");
-                $result = mysqli_fetch_assoc($query);
-                $cloud_name = $cont[1] . " " . $result['nom_niveau'];
-                $system = new system;
-                $system->save_cloud($cloud_name, $pass, 0, $email, $matricule_etablissement);
-                # code...
-            }
             $i++;
             # code...
         }
@@ -391,9 +377,8 @@ if (isset($_POST['csv_upload'])) {
                                             <input type="text" name="ini" required class="form-control" placeholder="initial">
                                         </div>
                                         <div class="form-label-group">
-                                            <input type="password" name="pssw" required class="form-control" placeholder="<?php echo $retVal = ($statut == 1) ? "CLASS" : "SPECIALITY"; ?> Cloud password for e-learning">
+                                            <input type="hidden" value="" name="pssw" class="form-control" placeholder="<?php echo $retVal = ($statut == 1) ? "CLASS" : "SPECIALITY"; ?> Cloud password for e-learning">
                                         </div>
-
 
                                         <div class="form-group mt-2">
                                             <!--   <div class="custom-file">
@@ -630,4 +615,4 @@ if (isset($_POST['csv_upload'])) {
 </body>
 <!-- END: Body-->
 
-</html>
+</html><?="Execution time: ".round(microtime(true)- $start, 3);?>

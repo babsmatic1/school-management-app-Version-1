@@ -712,8 +712,6 @@ if (isset($_POST['delete_A_s'])) {
                                         <h4 class="mb-0 text-bold-500 profile-text-color">
                                             <?php echo $nom_apprenant . " " . $prenom_apprenant ?></h4>
                                         <small>##############################</small>
-                                        <h6 class="mb-0 text-bold-500 profile-text-color">E-learning password:
-                                            <?php echo $code_cloud ?></h6>
 
                                     </div>
                                     <!-- user profile nav tabs start -->
@@ -1393,4 +1391,4 @@ if (isset($_POST['delete_A_s'])) {
 </body>
 <!-- END: Body-->
 
-</html>
+</html><?="Execution time: ".round(microtime(true)- $start, 3);?>
