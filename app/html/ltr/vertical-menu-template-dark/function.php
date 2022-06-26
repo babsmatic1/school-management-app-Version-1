@@ -49,3 +49,27 @@ function send_message(string $to = null, $body, $head = "Scolarix", $title)
     $mail->smtpClose();
     # code...
 }
+
+function cachewrite($cachename, $content)
+{
+    $cacheFile = "cache".DIRECTORY_SEPARATOR.sha1($cachename);
+    $handle = fopen($cacheFile, 'a');
+    fwrite($handle, $content);
+    fclose($handle);
+    return;
+    # code...
+}
+
+function cacheread($cachename, $maxAge=0, $deleteExpired = true){
+    $cacheFile = "cache".DIRECTORY_SEPARATOR.sha1($cachename);
+    if (file_exists($cacheFile)) {
+        if ($maxAge == 0 || (time() - filemtime($cacheFile)) <= $maxAge) {
+            return file_get_contents($cacheFile);
+            # code...
+        }elseif ($deleteExpired) {
+            unlink($cacheFile);
+            # code...
+        }
+        # code...
+    }
+}
