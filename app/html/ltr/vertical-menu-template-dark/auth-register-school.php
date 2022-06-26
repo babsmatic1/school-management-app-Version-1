@@ -35,8 +35,6 @@ if (isset($_POST["add_school"])) {
         $date_academique = $result[1];
         //UPDATE THE USER WHO CREATED THE SCHOOL BY ADDIND THE SCHOOL CODE
         $query = mysqli_query($database, "UPDATE utilisateur SET matricule_etablissement = '$matricule_etablissement' WHERE email_utilisateur = '$email'");
-        //UPDATE THE CLOUD
-        $query = mysqli_query($database, "UPDATE clduser_ SET MATRICULE_ETABLISSEMENT = '$matricule_etablissement' WHERE CODE_USER = '$email' ");
         //IF THE QUERY WORK SET THE COOKIE
         if ($query) {
             $cookie = new cookie_session($date_academique, $email);
