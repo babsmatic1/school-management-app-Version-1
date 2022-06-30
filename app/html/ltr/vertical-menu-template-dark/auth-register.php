@@ -27,7 +27,8 @@ include 'database_connection.php';
     <title>Register | <?php include 'site_title.php'; ?></title>
     <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700"
+        rel="stylesheet">
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/extensions/toastr.css">
@@ -68,13 +69,13 @@ if (isset($_POST["register"])) {
         case 0:
 
 ?>
-            <div id="toast-container" class="toast-container toast-top-right">
-                <div class="toast toast-info" aria-live="assertive" style="display: block; opacity: 0.732461;">
-                    <div class="toast-progress" style="width: 0%;"></div>
-                    <div class="toast-title">Info</div>
-                    <div class="toast-message">User already exist or there is a problem with your email address</div>
-                </div>
-            </div>
+<div id="toast-container" class="toast-container toast-top-right">
+    <div class="toast toast-info" aria-live="assertive" style="display: block; opacity: 0.732461;">
+        <div class="toast-progress" style="width: 0%;"></div>
+        <div class="toast-title">Info</div>
+        <div class="toast-message">User already exist or there is a problem with your email address</div>
+    </div>
+</div>
 <?php
             # code...
             break;
@@ -101,7 +102,9 @@ if (isset($_POST["register"])) {
 
 <!-- BEGIN: Body-->
 
-<body class="vertical-layout vertical-menu-modern dark-layout 1-column  navbar-sticky footer-static bg-full-screen-image  blank-page blank-page" data-open="click" data-menu="vertical-menu-modern" data-col="1-column" data-layout="dark-layout">
+<body
+    class="vertical-layout vertical-menu-modern dark-layout 1-column  navbar-sticky footer-static bg-full-screen-image  blank-page blank-page"
+    data-open="click" data-menu="vertical-menu-modern" data-col="1-column" data-layout="dark-layout">
     <!-- BEGIN: Content-->
     <div class="app-content content">
         <div class="content-overlay"></div>
@@ -116,14 +119,16 @@ if (isset($_POST["register"])) {
                             <div class="row m-0">
                                 <!-- register section left -->
                                 <div class="col-md-6 col-12 px-0">
-                                    <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
+                                    <div
+                                        class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
                                         <div class="card-header pb-1">
                                             <div class="card-title">
                                                 <h4 class="text-center mb-2">Sign Up</h4>
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <p> <small> Please enter your details to sign up and be part of our great community</small>
+                                            <p> <small> Please enter your details to sign up and be part of our great
+                                                    community</small>
                                             </p>
                                         </div>
                                         <div class="card-content">
@@ -132,36 +137,54 @@ if (isset($_POST["register"])) {
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6 mb-50">
                                                             <label for="inputfirstname4">first name</label>
-                                                            <input type="text" class="form-control" name="nom" required id="inputfirstname4" placeholder="First name" title="Entrez votre nom sans caractere speciaux">
+                                                            <input type="text" class="form-control" name="nom" required
+                                                                id="inputfirstname4" placeholder="First name"
+                                                                title="Entrez votre nom sans caractere speciaux">
                                                         </div>
                                                         <div class="form-group col-md-6 mb-50">
                                                             <label for="inputlastname4">last name</label>
-                                                            <input type="text" class="form-control" name="prenom" required id="inputlastname4" placeholder="Last name" title="Entrez votre Prenom sans caractere speciaux">
+                                                            <input type="text" class="form-control" name="prenom"
+                                                                required id="inputlastname4" placeholder="Last name"
+                                                                title="Entrez votre Prenom sans caractere speciaux">
                                                         </div>
                                                     </div>
                                                     <div class="form-group mb-50">
-                                                        <label class="text-bold-600" for="exampleInputUsername1">Phone number</label>
-                                                        <input type="tel" class="form-control" name="tel" required id="exampleInputUsername1" placeholder="Phone number" title="Entrez votre numero de telephone mobile sans caractere speciaux">
+                                                        <label class="text-bold-600" for="exampleInputUsername1">Phone
+                                                            number</label>
+                                                        <input type="tel" class="form-control" name="tel" required
+                                                            id="exampleInputUsername1" placeholder="Phone number"
+                                                            title="Entrez votre numero de telephone mobile sans caractere speciaux">
                                                     </div>
                                                     <div class="form-group mb-50">
-                                                        <label class="text-bold-600" for="exampleInputEmail1">Email</label>
-                                                        <input type="email" class="form-control" name="email" required id="exampleInputEmail1" placeholder="Email" title="Là il faut votre adresse email">
+                                                        <label class="text-bold-600"
+                                                            for="exampleInputEmail1">Email</label>
+                                                        <input type="email" class="form-control" name="email" required
+                                                            id="exampleInputEmail1" placeholder="Email"
+                                                            title="Là il faut votre adresse email">
                                                     </div>
                                                     <div class="form-group mb-2">
-                                                        <label class="text-bold-600" for="exampleInputPassword1">Password</label>
-                                                        <input type="password" class="form-control" name="password" required id="exampleInputPassword1" placeholder="Password" title="Un mot de passe Epic">
+                                                        <label class="text-bold-600"
+                                                            for="exampleInputPassword1">Password</label>
+                                                        <input type="password" class="form-control" name="password"
+                                                            required id="exampleInputPassword1" placeholder="Password"
+                                                            title="Un mot de passe Epic">
                                                     </div>
-                                                    <button type="submit" name="register" class="btn btn-primary glow position-relative w-100">SIGN UP<i id="icon-arrow" class="bx bx-right-arrow-alt"></i></button>
+                                                    <button type="submit" name="register"
+                                                        class="btn btn-primary glow position-relative w-100">SIGN UP<i
+                                                            id="icon-arrow" class="bx bx-right-arrow-alt"></i></button>
                                                 </form>
                                                 <hr>
-                                                <div class="text-center"><small class="mr-25">Already have an account?</small><a href="auth-login.php"><small>Sign in</small> </a></div>
+                                                <div class="text-center"><small class="mr-25">Already have an
+                                                        account?</small><a href="auth-login.php"><small>Sign in</small>
+                                                    </a></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- image section right -->
                                 <div class="col-md-6 d-md-block d-none text-center align-self-center p-3">
-                                    <img class="img-fluid" src="../../../app-assets/images/pages/register.png" alt="branding logo">
+                                    <img class="img-fluid" src="../../../app-assets/images/pages/register.png"
+                                        alt="branding logo">
                                 </div>
                             </div>
                         </div>
@@ -201,10 +224,10 @@ if (isset($_POST["register"])) {
     $query = mysqli_query($database, "SELECT * FROM etablissement WHERE 1 ");
     if (mysqli_num_rows($query) >= 1) {
         ?>
-        <script type="text/javascript">
-            alert("A school already exists. \n Go to Login page.");
-        </script>
-        <?php
+    <script type="text/javascript">
+    alert("A school already exists. \n Go to Login page.");
+    </script>
+    <?php
       # code...
     }
     ?>

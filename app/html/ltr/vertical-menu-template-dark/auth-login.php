@@ -30,7 +30,8 @@ $start = microtime(true);
     <title>Login <?php include 'site_title.php'; ?> </title>
     <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700"
+        rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
@@ -54,6 +55,9 @@ $start = microtime(true);
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
     <!-- END: Custom CSS-->
+    <!-- MANIFEST  -->
+    <link rel="manifest" href="manifest.json">
+
 
 </head>
 <!-- END: Head-->
@@ -69,28 +73,29 @@ if (isset($_POST["connect"])) {
     switch ($result) {
         case 'user_not_found':
 ?>
-            <div id="toast-container" class="toast-container toast-top-right">
-                <div class="toast toast-warning" aria-live="assertive" style="display: block; opacity: 0.732461;">
-                    <div class="toast-progress" style="width: 0%;"></div>
-                    <div class="toast-title">Warning</div>
-                    <div class="toast-message">User not found! Verify The pasword and the User name !</div>
-                </div>
-            </div>
-        <?php
+<div id="toast-container" class="toast-container toast-top-right">
+    <div class="toast toast-warning" aria-live="assertive" style="display: block; opacity: 0.732461;">
+        <div class="toast-progress" style="width: 0%;"></div>
+        <div class="toast-title">Warning</div>
+        <div class="toast-message">User not found! Verify The pasword and the User name !</div>
+    </div>
+</div>
+<?php
             # code...
             break;
         case 'school_not_found':
             $user_email = base64_encode($user_email);
         ?>
-            <div id="toast-container" class="toast-container toast-top-right">
-                <div class="toast toast-warning" aria-live="assertive" style="display: block; opacity: 0.732461;">
-                    <div class="toast-progress" style="width: 0%;"></div>
-                    <div class="toast-title">Warning</div>
-                    <div class="toast-message">School not found! <em>Doen't have a school?
-                            <a href="auth-register-school.php?kpjsc=<?php echo $user_email ?>"><i><span style="color : black;"><u>Add your school here</u></span></i></a></em></div>
-                </div>
-            </div>
-            <?php
+<div id="toast-container" class="toast-container toast-top-right">
+    <div class="toast toast-warning" aria-live="assertive" style="display: block; opacity: 0.732461;">
+        <div class="toast-progress" style="width: 0%;"></div>
+        <div class="toast-title">Warning</div>
+        <div class="toast-message">School not found! <em>Doen't have a school?
+                <a href="auth-register-school.php?kpjsc=<?php echo $user_email ?>"><i><span
+                            style="color : black;"><u>Add your school here</u></span></i></a></em></div>
+    </div>
+</div>
+<?php
             # code...
             break;
 
@@ -98,13 +103,14 @@ if (isset($_POST["connect"])) {
 
             if ($result == false) {
             ?>
-                <div id="toast-container" class="toast-container toast-top-right">
-                    <div class="toast toast-info" aria-live="assertive" style="display: block; opacity: 0.732461;">
-                        <div class="toast-progress" style="width: 0%;"></div>
-                        <div class="toast-title">Info</div>
-                        <div class="toast-message">There is a problem with this account! we are already fixing it! please wait while.</div>
-                    </div>
-                </div>
+<div id="toast-container" class="toast-container toast-top-right">
+    <div class="toast toast-info" aria-live="assertive" style="display: block; opacity: 0.732461;">
+        <div class="toast-progress" style="width: 0%;"></div>
+        <div class="toast-title">Info</div>
+        <div class="toast-message">There is a problem with this account! we are already fixing it! please wait while.
+        </div>
+    </div>
+</div>
 <?php
                 # code...
             } elseif ($result == true) {
@@ -128,7 +134,9 @@ if (isset($_POST["connect"])) {
 
 <!-- BEGIN: Body-->
 
-<body class="vertical-layout vertical-menu-modern dark-layout 1-column  navbar-sticky footer-static bg-full-screen-image  blank-page blank-page" data-open="click" data-menu="vertical-menu-modern" data-col="1-column" data-layout="dark-layout">
+<body
+    class="vertical-layout vertical-menu-modern dark-layout 1-column  navbar-sticky footer-static bg-full-screen-image  blank-page blank-page"
+    data-open="click" data-menu="vertical-menu-modern" data-col="1-column" data-layout="dark-layout">
     <!-- BEGIN: Content-->
     <div class="app-content content">
         <div class="content-overlay"></div>
@@ -143,7 +151,8 @@ if (isset($_POST["connect"])) {
                             <div class="row m-0">
                                 <!-- left section-login -->
                                 <div class="col-md-6 col-12 px-0">
-                                    <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
+                                    <div
+                                        class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
                                         <div class="card-header pb-1">
                                             <div class="card-title">
                                                 <h4 class="text-center mb-2">Welcome Back</h4>
@@ -153,25 +162,35 @@ if (isset($_POST["connect"])) {
                                             <div class="card-body">
                                                 <form method="POST">
                                                     <div class="form-group mb-50">
-                                                        <label class="text-bold-600" autofill  for="user_email">User Name or Email</label>
-                                                        <input type="text" class="form-control" id="user_email" name="user_email" placeholder="Nom d'utilisateur" required="">
+                                                        <label class="text-bold-600" autofill for="user_email">User Name
+                                                            or Email</label>
+                                                        <input type="text" class="form-control" id="user_email"
+                                                            name="user_email" placeholder="Nom d'utilisateur"
+                                                            required="">
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="text-bold-600" for="user_pssw">Password</label>
-                                                        <input type="password" class="form-control" id="user_pssw" name="user_pssw" placeholder="Password">
+                                                        <input type="password" class="form-control" id="user_pssw"
+                                                            name="user_pssw" placeholder="Password">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="text-bold-600" for="date_academique">Date academique</label>
-                                                        <input type="text" class="form-control" id="date_academique" name="date_academique" placeholder="Date academique" required="">
+                                                        <label class="text-bold-600" for="date_academique">Date
+                                                            academique</label>
+                                                        <input type="text" class="form-control" id="date_academique"
+                                                            name="date_academique" placeholder="Date academique"
+                                                            required="">
                                                     </div>
-                                                    <button type="submit" name="connect" class="btn btn-primary glow w-100 position-relative">Login<i id="icon-arrow" class="bx bx-right-arrow-alt"></i></button>
+                                                    <button type="submit" name="connect"
+                                                        class="btn btn-primary glow w-100 position-relative">Login<i
+                                                            id="icon-arrow" class="bx bx-right-arrow-alt"></i></button>
                                                     <!-- <center>Or</center> -->
                                                 </form>
                                                 <br>
                                                 <span>
                                                     Create a new school here
                                                 </span>
-                                                <a href="auth-register.php"> Register<i id="icon-arrow" class="bx bx-right-arrow-alt"></i>
+                                                <a href="auth-register.php"> Register<i id="icon-arrow"
+                                                        class="bx bx-right-arrow-alt"></i>
                                                 </a>
                                                 <hr>
                                             </div>
@@ -181,7 +200,8 @@ if (isset($_POST["connect"])) {
                                 <!-- right section image -->
                                 <div class="col-md-6 d-md-block d-none text-center align-self-center p-3">
                                     <div class="card-content">
-                                        <img class="img-fluid" src="../../../app-assets/images/pages/login.png" alt="branding logo">
+                                        <img class="img-fluid" src="../../../app-assets/images/pages/login.png"
+                                            alt="branding logo">
                                     </div>
                                 </div>
                             </div>

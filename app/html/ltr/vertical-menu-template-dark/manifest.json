@@ -1,0 +1,17 @@
+{
+    "short_name": "Scolaricx",
+    "name": "Scolaricx",
+    "icon":[
+        {"src": "../../../../app/app-assets/images/googleApp/192x192.png",
+        "type": "image/png",
+        "sizes": "192x192"},
+        {"src": "../../../../app/app-assets/images/googleApp/512x512.png",
+        "type": "image/png",
+        "sizes": "512x512"}
+
+    ],
+    "start_url": "http://localhost/school-management-appV1/",
+    "background_color": "#FFE",
+    "display": "standalone",
+    "theme_color": "#000"
+}
