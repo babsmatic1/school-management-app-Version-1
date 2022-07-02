@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 25 juin 2022 à 14:07
+-- Généré le : sam. 02 juil. 2022 à 16:49
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 8.1.6
 
@@ -344,7 +344,8 @@ ALTER TABLE `discipline`
 --
 ALTER TABLE `discipline_classe`
   ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `code_discipline` (`code_discipline`,`code_classe`,`date_academique`,`matricule_etablissement`);
+  ADD UNIQUE KEY `code_discipline` (`code_discipline`,`code_classe`,`date_academique`,`matricule_etablissement`),
+  ADD KEY `discipline_classe_ibfk_2` (`code_classe`);
 
 --
 -- Index pour la table `enseignant`
@@ -373,6 +374,7 @@ ALTER TABLE `examen`
 --
 ALTER TABLE `matiere`
   ADD PRIMARY KEY (`code_matiere`,`matricule_etablissement`,`date_academique`) USING BTREE,
+  ADD UNIQUE KEY `nom_matiere` (`nom_matiere`),
   ADD KEY `id` (`id`);
 
 --
@@ -538,13 +540,40 @@ ALTER TABLE `apprenant`
 --
 ALTER TABLE `calendrier`
   ADD CONSTRAINT `calendrier_ibfk_1` FOREIGN KEY (`code_classe`) REFERENCES `classe` (`code_classe`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `calendrier_ibfk_2` FOREIGN KEY (`code_discipline`) REFERENCES `discipline` (`code_discipline`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `calendrier_ibfk_2` FOREIGN KEY (`code_discipline`) REFERENCES `discipline` (`code_discipline`) ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `classe`
 --
 ALTER TABLE `classe`
-  ADD CONSTRAINT `classe_ibfk_1` FOREIGN KEY (`id_niveau`) REFERENCES `niveau` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `classe_ibfk_1` FOREIGN KEY (`id_niveau`) REFERENCES `niveau` (`id`) ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `compta`
+--
+ALTER TABLE `compta`
+  ADD CONSTRAINT `compta_ibfk_1` FOREIGN KEY (`id_tranche`) REFERENCES `tranche_paiement` (`id`) ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `discipline_classe`
+--
+ALTER TABLE `discipline_classe`
+  ADD CONSTRAINT `discipline_classe_ibfk_1` FOREIGN KEY (`code_discipline`) REFERENCES `discipline` (`code_discipline`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `discipline_classe_ibfk_2` FOREIGN KEY (`code_classe`) REFERENCES `classe` (`code_classe`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `note`
+--
+ALTER TABLE `note`
+  ADD CONSTRAINT `note_ibfk_1` FOREIGN KEY (`code_discipline`) REFERENCES `discipline_classe` (`code_discipline`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `note_ibfk_2` FOREIGN KEY (`code_examen`) REFERENCES `examen` (`code_examen`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `note_ibfk_3` FOREIGN KEY (`matricule_apprenant`) REFERENCES `apprenant` (`matricule_apprenant`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `tranche_paiement`
+--
+ALTER TABLE `tranche_paiement`
+  ADD CONSTRAINT `tranche_paiement_ibfk_1` FOREIGN KEY (`code_classe`) REFERENCES `classe` (`code_classe`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

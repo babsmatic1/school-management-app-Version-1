@@ -34,5 +34,6 @@
  * @since	Version 1.0.0
  * @filesource
  */
-header("Location: ./app");
-exit();
+
+?>
+SCOLARICX
