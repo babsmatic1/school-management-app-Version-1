@@ -171,11 +171,6 @@ if (isset($_POST['delete_room'])) {
 <?php
 // CSV UPLOAD
 if (isset($_POST['csv_upload'])) {
-    ?>
-<script type="text/javascript" language="javascript">
-alert("Wait while data are loading....");
-</script>
-<?php
     $file = $_FILES['csv_file']['tmp_name'];
     $ext = explode(".", $_FILES['csv_file']['name']);
     $handle = fopen($file, "r");
@@ -264,7 +259,8 @@ alert("Fatal error: incorrect file format \n Download the template and use it.")
                                             <label class="custom-file-label" for="emailAttach">Attach File</label>
                                         </div>
                                     </div>
-                                    <button type="submit" name="csv_upload" class="btn btn-success btn-block my-2">
+                                    <button type="submit" onclick="alert(' Wait while data are loading....'); " name="
+                                        csv_upload" class="btn btn-success btn-block my-2">
                                         Upload file's data
                                     </button>
 

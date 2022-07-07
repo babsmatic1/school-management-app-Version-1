@@ -91,7 +91,7 @@ if (isset($_POST['print_note'])) {
 
     // code...
 } else {
-    header("Location: bulletin.php");
+    header("Location: classe.php");
 }
 
 ?>

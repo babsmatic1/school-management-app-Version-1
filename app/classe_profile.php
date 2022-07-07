@@ -793,7 +793,7 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                 <a class="nav-link d-flex px-1" id="compta-tab" data-toggle="tab"
                                                     href="#compta" aria-controls="compta" role="tab"
                                                     aria-selected="false"><i class="bx bx-message-alt"></i><span
-                                                        class="d-none d-md-block">Manage Class Tuition feeds</span></a>
+                                                        class="d-none d-md-block">Manage Tuition feeds</span></a>
                                             </li>
                                             <li class="nav-item pb-0">
                                                 <a class="nav-link d-flex px-1" id="compta-tab" data-toggle="tab"
@@ -806,7 +806,20 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                 // code...
                                             }
                                             ?>
+                                            <!-- <li class="nav-item pb-0">
+                                                <a class=" nav-link d-flex px-1 " id="message-tab" data-toggle="tab"
+                                                    href="#message" aria-controls="message" role="tab"
+                                                    aria-selected="true"><i class="bx bx-home"></i><span
+                                                        class="d-none d-md-block">Messages</span></a>
+                                            </li>
+                                            <li class="nav-item pb-0">
+                                                <a class=" nav-link d-flex px-1 " id="email-tab" data-toggle="tab"
+                                                    href="#email" aria-controls="email" role="tab"
+                                                    aria-selected="true"><i class="bx bx-home"></i><span
+                                                        class="d-none d-md-block">Email</span></a>
+                                            </li>
 
+ -->
                                         </ul>
                                     </div>
                                     <!-- user profile nav tabs ends -->
@@ -2899,6 +2912,32 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="tab-pane" id="message" aria-labelledby="message-tab"
+                                            role="tabpanel">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h3>SEND SMS TO ALL STUDENT OF THIS CLASS</h3>
+                                                </div>
+                                                <div class="card-content">
+                                                    <iframe src="./chatapp/" frameborder="0" width="100%"
+                                                        height="700px"></iframe>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="tab-pane" id="email" aria-labelledby="email-tab" role="tabpanel">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h3>SEND EMAIL TO ALL STUDENT OF THIS CLASS</h3>
+                                                </div>
+                                                <div class="card-content">
+                                                    <iframe src="./chatapp/" frameborder="0" width="100%"
+                                                        height="700px"></iframe>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
 
                                     </div>
                                 </div>

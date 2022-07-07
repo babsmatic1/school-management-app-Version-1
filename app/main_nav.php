@@ -108,7 +108,7 @@
                     if ($role == "admin") { ?>
 
                     <li class=""><a href="#"><i class="bx bx-right-arrow-alt"></i><span class="menu-item"
-                                data-i18n="GESTION SCOLAIRE">USERS</span></a>
+                                data-i18n="GESTION SCOLAIRE">STAFF</span></a>
                         <ul class="menu-content">
                             <li><a href="page-users-list.php"><span class="menu-item"
                                         data-i18n="Liste des utilisateurs">List of users</span></a>

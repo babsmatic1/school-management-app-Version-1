@@ -1060,6 +1060,12 @@ class cookie_session extends user
  */
 function get_safe_input($var):string
 {
-   return  strip_tags (addslashes(str_replace("=", "", htmlspecialchars(htmlentities($var)))));
+	try {
+		$val = strip_tags (addslashes(str_replace("=", "", htmlspecialchars(htmlentities($var)))));
+		//code...
+	} catch (\Throwable $th) {
+		//throw $th;
+	}	
+   return $val;
     # code...
 }

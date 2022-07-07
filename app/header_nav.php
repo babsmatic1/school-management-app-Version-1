@@ -50,7 +50,7 @@
                         <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-email.html"
                                 data-toggle="tooltip" data-placement="top" title="Email"><i
                                     class="ficon bx bx-envelope"></i></a></li>
-                        <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-chat.html"
+                        <li class="nav-item d-none d-lg-block"><a class="nav-link" href="./chat.php"
                                 data-toggle="tooltip" data-placement="top" title="Chat"><i
                                     class="ficon bx bx-chat"></i></a></li>
                         <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-todo.html"
@@ -65,7 +65,7 @@
                                     class="ficon bx bx-star warning"></i></a>
                             <div class="bookmark-input search-input">
                                 <div class="bookmark-input-icon"><i class="bx bx-search primary"></i></div>
-                                <input class="form-control input" type="text" placeholder="Explore AlphaBetarix..."
+                                <input class="form-control input" type="text" placeholder="Explore Scolaricx..."
                                     tabindex="0" data-search="template-search">
                                 <ul class="search-list"></ul>
                             </div>
@@ -98,8 +98,8 @@
                                 class="ficon bx bx-search"></i></a>
                         <div class="search-input">
                             <div class="search-input-icon"><i class="bx bx-search primary"></i></div>
-                            <input class="input" disabled type="text" placeholder="Explore AlphaBetarix..."
-                                tabindex="-1" data-search="template-search">
+                            <input class="input" disabled type="text" placeholder="Explore Scolaricx..." tabindex="-1"
+                                data-search="template-search">
                             <div class="search-input-close"><i class="bx bx-x"></i></div>
                             <ul class="search-list"></ul>
                         </div>

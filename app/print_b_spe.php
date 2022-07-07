@@ -86,7 +86,7 @@ if (isset($_POST['print_note'])) {
     $nom_niveau = $result['nom_niveau'];
     // code...
 } else {
-    header("Location: bulletin.php");
+    header("Location: classe.php");
 }
 
 ?>

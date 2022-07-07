@@ -57,15 +57,15 @@ include 'database_connection.php';
 <head>
     <?php
     //  CHECK IF ONE SCHOOL ALREADY EXIST
-    $query = mysqli_query($database, "SELECT * FROM etablissement WHERE 1 ");
-    if (mysqli_num_rows($query) >= 1) {
-    echo "<meta http-equiv=\"refresh\" content=\"0; url=./auth-login.php\">";
-      # code...
-    }
+    // $query = mysqli_query($database, "SELECT * FROM etablissement WHERE 1 ");
+    // if (mysqli_num_rows($query) >= 1) {
+    // echo "<meta http-equiv=\"refresh\" content=\"1; url=./auth-login.php\">";
+    //   # code...
+    // }
 
     ?>
     <title>Register | <?php include 'site_title.php'; ?></title>
-    <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
+    <link rel="apple-touch-icon" href="./app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700"
         rel="stylesheet">
