@@ -258,18 +258,6 @@ if (isset($_POST["register"])) {
     <!-- BEGIN: Page JS-->
     <script src="app-assets/js/scripts/extensions/toastr.js"></script>
     <!-- END: Page JS-->
-    <?php
-    //  CHECK IF ONE SCHOOL ALREADY EXIST
-    $query = mysqli_query($database, "SELECT * FROM etablissement WHERE 1 ");
-    if (mysqli_num_rows($query) >= 1) {
-        ?>
-    <script type="text/javascript">
-    alert("A school already exists. \n Go to Login page.");
-    </script>
-    <?php
-      # code...
-    }
-    ?>
 </body>
 <!-- END: Body-->
 

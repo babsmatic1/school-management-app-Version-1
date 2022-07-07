@@ -126,6 +126,8 @@ class user
 				$Q_matr_user = $Q_nom . '&' . $Q_num_user . '|' . date("d") . '-' . date("D").uniqid();
 				// INSERTION OF A NEW USER
 				$query = mysqli_query($this->database, "INSERT INTO utilisateur values (null, '$Q_matr_user', '$Q_nom', '$Q_prenom', '$Q_email', '$Q_telephone', '$Q_pssw', 'admin',null) ");
+				// USER FOR CHAT
+				$query = mysqli_query($this->database, "INSERT INTO users VALUE (null,'$Q_matr_user', '$Q_nom', '$Q_prenom', '$Q_email', '$Q_pssw','', 'Offline', null )");
 				if ($query) {
 					$this->matricule_user = $Q_matr_user;
 					return $query;
