@@ -1,10 +1,10 @@
 <?php 
   session_start();
   include_once "php/config.php";
-  include './php/index.php';
   if(!isset($_SESSION['unique_id'])){
     header("location: login.php");
   }
+  include './php/index.php';
   $uni = $_SESSION['unique_id'];
 ?>
 <?php include_once "header.php"; ?>

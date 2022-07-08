@@ -487,6 +487,12 @@ if (isset($_POST['add_student'])) {
 // DELETE * STUDENT
 if (isset($_POST['delete_A_en'])) {
     if ($role == "headmaster" or $role == "admin") {
+        $q = mysqli_query($database, "SELECT * from apprenant WHERE code_classe = '$code_classe' AND matricule_etablissement = '$matricule_etablissement'AND date_academique = '$date_academique'  ");
+        while ($r = mysqli_fetch_assoc($q)) {
+            $matricule_apprenant = $r['matricule_apprenant'];
+            $query = mysqli_query($database, "DELETE FROM users WHERE unique_id= '$matricule_apprenant' AND matricule_etablissement = '$matricule_etablissement'  ");
+            # code...
+        }
         $query = mysqli_query($database, "DELETE FROM apprenant WHERE date_academique = '$date_academique' and code_classe ='$code_classe' ");
         # code...
     }
@@ -736,10 +742,10 @@ if (isset($_POST['delete_tranche'])) {
 </div>
 <?php
 
-    } else {
+    } 
+}else {
         include 'access_denieted.php';
     }
-}
 }
 
 // UPLOAD STUDENT DATA FILE

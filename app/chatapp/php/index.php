@@ -1,7 +1,6 @@
 	<?php
     // IF THE COOKIE EXIST WE EXTEND THE DURATION
 	$cookie = $_COOKIE['user_cookie'];
-	setcookie("user_cookie", $cookie, time() + 60 * 60);
 	$tab = explode("µ", $cookie);
 	$matricule_user = addslashes($tab[0]);
 	$tab_1 = explode("£", $tab[1]);
@@ -23,3 +22,4 @@
 	$result = mysqli_fetch_assoc($query);
 	$name = $result["nom_utilisateur"] . ' ' . $result['prenom_utilisateur'];
 	$email = $result['email_utilisateur'];
+	?>

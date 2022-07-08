@@ -36,7 +36,6 @@
  */
 
 ?>
-
 <?php include 'index_php.php'; ?>
 <?php
 $nom_matiere = null;
