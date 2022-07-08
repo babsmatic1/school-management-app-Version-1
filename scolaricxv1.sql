@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 02 juil. 2022 à 16:49
+-- Généré le : ven. 08 juil. 2022 à 19:33
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 8.1.6
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données : `tqp_root`
+-- Base de données : `scolaricxv1`
 --
 
 -- --------------------------------------------------------
@@ -202,6 +202,20 @@ CREATE TABLE `matiere` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `messages`
+--
+
+CREATE TABLE `messages` (
+  `msg_id` int(11) NOT NULL,
+  `incoming_msg_id` varchar(255) NOT NULL,
+  `outgoing_msg_id` varchar(255) NOT NULL,
+  `msg` varchar(1000) NOT NULL,
+  `matricule_etablissement` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `niveau`
 --
 
@@ -275,19 +289,37 @@ CREATE TABLE `tranche_paiement` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `unique_id` varchar(255) NOT NULL,
+  `fname` varchar(255) NOT NULL,
+  `lname` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `img` varchar(255) NOT NULL,
+  `status_` varchar(255) NOT NULL,
+  `matricule_etablissement` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `utilisateur`
 --
 
 CREATE TABLE `utilisateur` (
   `id` int(11) NOT NULL,
-  `matricule_utlisateur` varchar(250) NOT NULL,
-  `nom_utilisateur` varchar(250) NOT NULL,
-  `prenom_utilisateur` varchar(250) NOT NULL,
-  `email_utilisateur` varchar(250) NOT NULL,
-  `telephone_utilisateur` varchar(250) NULL,
-  `pssw` varchar(250) NOT NULL,
-  `role` varchar(250) NOT NULL,
-  `matricule_etablissement` varchar(250) NULL
+  `matricule_utlisateur` varchar(255) NOT NULL,
+  `nom_utilisateur` varchar(255) NOT NULL,
+  `prenom_utilisateur` varchar(255) NOT NULL,
+  `email_utilisateur` varchar(255) NOT NULL,
+  `telephone_utilisateur`  varchar(255) NULL,
+  `pssw` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL,
+  `matricule_etablissement`  varchar(255) NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -378,6 +410,12 @@ ALTER TABLE `matiere`
   ADD KEY `id` (`id`);
 
 --
+-- Index pour la table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`msg_id`);
+
+--
 -- Index pour la table `niveau`
 --
 ALTER TABLE `niveau`
@@ -418,12 +456,18 @@ ALTER TABLE `tranche_paiement`
   ADD KEY `date_academique` (`date_academique`);
 
 --
+-- Index pour la table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- Index pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`matricule_utlisateur`(250),`pssw`(250)) USING BTREE,
   ADD UNIQUE KEY `id_2` (`id`),
-  ADD UNIQUE KEY `email_utilisateur` (`email_utilisateur`) USING BTREE;
+  ADD UNIQUE KEY `email_utilisateur` (`email_utilisateur`) USING HASH;
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -490,6 +534,12 @@ ALTER TABLE `matiere`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `msg_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `niveau`
 --
 ALTER TABLE `niveau`
@@ -520,6 +570,12 @@ ALTER TABLE `tranche_paiement`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
@@ -533,7 +589,7 @@ ALTER TABLE `utilisateur`
 -- Contraintes pour la table `apprenant`
 --
 ALTER TABLE `apprenant`
-  ADD CONSTRAINT `apprenant_ibfk_1` FOREIGN KEY (`code_classe`) REFERENCES `classe` (`code_classe`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `apprenant_ibfk_1` FOREIGN KEY (`code_classe`) REFERENCES `classe` (`code_classe`) ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `calendrier`

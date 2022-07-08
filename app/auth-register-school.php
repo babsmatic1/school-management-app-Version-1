@@ -69,7 +69,7 @@ if (isset($_POST["add_school"])) {
     if ($result == false) {
         # code...
     } else {
-        $result = explode("|", $result);
+        $result = explode("66", $result);
         $matricule_etablissement = $result[0];
         $date_academique = $result[1];
         //UPDATE THE USER WHO CREATED THE SCHOOL BY ADDIND THE SCHOOL CODE

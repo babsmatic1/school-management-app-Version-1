@@ -36,7 +36,6 @@
  */
 
 ?>
-
 <?php
 
 /**
@@ -120,7 +119,7 @@ class user
 				# code...
 			} else {
 				// IF THERE IS NOT A USER AT THIS EMAIL YET
-				// SETING THE USER MATRICULE
+				// SETTING THE USER MATRICULE
 				$query_1 = mysqli_query($this->database, "SELECT * FROM utilisateur WHERE 1");
 				$Q_num_user = mysqli_num_rows($query_1) + 1;
 				$Q_matr_user = $Q_nom . '|' . $Q_num_user . '|' . date("d") . '-' . date("D").uniqid();
@@ -167,7 +166,7 @@ class user
 					move_uploaded_file($Q_logo_path, 'logo_data/' . $Q_logo_name);
 					# code...
 				}
-				return $Q_matr_school . "|" . $Q_date_academique;
+				return $Q_matr_school . "66" . $Q_date_academique;
 				# code...
 			}
 		} catch (Exception $e) {
@@ -862,7 +861,6 @@ class headmaster extends user
 		$m = $rq['montant'];
 		echo $mm . "<br>";
 		echo  $m + $montant_tranche;
-		exit();
 		if ($mm >= $m and $mm > $m + $montant_tranche) {
 			$query = mysqli_query($this->database, "INSERT INTO compta values(null, '$id_tranche', '$matricule_apprenant', '$code_classe', '$matricule_etablissement', '$date_academique', '$montant_tranche', '$jour', '$name')");
 			if ($query) {
@@ -1064,7 +1062,7 @@ class cookie_session extends user
 		$result = mysqli_fetch_assoc($Q_query);
 		$matricule_user = $result['matricule_utlisateur'];
 		$matricule_etablissement  = $result["matricule_etablissement"];
-		$query = mysqli_query($this->database, "SELECT * FROM etablissement where date_academique = '$Q_date_academique' ");
+		$query = mysqli_query($this->database, "SELECT * FROM etablissement where date_academique = '$Q_date_academique' and matricule_etablissement = '$matricule_etablissement' ");
 		$result_1 = mysqli_fetch_assoc($query);
 		$this->date_academique = $result_1["date_academique"];
 		$this->cookie_value = $matricule_user . "µ" . $matricule_etablissement . "£" . $this->date_academique;
