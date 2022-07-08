@@ -15,10 +15,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
--- Base de données : `scolaricxv1`
+-- Base de données : `tqp_root`
 --
 
 -- --------------------------------------------------------
@@ -70,12 +70,12 @@ CREATE TABLE `classe` (
   `id` int(11) NOT NULL,
   `code_classe` varchar(250) NOT NULL,
   `id_niveau` int(250) DEFAULT NULL,
-  `matricule_etablissement` varchar(250) CHARACTER SET utf8mb4 NOT NULL,
-  `date_academique` varchar(250) CHARACTER SET utf8mb4 NOT NULL,
-  `nom_classe` varchar(250) CHARACTER SET utf8mb4 NOT NULL,
-  `scolarite` varchar(250) CHARACTER SET utf8mb4 NOT NULL,
-  `ini` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
-  `pssw` varchar(250) CHARACTER SET utf8mb4 NOT NULL
+  `matricule_etablissement` varchar(250) CHARACTER SET utf8 NOT NULL,
+  `date_academique` varchar(250) CHARACTER SET utf8 NOT NULL,
+  `nom_classe` varchar(250) CHARACTER SET utf8 NOT NULL,
+  `scolarite` varchar(250) CHARACTER SET utf8 NOT NULL,
+  `ini` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `pssw` varchar(250) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -280,14 +280,14 @@ CREATE TABLE `tranche_paiement` (
 
 CREATE TABLE `utilisateur` (
   `id` int(11) NOT NULL,
-  `matricule_utlisateur` mediumtext CHARACTER SET utf8mb4 NOT NULL,
-  `nom_utilisateur` mediumtext CHARACTER SET utf8mb4 NOT NULL,
-  `prenom_utilisateur` mediumtext CHARACTER SET utf8mb4 NOT NULL,
-  `email_utilisateur` mediumtext CHARACTER SET utf8mb4 NOT NULL,
-  `telephone_utilisateur` mediumtext CHARACTER SET utf8mb4 DEFAULT NULL,
-  `pssw` mediumtext CHARACTER SET utf8mb4 NOT NULL,
-  `role` mediumtext CHARACTER SET utf8mb4 NOT NULL,
-  `matricule_etablissement` mediumtext CHARACTER SET utf8mb4 DEFAULT NULL
+  `matricule_utlisateur` varchar(250) NOT NULL,
+  `nom_utilisateur` varchar(250) NOT NULL,
+  `prenom_utilisateur` varchar(250) NOT NULL,
+  `email_utilisateur` varchar(250) NOT NULL,
+  `telephone_utilisateur` varchar(250) NULL,
+  `pssw` varchar(250) NOT NULL,
+  `role` varchar(250) NOT NULL,
+  `matricule_etablissement` varchar(250) NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -423,7 +423,7 @@ ALTER TABLE `tranche_paiement`
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`matricule_utlisateur`(250),`pssw`(250)) USING BTREE,
   ADD UNIQUE KEY `id_2` (`id`),
-  ADD UNIQUE KEY `email_utilisateur` (`email_utilisateur`) USING HASH;
+  ADD UNIQUE KEY `email_utilisateur` (`email_utilisateur`) USING BTREE;
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
