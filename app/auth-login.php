@@ -41,6 +41,9 @@ include 'database_connection.php';
 require_once 'function.php';
 
 if (isset($_GET['ktsp'])) {
+    session_start();
+    session_unset();
+    session_destroy();
     // Suppression du cookie designPrefere
     setcookie('user_cookie');
     // Suppression de la valeur du tableau $_COOKIE

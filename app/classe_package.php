@@ -123,7 +123,7 @@ class user
 				// SETING THE USER MATRICULE
 				$query_1 = mysqli_query($this->database, "SELECT * FROM utilisateur WHERE 1");
 				$Q_num_user = mysqli_num_rows($query_1) + 1;
-				$Q_matr_user = $Q_nom . '&' . $Q_num_user . '|' . date("d") . '-' . date("D").uniqid();
+				$Q_matr_user = $Q_nom . '|' . $Q_num_user . '|' . date("d") . '-' . date("D").uniqid();
 				// INSERTION OF A NEW USER
 				$query = mysqli_query($this->database, "INSERT INTO utilisateur values (null, '$Q_matr_user', '$Q_nom', '$Q_prenom', '$Q_email', '$Q_telephone', '$Q_pssw', 'admin',null) ");
 				// USER FOR CHAT
@@ -155,7 +155,7 @@ class user
 		// MAKING THE MATR_SCHOOL
 		$query_matr = mysqli_query($this->database, "SELECT * FROM etablissement where 1");
 		$num_etab = mysqli_num_rows($query_matr) + 1;
-		$Q_matr_school = str_replace(" ", "", $Q_name) . '&' . $num_etab . date("d/M");
+		$Q_matr_school = str_replace(" ", "", $Q_name) . '|' . $num_etab . date("d/M");
 		//MAKING DATE_CREATION
 		$Q_date_creation = $Q_date_1;
 		try {
@@ -429,9 +429,11 @@ class admin extends headmaster
 				// SETING THE USER MATRICULE
 				$query_1 = mysqli_query($this->database, "SELECT * FROM utilisateur WHERE 1");
 				$Q_num_user = mysqli_num_rows($query_1) + 1;
-				$Q_matr_user = $nom . '&' . $Q_num_user . '|' . date("d") . '-' . date("D");
+				$Q_matr_user = $nom . '|' . $Q_num_user . '|' . date("d") . '-' . date("D");
 				// INSERT INTO THE DATABASE
 				$query = mysqli_query($this->database, "INSERT INTO utilisateur values(null, '$Q_matr_user', '$nom', '$prenom', '$email', null, '$password', '$role', '$matricule_etablissement') ");
+				// ADD TO CHAT USERS
+				$query = mysqli_query($this->database, "INSERT INTO users VALUE (null,'$Q_matr_user', '$nom', '$prenom', '$email', '$password','', 'Offline', '$matricule_etablissement' )");
 				if (!$query) {
 					return 2;
 					# code...
@@ -515,7 +517,21 @@ class headmaster extends user
 	{
 		$code_classe = $level_id . $class_name . $date_academique;
 		try {
+		$q = mysqli_query($this->database,"SELECT nom_niveau FROM niveau WHERE id = '$level_id' ");
+		$r = mysqli_fetch_assoc($q);
+		$nom_niveau= $r['nom_niveau'];
 		$query = mysqli_query($this->database, "INSERT INTO classe values(null, '$code_classe', '$level_id', '$matricule_etablissement', '$date_academique', '$class_name', '$scolarite', '$ini', '$pssw') ");
+		// CREATE CLASS USER FOR CHAT
+		// get random password
+		$bytes = openssl_random_pseudo_bytes(random_int(4, 10));
+		$pass = bin2hex($bytes);
+		if (strlen($pass) > 4) {
+			$pass = str_replace("=", "", substr($pass, 0, 5));
+			# code...
+		}
+		$pass = base64_encode($pass);
+		$class_name .= " ".$nom_niveau;
+		$query = mysqli_query($this->database, "INSERT INTO users VALUE (null,'$code_classe', '$class_name', 'STUDENTS', 'class@class.class', '$pass','', 'Online now', '$matricule_etablissement' )");
 		if ($query) {
 			return 1;
 			# code...
@@ -535,6 +551,7 @@ class headmaster extends user
 	{
 		try {
 			$query = mysqli_query($this->database, "DELETE FROM `classe` WHERE `classe`.`code_classe` = '$class_code' AND matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' ");
+			$query = mysqli_query($this->database,"DELETE FROM users WHERE unique_id = '$class_code' AND matricule_etablissement = '$matricule_etablissement' ");
 		if ($query) {
 			return 1;
 			# code...

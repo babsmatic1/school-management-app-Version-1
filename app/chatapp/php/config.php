@@ -6,6 +6,11 @@
 
   $conn = mysqli_connect($hostname, $username, $password, $dbname);
   if(!$conn){
-    echo "Database connection error".mysqli_connect_error();
+    echo "conn connection error".mysqli_connect_error();
   }
+  if (!isset($_COOKIE['user_cookie'])) {
+	header("Location: auth-login.php");
+	exit();
+	# code...
+  } 
 ?>

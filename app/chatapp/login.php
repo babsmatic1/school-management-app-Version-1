@@ -1,5 +1,6 @@
 <?php 
   session_start();
+    require '../envi.php';
   if(isset($_SESSION['unique_id'])){
     header("location: users.php");
   }
