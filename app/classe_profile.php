@@ -1800,7 +1800,7 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                             <fieldset
                                                                                 class="form-group position-relative has-icon-left">
                                                                                 <select class="form-control"
-                                                                                    name="week_view">
+                                                                                    name="week_view" required>
                                                                                     <?php
                                                                                     $query = mysqli_query($database, "SELECT DISTINCT(week) AS week FROM calendrier WHERE code_classe = '$code_classe' AND matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' ORDER BY id desc ");
                                                                                     $week = null;

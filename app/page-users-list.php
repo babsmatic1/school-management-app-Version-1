@@ -87,7 +87,9 @@ if (isset($_POST['delete_user'])) {
     if ($role == "admin") {
         $del_matri = $_POST['delete_user'];
         $query = mysqli_query($database, "DELETE FROM utilisateur WHERE matricule_utlisateur = '$del_matri' and matricule_etablissement = '$matricule_etablissement' ");
-        if ($query) { ?>
+			$query = mysqli_query($database,"DELETE FROM users WHERE unique_id = '$del_matri' AND matricule_etablissement = '$matricule_etablissement' ");
+        if ($query) {
+             ?>
 <div class="swal2-container swal2-center swal2-fade swal2-shown" style="overflow-y: auto;">
     <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show"
         tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: flex;">
