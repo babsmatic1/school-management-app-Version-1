@@ -498,6 +498,7 @@ if (isset($_POST['delete_student'])) {
     if ($role == 'admin' or $role == 'headmaster') {
         $matricule_apprenant = $_POST['delete_student'];
         $result = mysqli_query($database, "DELETE FROM apprenant WHERE matricule_apprenant = '$matricule_apprenant' AND date_academique = '$date_academique'");
+        $query = mysqli_query($database, "DELETE FROM users WHERE unique_id= '$matricule_apprenant' AND matricule_etablissement = '$matricule_etablissement'  ");
         # code...
     } else {
         include 'access_denieted.php';

@@ -742,7 +742,7 @@ class headmaster extends user
 			# code...
 		}
 		if (1 == 1) {
-			$matricule_apprenant = date("y") . "THIB" . $ini . "0" .substr(uniqid("", true), 0, 5);
+			$matricule_apprenant = date("y") . "THIB" . $ini . "0" .substr(random_int(0, 9999), 0, 5);
 			// get random password
 			$bytes = openssl_random_pseudo_bytes(random_int(4, 10));
 			$pass = bin2hex($bytes);
@@ -753,12 +753,12 @@ class headmaster extends user
 			$pass = base64_encode($pass);
 			try {
 			$query = mysqli_query($this->database, "INSERT INTO apprenant values(null, '$matricule_apprenant', '$code_classe', '$matricule_etablissement', '$date_academique', '$nom_apprenant', '$prenom_apprenant', '$telephone_apprenant', '$adresse_apprenant', '$tutor_apprenant', '$other_info_apprenant', '$pass') ");
+			while (!$query) {
+			$matricule_apprenant = date("y") . "THIB" . $ini . "0" .substr(random_int(0, 9999), 0, 5);
+				$query = mysqli_query($this->database, "INSERT INTO apprenant values(null, '$matricule_apprenant', '$code_classe', '$matricule_etablissement', '$date_academique', '$nom_apprenant', '$prenom_apprenant', '$telephone_apprenant', '$adresse_apprenant', '$tutor_apprenant', '$other_info_apprenant', '$pass') ");
+				# code...
+			}
 			$query = mysqli_query($this->database, "INSERT INTO users values (null, '$matricule_apprenant', '$nom_apprenant', '$prenom_apprenant', '$telephone_apprenant', '$pass', '', 'Offline now', '$matricule_etablissement') ");
-			// while (!$query) {
-			// 	$matricule_apprenant = date("y") . "THIB" . $ini . "0" .substr(uniqid("", true), 0, 5);
-			// 	$query = mysqli_query($this->database, "INSERT INTO apprenant values(null, '$matricule_apprenant', '$code_classe', '$matricule_etablissement', '$date_academique', '$nom_apprenant', '$prenom_apprenant', '$telephone_apprenant', '$adresse_apprenant', '$tutor_apprenant', '$other_info_apprenant', '$pass') ");
-			// 	# code...
-			// }
 			if ($query) {
 				return 1;
 				# code...
