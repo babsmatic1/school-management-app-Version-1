@@ -63,64 +63,132 @@ if (isset($_GET['ktsp'])) {
         $ini = $result['ini'];
         $code_cloud = base64_decode($result['pssw']);
 
-        // DELETE THE <?php echo $retVal = ($statut == 1) ? "CLASS" : "SPECIALITY";
+        // DELETE THE 
         if (isset($_POST['delete_s'])) {
             if ($role == "admin" or $role == "headmaster") {
                 $result = $user->delete_class($code_classe, $matricule_etablissement, $date_academique);
-                header("Location: ./classe.php");
-                # code...
-            } else {
-                include 'access_denieted.php';
-                # code...
-            }
-            # code...
-        }
+        switch ($result) {
+            case 0: ?>
+<div class="swal2-container swal2-center swal2-fade swal2-shown" style="overflow-y: auto;">
+    <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show"
+        tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: flex;">
+        <div class="swal2-header">
+            <ul class="swal2-progresssteps" style="display: none;"></ul>
+            <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex;">
+                <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span>
+                    <span class="swal2-x-mark-line-right"></span></span>
+            </div>
+            <div class="swal2-icon swal2-question" style="display: none;">
+                <span class="swal2-icon-text">?</span>
+            </div>
+            <div class="swal2-icon swal2-warning" style="display: none;">
+                <span class="swal2-icon-text">!</span>
+            </div>
+            <div class="swal2-icon swal2-info" style="display: none;">
+                <span class="swal2-icon-text">i</span>
+            </div>
+            <div class="swal2-icon swal2-success" style="display: none;">
+                <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+                <span class="swal2-success-line-tip"></span>
+                <span class="swal2-success-line-long"></span>
+                <div class="swal2-success-ring"></div>
+                <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+                <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+            </div>
+            <img class="swal2-image" style="display: none;">
+            <h2 class="swal2-title" id="swal2-title" style="display: flex;">Oops...</h2>
+            <button type="button" class="swal2-close" style="display: none;">×</button>
+        </div>
+        <div class="swal2-content">
+            <div id="swal2-content" style="display: block;">
+                The SPECIALITY have not been deleted.. <br> Maybe there are students registred or Tuition feeds.
+                <br>Delete them
+                before, to perform this action.
+            </div>
+            <input class="swal2-input" style="display: none;">
+            <input type="file" class="swal2-file" style="display: none;">
+            <div class="swal2-range" style="display: none;">
+                <input type="range"><output></output>
+            </div>
+            <select class="swal2-select" style="display: none;"></select>
+            <div class="swal2-radio" style="display: none;"></div>
+            <label for="swal2-checkbox" class="swal2-checkbox" style="display: none;"><input type="checkbox">
+                <span class="swal2-label"></span>
+            </label>
+            <textarea class="swal2-textarea" style="display: none;"></textarea>
+            <div class="swal2-validation-message" id="swal2-validation-message" style="display: none;"></div>
+        </div>
+        <div class="swal2-actions" style="display: flex;">
+            <a href=""><button type="button" class="swal2-confirm btn btn-primary" aria-label="">ok</button></a>
+        </div>
+        <div class="swal2-footer" style="display: flex;"><a href="">Why do I have this issue?</a></div>
+    </div>
+</div>
+<?php
+# code...
+break;
 
-        // UPDATE CLASS INFOS
-        if (isset($_POST['update_sp'])) {
-            if ($role == "admin" or $role == "headmaster") {
-                $nom_classe = get_safe_input($_POST['nom_classe']);
-                $scolarite =get_safe_input( $_POST['tuition']);
-                $ini = get_safe_input($_POST['init']);
-                $code_cloud = get_safe_input(base64_encode($_POST['password']));
-                $query = mysqli_query($database, "UPDATE classe SET nom_classe = '$nom_classe', scolarite = '$scolarite', pssw = '$code_cloud', ini = '$ini' WHERE code_classe = '$code_classe'");
-                $code_cloud = base64_decode($code_cloud);
-                // hey
-                # code...
-            } else {
-                include 'access_denieted.php';
-                # code...
-            }
-            # code...
-        }
-        if (isset($_POST['change_level'])) {
-            if ($role == "admin" or $role == "headmaster") {
-                $id_niveau = $_POST['new_level'];
-                $query = mysqli_query($database, "UPDATE classe SET id_niveau = '$id_niveau' WHERE code_classe = '$code_classe' ");
-
-                # code...
-            } else {
-                include './access_denieted.php';
-            }
-            # code...
-        }
-
-        $query = mysqli_query($database, "SELECT * FROM niveau WHERE id = '$id_niveau' AND matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' ");
-        if (mysqli_num_rows($query) == 1) {
-            $result = mysqli_fetch_assoc($query);
-            $nom_niveau = $result['nom_niveau'];
-            # code...
-        } else {
-            $nom_niveau = "The level have been deleted";
-        }
-        $query = mysqli_query($database, "SELECT COUNT(id) AS max_a FROM apprenant WHERE code_classe = '$code_classe' AND  matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' ");
-        $result = mysqli_fetch_assoc($query);
-        $max_apprenant = $result['max_a'];
-    }
-    # code...
+default:
+# code...
+break;
+}
+header("Location: ./classe.php");
+# code...
 } else {
-    header("Location: classe.php");
-    exit();
+include 'access_denieted.php';
+# code...
+}
+# code...
+}
+
+// UPDATE CLASS INFOS
+if (isset($_POST['update_sp'])) {
+if ($role == "admin" or $role == "headmaster") {
+$nom_classe = get_safe_input($_POST['nom_classe']);
+$scolarite =get_safe_input( $_POST['tuition']);
+$ini = get_safe_input($_POST['init']);
+$code_cloud = get_safe_input(base64_encode($_POST['password']));
+$query = mysqli_query($database, "UPDATE classe SET nom_classe = '$nom_classe', scolarite = '$scolarite', pssw =
+'$code_cloud', ini = '$ini' WHERE code_classe = '$code_classe'");
+$code_cloud = base64_decode($code_cloud);
+// hey
+# code...
+} else {
+include 'access_denieted.php';
+# code...
+}
+# code...
+}
+if (isset($_POST['change_level'])) {
+if ($role == "admin" or $role == "headmaster") {
+$id_niveau = $_POST['new_level'];
+$query = mysqli_query($database, "UPDATE classe SET id_niveau = '$id_niveau' WHERE code_classe = '$code_classe' ");
+
+# code...
+} else {
+include './access_denieted.php';
+}
+# code...
+}
+
+$query = mysqli_query($database, "SELECT * FROM niveau WHERE id = '$id_niveau' AND matricule_etablissement =
+'$matricule_etablissement' AND date_academique = '$date_academique' ");
+if (mysqli_num_rows($query) == 1) {
+$result = mysqli_fetch_assoc($query);
+$nom_niveau = $result['nom_niveau'];
+# code...
+} else {
+$nom_niveau = "The level have been deleted";
+}
+$query = mysqli_query($database, "SELECT COUNT(id) AS max_a FROM apprenant WHERE code_classe = '$code_classe' AND
+matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' ");
+$result = mysqli_fetch_assoc($query);
+$max_apprenant = $result['max_a'];
+}
+# code...
+} else {
+header("Location: classe.php");
+exit();
 }
 
 ?>
@@ -129,7 +197,8 @@ if (isset($_GET['ktsp'])) {
 <!-- BEGIN: Head-->
 
 <head>
-    <title><?php echo $nom_classe . " " . $nom_niveau; ?> | <?php echo $nom_etablissement . " " . $date_academique; ?>
+    <title><?php echo $nom_classe . " " . $nom_niveau; ?> |
+        <?php echo $nom_etablissement . " " . $date_academique; ?>
     </title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
@@ -208,7 +277,8 @@ if (isset($_POST['add_dis_class'])) {
         </div>
         <div class="swal2-content">
             <div id="swal2-content" style="display: block;">
-                <?php echo 'This course has already been added or there is an error in the course text'; ?></div>
+                <?php echo 'This course has already been added or there is an error in the course text'; ?>
+            </div>
             <input class="swal2-input" style="display: none;">
             <input type="file" class="swal2-file" style="display: none;">
             <div class="swal2-range" style="display: none;">
@@ -220,7 +290,8 @@ if (isset($_POST['add_dis_class'])) {
                 <span class="swal2-label"></span>
             </label>
             <textarea class="swal2-textarea" style="display: none;"></textarea>
-            <div class="swal2-validation-message" id="swal2-validation-message" style="display: none;"></div>
+            <div class="swal2-validation-message" id="swal2-validation-message" style="display: none;">
+            </div>
         </div>
         <div class="swal2-actions" style="display: flex;">
             <a href=""><button type="button" class="swal2-confirm btn btn-primary" aria-label="">ok</button></a>
@@ -282,7 +353,8 @@ if (isset($_POST['delete_dis_class'])) {
         </div>
         <div class="swal2-content">
             <div id="swal2-content" style="display: block;">
-                The Course have not been deleted from this speciality. <br> because There are exam notes saved within.
+                The Course have not been deleted from this speciality. <br> because There are exam notes
+                saved within.
             </div>
             <input class="swal2-input" style="display: none;">
             <input type="file" class="swal2-file" style="display: none;">
@@ -295,7 +367,8 @@ if (isset($_POST['delete_dis_class'])) {
                 <span class="swal2-label"></span>
             </label>
             <textarea class="swal2-textarea" style="display: none;"></textarea>
-            <div class="swal2-validation-message" id="swal2-validation-message" style="display: none;"></div>
+            <div class="swal2-validation-message" id="swal2-validation-message" style="display: none;">
+            </div>
         </div>
         <div class="swal2-actions" style="display: flex;">
             <a href=""><button type="button" class="swal2-confirm btn btn-primary" aria-label="">ok</button></a>
@@ -358,7 +431,8 @@ if (isset($_POST['update_dis_class'])) {
             <button type="button" class="swal2-close" style="display: none;">×</button>
         </div>
         <div class="swal2-content">
-            <div id="swal2-content" style="display: block;"><?php echo 'Something when wrong, try in a few minutes'; ?>
+            <div id="swal2-content" style="display: block;">
+                <?php echo 'Something when wrong, try in a few minutes'; ?>
             </div>
             <input class="swal2-input" style="display: none;">
             <input type="file" class="swal2-file" style="display: none;">
@@ -371,7 +445,8 @@ if (isset($_POST['update_dis_class'])) {
                 <span class="swal2-label"></span>
             </label>
             <textarea class="swal2-textarea" style="display: none;"></textarea>
-            <div class="swal2-validation-message" id="swal2-validation-message" style="display: none;"></div>
+            <div class="swal2-validation-message" id="swal2-validation-message" style="display: none;">
+            </div>
         </div>
         <div class="swal2-actions" style="display: flex;">
             <a href=""><button type="button" class="swal2-confirm btn btn-primary" aria-label="">ok</button></a>
@@ -474,7 +549,8 @@ if (isset($_POST['add_time_tab'])) {
             <button type="button" class="swal2-close" style="display: none;">×</button>
         </div>
         <div class="swal2-content">
-            <div id="swal2-content" style="display: block;"><?php echo 'Already Programmed in an occupied room'; ?>
+            <div id="swal2-content" style="display: block;">
+                <?php echo 'Already Programmed in an occupied room'; ?>
             </div>
             <input class="swal2-input" style="display: none;">
             <input type="file" class="swal2-file" style="display: none;">
@@ -487,7 +563,8 @@ if (isset($_POST['add_time_tab'])) {
                 <span class="swal2-label"></span>
             </label>
             <textarea class="swal2-textarea" style="display: none;"></textarea>
-            <div class="swal2-validation-message" id="swal2-validation-message" style="display: none;"></div>
+            <div class="swal2-validation-message" id="swal2-validation-message" style="display: none;">
+            </div>
         </div>
         <div class="swal2-actions" style="display: flex;">
             <a href=""><button type="button" class="swal2-confirm btn btn-primary" aria-label="">ok</button></a>
@@ -575,7 +652,8 @@ if (isset($_POST['add_tranche'])) {
                 <span class="swal2-label"></span>
             </label>
             <textarea class="swal2-textarea" style="display: none;"></textarea>
-            <div class="swal2-validation-message" id="swal2-validation-message" style="display: none;"></div>
+            <div class="swal2-validation-message" id="swal2-validation-message" style="display: none;">
+            </div>
         </div>
         <div class="swal2-actions" style="display: flex;">
             <a href=""><button type="button" class="swal2-confirm btn btn-primary" aria-label="">ok</button></a>
@@ -632,7 +710,8 @@ if (isset($_POST['delete_tranche'])) {
             <button type="button" class="swal2-close" style="display: none;">×</button>
         </div>
         <div class="swal2-content">
-            <div id="swal2-content" style="display: block;">There are student's paiements saved for this feed. <br>
+            <div id="swal2-content" style="display: block;">There are student's paiements saved for this
+                feed. <br>
                 Delete all student paiement for this feed before, to perfom this action.</div>
             <input class="swal2-input" style="display: none;">
             <input type="file" class="swal2-file" style="display: none;">
@@ -645,7 +724,8 @@ if (isset($_POST['delete_tranche'])) {
                 <span class="swal2-label"></span>
             </label>
             <textarea class="swal2-textarea" style="display: none;"></textarea>
-            <div class="swal2-validation-message" id="swal2-validation-message" style="display: none;"></div>
+            <div class="swal2-validation-message" id="swal2-validation-message" style="display: none;">
+            </div>
         </div>
         <div class="swal2-actions" style="display: flex;">
             <a href=""><button type="button" class="swal2-confirm btn btn-primary" aria-label="">ok</button></a>
@@ -690,7 +770,8 @@ alert("Fatal error: incorrect file format \n Download the template and use it.")
     }
     ?>
 <script type="text/javascript" language="javascript">
-alert("Info: Count of student uploaded \n if all the students have not been uploaded press F5; else just Click Ok .");
+alert(
+    "Info: Count of student uploaded \n if all the students have not been uploaded press F5; else just Click Ok .");
 </script>
 
 <?php
@@ -793,7 +874,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                 <a class="nav-link d-flex px-1" id="compta-tab" data-toggle="tab"
                                                     href="#compta" aria-controls="compta" role="tab"
                                                     aria-selected="false"><i class="bx bx-message-alt"></i><span
-                                                        class="d-none d-md-block">Manage Tuition feeds</span></a>
+                                                        class="d-none d-md-block">Manage Tuition
+                                                        feeds</span></a>
                                             </li>
                                             <li class="nav-item pb-0">
                                                 <a class="nav-link d-flex px-1" id="compta-tab" data-toggle="tab"
@@ -857,11 +939,13 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                 style="text-transform: uppercase;"><?php echo $result['nom_tranche']; ?></span>
                                                                         </div>
                                                                         <h6 class="timeline-title">
-                                                                            <?php echo $result['montant'] . " "; ?></h6>
+                                                                            <?php echo $result['montant'] . " "; ?>
+                                                                        </h6>
 
                                                                         <p class="timeline-text"
                                                                             style="font-size: 20px;">
-                                                                            Total Amount that would be paid <a
+                                                                            Total Amount that would be
+                                                                            paid <a
                                                                                 href="JavaScript:void(0);"><?php echo $result['montant'] * $max_apprenant; ?></a>
                                                                         </p>
 
@@ -870,10 +954,12 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                             ?>
 
                                                                     </li>
-                                                                    <li class="timeline-items timeline-icon-danger"> <b>
+                                                                    <li class="timeline-items timeline-icon-danger">
+                                                                        <b>
                                                                             Total paid for
                                                                             <?php echo ($result['nom_tranche'] . " : " . intval($result_0['montant_t'])) ?>
-                                                                        </b></li>
+                                                                        </b>
+                                                                    </li>
 
                                                                     <?php
                                                                         echo "<br><br>";
@@ -892,10 +978,12 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
 
                                                                 ?>
                                                                 <h4>
-                                                                    <p style="color: red;"> TOTAL AMOUNT ALREADY PAID IN
+                                                                    <p style="color: red;"> TOTAL AMOUNT
+                                                                        ALREADY PAID IN
                                                                         THIS
                                                                         <?php echo $retVal = ($statut == 1) ? "CLASS" : "SPECIALITY"; ?>:
-                                                                        <?php echo $result['montant_t'] + 0 ?></p>
+                                                                        <?php echo $result['montant_t'] + 0 ?>
+                                                                    </p>
                                                                 </h4>
 
                                                                 <!-- timeline widget ends -->
@@ -908,7 +996,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                     <div class="col-12">
                                                         <div class="card">
                                                             <div class="card-header">
-                                                                <h4 class="card-title">CLASS PAIEMENT DATA TABLE</h4>
+                                                                <h4 class="card-title">CLASS PAIEMENT
+                                                                    DATA TABLE</h4>
                                                             </div>
                                                             <div class="card-content">
                                                                 <div class="card-body card-dashboard">
@@ -918,7 +1007,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                             <thead>
                                                                                 <tr>
                                                                                     <th>Full Name</th>
-                                                                                    <th>Paiement Tranche</th>
+                                                                                    <th>Paiement Tranche
+                                                                                    </th>
                                                                                     <th>Amount</th>
                                                                                     <th>Delais</th>
                                                                                     <th>Amount PAID</th>
@@ -959,11 +1049,14 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                             </button>
                                                                                         </a>
                                                                                     </td>
-                                                                                    <td><?php echo $nom_tranche; ?></td>
-                                                                                    <td><?php echo $amount . ""; ?></td>
+                                                                                    <td><?php echo $nom_tranche; ?>
+                                                                                    </td>
+                                                                                    <td><?php echo $amount . ""; ?>
+                                                                                    </td>
                                                                                     <td><?php echo $echeance_tranche; ?>
                                                                                     </td>
-                                                                                    <td><?php echo $count . ""; ?></td>
+                                                                                    <td><?php echo $count . ""; ?>
+                                                                                    </td>
                                                                                 </tr>
                                                                                 <?php
                                                                                         // code...
@@ -977,7 +1070,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                             <tfoot>
                                                                                 <tr>
                                                                                     <th>Full Name</th>
-                                                                                    <th>Paiement Tranche</th>
+                                                                                    <th>Paiement Tranche
+                                                                                    </th>
                                                                                     <th>Amount</th>
                                                                                     <th>Delais</th>
                                                                                     <th>Amount PAID</th>
@@ -1019,7 +1113,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                                         class="btn btn-outline-success"
                                                                                                         data-toggle="modal"
                                                                                                         data-target="#xlarge">
-                                                                                                        Add a
+                                                                                                        Add
+                                                                                                        a
                                                                                                         <?php echo $retVal = ($statut == 1) ? "COURSE" : "DISCIPLINE"; ?>
                                                                                                     </button>
 
@@ -1215,7 +1310,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                         ?>
                                                                         <li
                                                                             class="timeline-items timeline-icon-success active">
-                                                                            <div class="timeline-time">Teacher: <span
+                                                                            <div class="timeline-time">
+                                                                                Teacher: <span
                                                                                     style="text-transform: uppercase;"><?php echo $nom_enseignant; ?></span>
                                                                             </div>
                                                                             <h6 class="timeline-title">
@@ -1347,7 +1443,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                         ?>
                                                                         <li
                                                                             class="timeline-items timeline-icon-success active">
-                                                                            <div class="timeline-time"> <span
+                                                                            <div class="timeline-time">
+                                                                                <span
                                                                                     style="text-transform: uppercase;"><?php echo $result['nom_tranche']; ?></span>
                                                                             </div>
                                                                             <h6 class="timeline-title">
@@ -1409,10 +1506,14 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                                 class="btn btn-outline-success"
                                                                                                 data-toggle="modal"
                                                                                                 data-target="#xlarg">
-                                                                                                Add one student
+                                                                                                Add one
+                                                                                                student
                                                                                             </button>
                                                                                             <hr>
-                                                                                            <h6>Or add with a data file
+                                                                                            <h6>Or add
+                                                                                                with a
+                                                                                                data
+                                                                                                file
                                                                                             </h6>
                                                                                             <!--login form Modal -->
                                                                                             <div class="modal fade text-left"
@@ -1490,8 +1591,10 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                         Download the template
                                                                     </a>
                                                                 </button>
-                                                                <small>do not modify the header</small><br>
-                                                                <strong>Please upload max 400 students each time
+                                                                <small>do not modify the
+                                                                    header</small><br>
+                                                                <strong>Please upload max 400 students
+                                                                    each time
                                                                 </strong>
 
                                                                 <form action="#" method="post"
@@ -1502,7 +1605,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                 class="custom-file-input"
                                                                                 name="csv_file" accept="csv" id="">
                                                                             <label class="custom-file-label"
-                                                                                for="emailAttach">Attach File</label>
+                                                                                for="emailAttach">Attach
+                                                                                File</label>
                                                                         </div>
                                                                     </div>
                                                                     <button type="submit"
@@ -1525,7 +1629,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                     <div class="col-12">
                                                         <div class="card">
                                                             <div class="card-header">
-                                                                <h4 class="card-title">LIST OF <?php $nom_classe ?>
+                                                                <h4 class="card-title">LIST OF
+                                                                    <?php $nom_classe ?>
                                                                     STUDENT DATA TABLE</h4>
                                                             </div>
                                                             <form class="" action="" method="post">
@@ -1536,13 +1641,17 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                 class="table table-striped dataex-html5-selectors">
                                                                                 <thead>
                                                                                     <tr>
-                                                                                        <th>First Name</th>
-                                                                                        <th>Last Name</th>
+                                                                                        <th>First Name
+                                                                                        </th>
+                                                                                        <th>Last Name
+                                                                                        </th>
                                                                                         <th><?php echo $retVal = ($statut == 1) ? "Class" : "Speciality"; ?>
                                                                                         </th>
                                                                                         <th>Email</th>
-                                                                                        <th>Matricule</th>
-                                                                                        <th>Birthday and place</th>
+                                                                                        <th>Matricule
+                                                                                        </th>
+                                                                                        <th>Birthday and
+                                                                                            place</th>
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
@@ -1596,13 +1705,17 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                 </tbody>
                                                                                 <tfoot>
                                                                                     <tr>
-                                                                                        <th>First Name</th>
-                                                                                        <th>Last Name</th>
+                                                                                        <th>First Name
+                                                                                        </th>
+                                                                                        <th>Last Name
+                                                                                        </th>
                                                                                         <th><?php echo $retVal = ($statut == 1) ? "Class" : "Speciality"; ?>
                                                                                         </th>
                                                                                         <th>Email</th>
-                                                                                        <th>Matricule</th>
-                                                                                        <th>Birthday and place</th>
+                                                                                        <th>Matricule
+                                                                                        </th>
+                                                                                        <th>Birthday and
+                                                                                            place</th>
                                                                                     </tr>
                                                                                 </tfoot>
                                                                             </table>
@@ -1645,7 +1758,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                     <i class='bx bx-calendar-check'></i>
                                                                                 </div>
                                                                             </fieldset>
-                                                                            <span><em>verify that it's the correct
+                                                                            <span><em>verify that it's
+                                                                                    the correct
                                                                                     week</em></span>
                                                                         </div>
                                                                     </div>
@@ -1692,19 +1806,26 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                 class="form-group position-relative has-icon-left">
                                                                                 <select class="form-control"
                                                                                     name="jour">
-                                                                                    <option value="MONDAY">MONDAY
+                                                                                    <option value="MONDAY">
+                                                                                        MONDAY
                                                                                     </option>
-                                                                                    <option value="TUESDAY">TUESDAY
+                                                                                    <option value="TUESDAY">
+                                                                                        TUESDAY
                                                                                     </option>
-                                                                                    <option value="WEDNESDAY">WEDNESDAY
+                                                                                    <option value="WEDNESDAY">
+                                                                                        WEDNESDAY
                                                                                     </option>
-                                                                                    <option value="THURSDAY">THURSDAY
+                                                                                    <option value="THURSDAY">
+                                                                                        THURSDAY
                                                                                     </option>
-                                                                                    <option value="FRIDAY">FRIDAY
+                                                                                    <option value="FRIDAY">
+                                                                                        FRIDAY
                                                                                     </option>
-                                                                                    <option value="SATURDAY">SATURDAY
+                                                                                    <option value="SATURDAY">
+                                                                                        SATURDAY
                                                                                     </option>
-                                                                                    <option value="SUNDAY">SUNDAY
+                                                                                    <option value="SUNDAY">
+                                                                                        SUNDAY
                                                                                     </option>
                                                                                 </select>
                                                                             </fieldset>
@@ -1771,7 +1892,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                             <span class=" float-sm-right ">
                                                                 <!-- <button class="btn btn-light-primary mr-0 my-1 my-sm-0 mr-sm-1">Preview</button> -->
                                                                 <button type="submit" name="add_time_tab"
-                                                                    class="btn btn-primary">Add a program</button>
+                                                                    class="btn btn-primary">Add a
+                                                                    program</button>
                                                             </span>
                                                         </div>
                                                     </form>
@@ -1779,7 +1901,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                             </div>
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h4 class="card-title">View the programm of a week</h4><br>
+                                                    <h4 class="card-title">View the programm of a week
+                                                    </h4><br>
                                                 </div>
                                                 <div class="card-content">
                                                     <form class="form form-horizontal" method="post" action="">
@@ -1787,9 +1910,11 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                             <div class="form-body">
                                                                 <div class="row">
                                                                     <div class="col-md-4">
-                                                                        <label>Choose thee week</label><br>
+                                                                        <label>Choose thee
+                                                                            week</label><br>
                                                                         <button type="submit" name="week_tab"
-                                                                            class="btn btn-primary">Load to
+                                                                            class="btn btn-primary">Load
+                                                                            to
                                                                             print</button>
                                                                         <button type="submit" name="week_del"
                                                                             class="btn btn-danger">delete
@@ -1878,7 +2003,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                     $day = $result_1['jour'];
                                                                                 ?>
                                                                                 <tr>
-                                                                                    <td><?php echo $day; ?></td>
+                                                                                    <td><?php echo $day; ?>
+                                                                                    </td>
                                                                                     <td>
                                                                                         <?php
                                                                                             $query_2 = mysqli_query($database, "SELECT *  FROM calendrier WHERE date_academique = '$date_academique' AND matricule_etablissement = '$matricule_etablissement' AND code_classe = '$code_classe' AND week = '$week' AND jour = '$day' ORDER BY id asc ");
@@ -1942,7 +2068,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                     $day = $result_1['jour'];
                                                                                 ?>
                                                                                 <tr>
-                                                                                    <td><?php echo $day; ?></td>
+                                                                                    <td><?php echo $day; ?>
+                                                                                    </td>
                                                                                     <td>
                                                                                         <?php
                                                                                             $query_2 = mysqli_query($database, "SELECT *  FROM calendrier WHERE date_academique = '$date_academique' AND matricule_etablissement = '$matricule_etablissement' AND code_classe = '$code_classe' AND week = '$week' AND jour = '$day' ORDER BY id asc ");
@@ -2007,7 +2134,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                     $day = $result_1['jour'];
                                                                                 ?>
                                                                                 <tr>
-                                                                                    <td><?php echo $day; ?></td>
+                                                                                    <td><?php echo $day; ?>
+                                                                                    </td>
                                                                                     <td>
                                                                                         <?php
                                                                                             $query_2 = mysqli_query($database, "SELECT *  FROM calendrier WHERE date_academique = '$date_academique' AND matricule_etablissement = '$matricule_etablissement' AND code_classe = '$code_classe' AND week = '$week' AND jour = '$day' ORDER BY id asc ");
@@ -2073,7 +2201,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                     $day = $result_1['jour'];
                                                                                 ?>
                                                                                 <tr>
-                                                                                    <td><?php echo $day; ?></td>
+                                                                                    <td><?php echo $day; ?>
+                                                                                    </td>
                                                                                     <td>
                                                                                         <?php
                                                                                             $query_2 = mysqli_query($database, "SELECT *  FROM calendrier WHERE date_academique = '$date_academique' AND matricule_etablissement = '$matricule_etablissement' AND code_classe = '$code_classe' AND week = '$week' AND jour = '$day' ORDER BY id asc ");
@@ -2138,7 +2267,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                     $day = $result_1['jour'];
                                                                                 ?>
                                                                                 <tr>
-                                                                                    <td><?php echo $day; ?></td>
+                                                                                    <td><?php echo $day; ?>
+                                                                                    </td>
                                                                                     <td>
                                                                                         <?php
                                                                                             $query_2 = mysqli_query($database, "SELECT *  FROM calendrier WHERE date_academique = '$date_academique' AND matricule_etablissement = '$matricule_etablissement' AND code_classe = '$code_classe' AND week = '$week' AND jour = '$day' ORDER BY id asc ");
@@ -2202,7 +2332,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                     $day = $result_1['jour'];
                                                                                 ?>
                                                                                 <tr>
-                                                                                    <td><?php echo $day; ?></td>
+                                                                                    <td><?php echo $day; ?>
+                                                                                    </td>
                                                                                     <td>
                                                                                         <?php
                                                                                             $query_2 = mysqli_query($database, "SELECT *  FROM calendrier WHERE date_academique = '$date_academique' AND matricule_etablissement = '$matricule_etablissement' AND code_classe = '$code_classe' AND week = '$week' AND jour = '$day' ORDER BY id asc ");
@@ -2266,7 +2397,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                     $day = $result_1['jour'];
                                                                                 ?>
                                                                                 <tr>
-                                                                                    <td><?php echo $day; ?></td>
+                                                                                    <td><?php echo $day; ?>
+                                                                                    </td>
                                                                                     <td>
                                                                                         <?php
                                                                                             $query_2 = mysqli_query($database, "SELECT *  FROM calendrier WHERE date_academique = '$date_academique' AND matricule_etablissement = '$matricule_etablissement' AND code_classe = '$code_classe' AND week = '$week' AND jour = '$day' ORDER BY id asc ");
@@ -2368,7 +2500,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                 ?>
                                                                 <div class="row">
                                                                     <div class="col-md-7">
-                                                                        <label for="">Trimestrial Note report</label>
+                                                                        <label for="">Trimestrial Note
+                                                                            report</label>
                                                                         <input type="text" name="trnmae" required
                                                                             class="form-control" id=""
                                                                             placeholder="Name of the Trimestrial report notes">
@@ -2378,8 +2511,10 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                         <div class="mb-3">
                                                                             <fieldset
                                                                                 class="form-group position-relative has-icon-left">
-                                                                                <legend>Exam notes</legend>
-                                                                                <label for="">First Exam</label>
+                                                                                <legend>Exam notes
+                                                                                </legend>
+                                                                                <label for="">First
+                                                                                    Exam</label>
                                                                                 <select required class="form-control"
                                                                                     name="s1">
                                                                                     <?php
@@ -2394,7 +2529,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                         }
                                                                                         ?>
                                                                                 </select>
-                                                                                <label for="">Second Exam</label>
+                                                                                <label for="">Second
+                                                                                    Exam</label>
                                                                                 <select required class="form-control"
                                                                                     name="s2">
                                                                                     <<?php
@@ -2436,7 +2572,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                         <div class="mb-3">
                                                                             <fieldset
                                                                                 class="form-group position-relative has-icon-left">
-                                                                                <legend>Semestre 1 courses</legend>
+                                                                                <legend>Semestre 1
+                                                                                    courses</legend>
                                                                                 <section id="column-selectors">
                                                                                     <div class="row">
                                                                                         <div class="col-12">
@@ -2547,7 +2684,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                         <div class="mb-3">
                                                                             <fieldset
                                                                                 class="form-group position-relative has-icon-left">
-                                                                                <h3>Semestre 2 courses</h3>
+                                                                                <h3>Semestre 2 courses
+                                                                                </h3>
                                                                                 <section id="column-selectors">
                                                                                     <div class="row">
                                                                                         <div class="col-12">
@@ -2660,7 +2798,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                         <div class="mb-3">
                                                                             <fieldset
                                                                                 class="form-group position-relative has-icon-left">
-                                                                                <legend>Semestre 1 Notes</legend>
+                                                                                <legend>Semestre 1 Notes
+                                                                                </legend>
                                                                                 <label for="">30%</label>
                                                                                 <select required class="form-control"
                                                                                     name="30_cent_s1">
@@ -2696,7 +2835,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                         <div class="mb-3">
                                                                             <fieldset
                                                                                 class="form-group position-relative has-icon-left">
-                                                                                <legend>Semestre 2 Notes</legend>
+                                                                                <legend>Semestre 2 Notes
+                                                                                </legend>
                                                                                 <label for="">30%</label>
                                                                                 <select class="form-control"
                                                                                     name="30_cent_s2">
@@ -2774,7 +2914,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                     <div class="card-body">
                                                                                         <h5>Update
                                                                                             <?php echo $retVal = ($statut == 1) ? "CLASS" : "SPECIALITY"; ?>
-                                                                                            configuration</h5>
+                                                                                            configuration
+                                                                                        </h5>
                                                                                         <div class="form-group">
                                                                                             <div class="form-group row">
                                                                                                 <label><?php echo $retVal = ($statut == 1) ? "CLASS" : "SPECIALITY"; ?>
@@ -2838,13 +2979,20 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                             <div class="card">
                                                                                 <div class="card-content">
                                                                                     <div class="card-body">
-                                                                                        <h5>CHANGE THE LEVEL OF THIS
+                                                                                        <h5>CHANGE THE
+                                                                                            LEVEL OF
+                                                                                            THIS
                                                                                             <?php echo $retVal = ($statut == 1) ? "CLASS" : "SPECIALITY"; ?>
-                                                                                        </h5><sup>* <b>all
-                                                                                                the student of this
+                                                                                        </h5><sup>*
+                                                                                            <b>all
+                                                                                                the
+                                                                                                student
+                                                                                                of this
                                                                                                 <?php echo $retVal = ($statut == 1) ? "CLASS" : "SPECIALITY"; ?>
-                                                                                                will change
-                                                                                                their level</b></sup>
+                                                                                                will
+                                                                                                change
+                                                                                                their
+                                                                                                level</b></sup>
                                                                                         <form class="form" method="post"
                                                                                             action="">
                                                                                             <div class="form-goup">
@@ -2881,7 +3029,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                             <div class="card">
                                                                                 <div class="card-content">
                                                                                     <div class="card-body">
-                                                                                        <h5>OPERATIONS</h5>
+                                                                                        <h5>OPERATIONS
+                                                                                        </h5>
                                                                                         <form class="form" method="post"
                                                                                             action="">
                                                                                             <div class="form-group">
@@ -2896,7 +3045,8 @@ alert("Info: Count of student uploaded \n if all the students have not been uplo
                                                                                                     class="btn btn-light-warning"
                                                                                                     type="submit"
                                                                                                     name="delete_A_en">DELETE
-                                                                                                    ALL STUDENT</button>
+                                                                                                    ALL
+                                                                                                    STUDENT</button>
                                                                                             </div>
                                                                                         </form>
                                                                                     </div>

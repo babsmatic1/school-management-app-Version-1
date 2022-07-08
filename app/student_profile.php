@@ -703,10 +703,11 @@ if (isset($_POST['delete_note'])) {
     # code...
 }
 
-//DELET A Student
+//DELETE A Student
 if (isset($_POST['delete_A_s'])) {
     if ($role == 'admin' or $role == 'headmaster') {
         $result = mysqli_query($database, "DELETE FROM apprenant WHERE matricule_apprenant = '$matricule_apprenant' AND date_academique = '$date_academique'");
+        $query = mysqli_query($database, "DELETE FROM users WHERE unique_id= '$matricule_apprenant' AND matricule_etablissement = '$matricule_etablissement'  ");
         header("Location: ./student.php");
         exit();
         # code...

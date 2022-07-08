@@ -551,7 +551,9 @@ class headmaster extends user
 	{
 		try {
 			$query = mysqli_query($this->database, "DELETE FROM `classe` WHERE `classe`.`code_classe` = '$class_code' AND matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' ");
-			$query = mysqli_query($this->database,"DELETE FROM users WHERE unique_id = '$class_code' AND matricule_etablissement = '$matricule_etablissement' ");
+			if($query){
+				$query = mysqli_query($this->database,"DELETE FROM users WHERE unique_id = '$class_code' AND matricule_etablissement = '$matricule_etablissement' ");
+			}
 		if ($query) {
 			return 1;
 			# code...
@@ -562,6 +564,7 @@ class headmaster extends user
 			//code...
 		} catch (\Throwable $th) {
 			//throw $th;
+			return 0;
 		}
 		# code...
 	}
