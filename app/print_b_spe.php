@@ -1,42 +1,39 @@
-<?php
-/**
- * scolaricx
- *
- * An open source application development framework for PHP
- *
- * This content is released under the MIT License (MIT)
- *
- * Copyright (c) 2002 - 2022, Personnal project
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * @package	scolaricx
- * @author	carelii dev
- * @copyright	Copyright (c) 2020 - 2022, Carleii, Inc. (https://github.com/carleii)
- * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	https://scolaricx.com
- * @since	Version 1.0.0
- * @filesource
- */
-
-?>
-<?php require 'index_php.php';
+<?php 
+// * scolaricx
+//  *
+//  * An open source application development framework for PHP
+//  *
+//  * This content is released under the MIT License (MIT)
+//  *
+//  * Copyright (c) 2002 - 2022, Personnal project
+//  *
+//  * Permission is hereby granted, free of charge, to any person obtaining a copy
+//  * of this software and associated documentation files (the "Software"), to deal
+//  * in the Software without restriction, including without limitation the rights
+//  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  * copies of the Software, and to permit persons to whom the Software is
+//  * furnished to do so, subject to the following conditions:
+//  *
+//  * The above copyright notice and this permission notice shall be included in
+//  * all copies or substantial portions of the Software.
+//  *
+//  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  * THE SOFTWARE.
+//  *
+//  * @package	scolaricx
+//  * @author	carelii dev
+//  * @copyright	Copyright (c) 2020 - 2022, Carleii, Inc. (https://github.com/carleii)
+//  * @license	http://opensource.org/licenses/MIT	MIT License
+//  * @link	http://scolaricx.lescigales.org/
+//  * @since	Version 1.0.0
+//  * @filesource
+//  */
+?><?php require 'index_php.php';
 require_once './phpqrcode/qrlib.php';
 // delete previous qrcode
 $dir = 'qrcode_saved';
@@ -273,18 +270,18 @@ while ($result = mysqli_fetch_assoc($query)) {
                             $tempDir = "qrcode_saved/";
 
                             $codeContents = $matricule_apprenant;
-
                             // we need to generate filename somehow,
                             // with md5 or with database ID used to obtains $codeContents...
                             $fileName = base64_encode($codeContents) . '.png';
                             // $fileName = uniqid() . base64_encode($codeContents) . '.png';
                             $pngAbsoluteFilePath = $tempDir . $fileName;
                             $urlRelativeFilePath = $tempDir . $fileName;
+                            $url = $web."/app/".$urlRelativeFilePath;
 
                             // generating
                             if (!file_exists($pngAbsoluteFilePath)) {
                                 try {
-                                    QRcode::png($codeContents, $pngAbsoluteFilePath, "Q");
+                                    QRcode::png($url, $pngAbsoluteFilePath, "Q");
                                     //code...
                                 } catch (\Throwable $th) {
                                     throw $th;
@@ -566,9 +563,12 @@ while ($result = mysqli_fetch_assoc($query)) {
 
                         </span>
                         <span style="font : cursive 17px">
-                            <h6><b><i><strong><?php echo $tel ?> web</strong><?php echo $web ?> <strong>
+                            <h6><b><i><strong><?php echo $tel ?> web :</strong><?php echo $web ?> <strong>
                                             <?php echo $tel ?>.</strong></i></b></h6>
-                        </span>
+                        </span><br>
+                        <small><strong> <a href="http://scolaricx.lescigales.org"> Made by scolaricx</a>
+                            </strong></small>
+
 
                     </center>
                 </div>
@@ -578,9 +578,6 @@ while ($result = mysqli_fetch_assoc($query)) {
 
         </div>
     </div>
-    <!-- user profile heading section ends -->
-    <?php require 'footer.php' ?>
-    <!-- END: Content-->
     <p style="page-break-after: always;"></p>
 
     <!-- BEGIN: Vendor JS-->

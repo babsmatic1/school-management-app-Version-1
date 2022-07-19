@@ -1,61 +1,60 @@
-<?php
-/**
- * scolaricx
- *
- * An open source application development framework for PHP
- *
- * This content is released under the MIT License (MIT)
- *
- * Copyright (c) 2002 - 2022, Personnal project
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * @package	scolaricx
- * @author	carelii dev
- * @copyright	Copyright (c) 2020 - 2022, Carleii, Inc. (https://github.com/carleii)
- * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	https://scolaricx.com
- * @since	Version 1.0.0
- * @filesource
- */
-
+<?php 
+// * scolaricx
+//  *
+//  * An open source application development framework for PHP
+//  *
+//  * This content is released under the MIT License (MIT)
+//  *
+//  * Copyright (c) 2002 - 2022, Personnal project
+//  *
+//  * Permission is hereby granted, free of charge, to any person obtaining a copy
+//  * of this software and associated documentation files (the "Software"), to deal
+//  * in the Software without restriction, including without limitation the rights
+//  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  * copies of the Software, and to permit persons to whom the Software is
+//  * furnished to do so, subject to the following conditions:
+//  *
+//  * The above copyright notice and this permission notice shall be included in
+//  * all copies or substantial portions of the Software.
+//  *
+//  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  * THE SOFTWARE.
+//  *
+//  * @package	scolaricx
+//  * @author	carelii dev
+//  * @copyright	Copyright (c) 2020 - 2022, Carleii, Inc. (https://github.com/carleii)
+//  * @license	http://opensource.org/licenses/MIT	MIT License
+//  * @link	http://scolaricx.lescigales.org/
+//  * @since	Version 1.0.0
+//  * @filesource
+//  */
 ?><?php 
 require 'classe_package.php';
 include 'database_connection.php';
 require_once 'function.php';
 
+
 if (isset($_GET['ktsp'])) {
-    session_start();
-    session_unset();
-    session_destroy();
-    // Suppression du cookie designPrefere
-    setcookie('user_cookie');
-    // Suppression de la valeur du tableau $_COOKIE
-    unset($_COOKIE['user_cookie']);
-    // code...
+session_start();
+session_unset();
+session_destroy();
+// Suppression du cookie designPrefere
+setcookie('user_cookie');
+// Suppression de la valeur du tableau $_COOKIE
+unset($_COOKIE['user_cookie']);
+// code...
 }
 
 
 //VERIFY IF THE COOKIE EXIST EITHER GO TO HOME PAGE
 if (isset($_COOKIE['user_cookie'])) {
-    header("Location: index.php");
-    # code...
+header("Location: index.php");
+# code...
 }
 
 $start = microtime(true);
@@ -77,7 +76,7 @@ if (isset($_POST["connect"])) {
     <div class="toast toast-warning" aria-live="assertive" style="display: block; opacity: 0.732461;">
         <div class="toast-progress" style="width: 0%;"></div>
         <div class="toast-title">Warning</div>
-        <div class="toast-message">User not found! Verify The pasword and the User name !</div>
+        <div class="toast-message">User not found! Verify The pasword and the Username !</div>
     </div>
 </div>
 <?php
@@ -169,8 +168,6 @@ break;
 
 </head>
 <!-- END: Head-->
-
-
 <!-- BEGIN: Body-->
 
 <body
@@ -246,12 +243,14 @@ break;
                             </div>
                         </div>
                     </div>
+                    <iframe src="./online.html" width="900px" frameborder="0"></iframe>
                 </section>
                 <!-- login page ends -->
-
             </div>
         </div>
+
     </div>
+
     <!-- END: Content-->
 
 

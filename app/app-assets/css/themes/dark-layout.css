@@ -10,7 +10,7 @@ body.dark-layout h3,
 body.dark-layout h4,
 body.dark-layout h5,
 body.dark-layout h6 {
-  color: #bdd1f8;
+  color: #000;
 }
 
 body.dark-layout h1 i,
@@ -208,7 +208,7 @@ body.dark-layout .header-navbar.navbar-demo {
 }
 
 body.dark-layout .header-navbar .user-name {
-  color: #bdd1f8 !important;
+  color: #000 !important;
 }
 
 body.dark-layout .main-menu {
@@ -332,7 +332,7 @@ body.dark-layout .overlay-image-card .btn-white {
 body.dark-layout .bd-example .row,
 body.dark-layout .bd-example .d-flex {
   background-color: #1a233a;
-  color: #bdd1f8;
+  color: #000;
 }
 
 body.dark-layout .bd-example .row .col,
@@ -831,7 +831,7 @@ body.dark-layout .toast.toast-light .toast-header {
 }
 
 body.dark-layout .toast.toast-light .toast-header .toast-title {
-  color: #bdd1f8 !important;
+  color: #000 !important;
 }
 
 body.dark-layout .toast.toast-light .toast-header i,
@@ -1344,23 +1344,23 @@ body.dark-layout .form-label-group > textarea:not(:focus):not(:placeholder-shown
 
 body.dark-layout .table thead th {
   border-color: #464d5c;
-  color: #bdd1f8;
+  color: #000;
 }
 
 body.dark-layout .table thead th span {
-  color: #bdd1f8 !important;
+  color: #000 !important;
 }
 
 body.dark-layout .table tbody td,
 body.dark-layout .table tbody th {
   border-color: #464d5c;
-  color: #8a99b5;
+  color: #000;
 }
 
 body.dark-layout .table tbody td .badge-circle-light-secondary,
 body.dark-layout .table tbody th .badge-circle-light-secondary {
   background-color: #1a233a;
-  color: #bdd1f8;
+  color: #000;
 }
 
 body.dark-layout .table tbody td a i,
@@ -1394,7 +1394,7 @@ body.dark-layout .table.table-light th {
 
 body.dark-layout .table.table-bordered th {
   border-color: #464d5c !important;
-  color: #bdd1f8;
+  color: #000;
 }
 
 body.dark-layout .kb-search #searchbar,
@@ -1412,7 +1412,7 @@ body.dark-layout .faq-bg {
 }
 
 body.dark-layout .faq-bg .card-body .card-text {
-  color: #bdd1f8 !important;
+  color: #000 !important;
 }
 
 body.dark-layout .faq-bg input.form-control {
@@ -1546,7 +1546,7 @@ body.dark-layout.email-application .content-area-wrapper .content-right .email-a
 }
 
 body.dark-layout.email-application .content-area-wrapper .content-right .email-app-details .email-detail-header .email-detail-title {
-  color: #bdd1f8;
+  color: #000;
 }
 
 body.dark-layout.email-application .content-area-wrapper .content-right .email-app-details .email-detail-header .btn i {
@@ -1907,7 +1907,7 @@ body.dark-layout .kanban-container .kanban-board .kanban-item {
 }
 
 body.dark-layout .kanban-container .kanban-board .kanban-board-header {
-  color: #bdd1f8;
+  color: #000;
 }
 
 body.dark-layout .kanban-container .kanban-board .kanban-board-header .kanban-title-button {
@@ -2129,7 +2129,7 @@ body.dark-layout #dashboard-ecommerce .table-marketing-campaigns tr {
 }
 
 body.dark-layout #dashboard-ecommerce .statistics span {
-  color: #bdd1f8 !important;
+  color: #000 !important;
 }
 
 body.dark-layout p,

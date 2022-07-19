@@ -1,40 +1,38 @@
-<?php
-/**
- * scolaricx
- *
- * An open source application development framework for PHP
- *
- * This content is released under the MIT License (MIT)
- *
- * Copyright (c) 2002 - 2022, Personnal project
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * @package	scolaricx
- * @author	carelii dev
- * @copyright	Copyright (c) 2020 - 2022, Carleii, Inc. (https://github.com/carleii)
- * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	https://scolaricx.com
- * @since	Version 1.0.0
- * @filesource
- */
-
+<?php 
+// * scolaricx
+//  *
+//  * An open source application development framework for PHP
+//  *
+//  * This content is released under the MIT License (MIT)
+//  *
+//  * Copyright (c) 2002 - 2022, Personnal project
+//  *
+//  * Permission is hereby granted, free of charge, to any person obtaining a copy
+//  * of this software and associated documentation files (the "Software"), to deal
+//  * in the Software without restriction, including without limitation the rights
+//  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  * copies of the Software, and to permit persons to whom the Software is
+//  * furnished to do so, subject to the following conditions:
+//  *
+//  * The above copyright notice and this permission notice shall be included in
+//  * all copies or substantial portions of the Software.
+//  *
+//  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  * THE SOFTWARE.
+//  *
+//  * @package	scolaricx
+//  * @author	carelii dev
+//  * @copyright	Copyright (c) 2020 - 2022, Carleii, Inc. (https://github.com/carleii)
+//  * @license	http://opensource.org/licenses/MIT	MIT License
+//  * @link	http://scolaricx.lescigales.org/
+//  * @since	Version 1.0.0
+//  * @filesource
+//  */
 ?>
 <?php require 'index_php.php';
 ?>
@@ -62,8 +60,21 @@ if (isset($_GET['ktsp'])) {
         $scolarite = $result['scolarite'];
         $ini = $result['ini'];
         $code_cloud = base64_decode($result['pssw']);
+        $query = mysqli_query($database, "SELECT * FROM niveau WHERE id = '$id_niveau' AND matricule_etablissement =
+        '$matricule_etablissement' AND date_academique = '$date_academique' ");
+        if (mysqli_num_rows($query) == 1) {
+        $result = mysqli_fetch_assoc($query);
+        $nom_niveau = $result['nom_niveau'];
+        # code...
+        } else {
+        $nom_niveau = "The level have been deleted";
+        }
+        $query = mysqli_query($database, "SELECT COUNT(id) AS max_a FROM apprenant WHERE code_classe = '$code_classe' AND
+        matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' ");
+        $result = mysqli_fetch_assoc($query);
+        $max_apprenant = $result['max_a'];
 
-        // DELETE THE 
+        // DELETE THE CLASS 
         if (isset($_POST['delete_s'])) {
             if ($role == "admin" or $role == "headmaster") {
                 $result = $user->delete_class($code_classe, $matricule_etablissement, $date_academique);
@@ -162,15 +173,6 @@ include 'access_denieted.php';
 if (isset($_POST['change_level'])) {
 if ($role == "admin" or $role == "headmaster") {
 $id_niveau = $_POST['new_level'];
-$query = mysqli_query($database, "UPDATE classe SET id_niveau = '$id_niveau' WHERE code_classe = '$code_classe' ");
-
-# code...
-} else {
-include './access_denieted.php';
-}
-# code...
-}
-
 $query = mysqli_query($database, "SELECT * FROM niveau WHERE id = '$id_niveau' AND matricule_etablissement =
 '$matricule_etablissement' AND date_academique = '$date_academique' ");
 if (mysqli_num_rows($query) == 1) {
@@ -180,10 +182,20 @@ $nom_niveau = $result['nom_niveau'];
 } else {
 $nom_niveau = "The level have been deleted";
 }
-$query = mysqli_query($database, "SELECT COUNT(id) AS max_a FROM apprenant WHERE code_classe = '$code_classe' AND
-matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' ");
-$result = mysqli_fetch_assoc($query);
-$max_apprenant = $result['max_a'];
+
+$name = $nom_classe." ".$nom_niveau;
+$query = mysqli_query($database, "UPDATE users SET fname = '$name' WHERE matricule_etablissement =
+'$matricule_etablissement' and unique_id = '$code_classe' ");
+$query = mysqli_query($database, "UPDATE classe SET id_niveau = '$id_niveau' WHERE code_classe = '$code_classe' AND matricule_etablissement =
+'$matricule_etablissement' AND date_academique = '$date_academique' ");
+
+# code...
+} else {
+include './access_denieted.php';
+}
+# code...
+}
+
 }
 # code...
 } else {
@@ -1241,7 +1253,7 @@ alert(
                                                                                                                             </select><br>
                                                                                                                             <label>How
                                                                                                                                 many
-                                                                                                                                <?php echo $retVal = ($statut == 1) ? "credits" : "hours"; ?>
+                                                                                                                                <?php echo $retVal = ($statut == 1) ? "Coef" : "hours"; ?>
                                                                                                                                 for
                                                                                                                                 this
                                                                                                                                 <?php echo $retVal = ($statut == 1) ? "course" : "discipline"; ?></label>
@@ -1251,7 +1263,7 @@ alert(
                                                                                                                                 class="form-control border-1 shadow-none"
                                                                                                                                 id="user-post-textarea"
                                                                                                                                 rows="3"
-                                                                                                                                placeholder=""></input>
+                                                                                                                                <?php echo $retVal = ($statut == 1) ? "required" : "" ;  ?>></input>
 
                                                                                                                         </div>
                                                                                                                     </div>
@@ -1336,7 +1348,8 @@ alert(
                                                                                     </span>
                                                                                 </button>
                                                                             <div class="timeline-content">
-                                                                                <?php echo "Hour: " . $hour; ?>
+                                                                                <?php echo $retVal = ($statut == 1) ? "Coef" : "CREDIT"; ?>
+                                                                                <?php echo ": " . $hour; ?>
                                                                             </div>
                                                                         </li>
 
@@ -2987,7 +3000,8 @@ alert(
                                                                                 <div class="card-content">
                                                                                     <div class="card-body">
                                                                                         <h5>CHANGE THE
-                                                                                            LEVEL OF
+                                                                                            <?php echo $retVal = ($statut == 1) ? "SECTION" : "LEVEL"; ?>
+                                                                                            OF
                                                                                             THIS
                                                                                             <?php echo $retVal = ($statut == 1) ? "CLASS" : "SPECIALITY"; ?>
                                                                                         </h5><sup>*
@@ -2999,7 +3013,7 @@ alert(
                                                                                                 will
                                                                                                 change
                                                                                                 their
-                                                                                                level</b></sup>
+                                                                                                <?php echo $retVal = ($statut == 1) ? "SECTION" : "LEVEL"; ?></b></sup>
                                                                                         <form class="form" method="post"
                                                                                             action="">
                                                                                             <div class="form-goup">

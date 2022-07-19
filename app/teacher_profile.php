@@ -1,42 +1,39 @@
-<?php
-/**
- * scolaricx
- *
- * An open source application development framework for PHP
- *
- * This content is released under the MIT License (MIT)
- *
- * Copyright (c) 2002 - 2022, Personnal project
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * @package	scolaricx
- * @author	carelii dev
- * @copyright	Copyright (c) 2020 - 2022, Carleii, Inc. (https://github.com/carleii)
- * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	https://scolaricx.com
- * @since	Version 1.0.0
- * @filesource
- */
-
-?>
-<?php require 'index_php.php' ?>
+<?php 
+// * scolaricx
+//  *
+//  * An open source application development framework for PHP
+//  *
+//  * This content is released under the MIT License (MIT)
+//  *
+//  * Copyright (c) 2002 - 2022, Personnal project
+//  *
+//  * Permission is hereby granted, free of charge, to any person obtaining a copy
+//  * of this software and associated documentation files (the "Software"), to deal
+//  * in the Software without restriction, including without limitation the rights
+//  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  * copies of the Software, and to permit persons to whom the Software is
+//  * furnished to do so, subject to the following conditions:
+//  *
+//  * The above copyright notice and this permission notice shall be included in
+//  * all copies or substantial portions of the Software.
+//  *
+//  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  * THE SOFTWARE.
+//  *
+//  * @package	scolaricx
+//  * @author	carelii dev
+//  * @copyright	Copyright (c) 2020 - 2022, Carleii, Inc. (https://github.com/carleii)
+//  * @license	http://opensource.org/licenses/MIT	MIT License
+//  * @link	http://scolaricx.lescigales.org/
+//  * @since	Version 1.0.0
+//  * @filesource
+//  */
+?><?php require 'index_php.php' ?>
 <?php
 $full_name = null;
 $matri_teacher = null;
@@ -65,6 +62,7 @@ if (isset($_GET['ktsp'])) {
         $adresse = $result['adresse'];
         $nom_enseignant = $result['nom_enseignant'];
         $prenom_enseignant = $result['prenom_enseignant'];
+        $code_cloud = $result['pass'];
         $matricule_enseignant = addslashes($result['matricule_enseignant']);
     }
     # code...
@@ -154,6 +152,9 @@ if (isset($_GET['ktsp'])) {
                                     <div class="user-profile-text">
                                         <h4 class="mb-0 text-bold-500 profile-text-color">TEACHER PROFILE</h4>
                                         <small>##############################</small>
+                                        <h6 class="mb-0 text-bold-500 profile-text-color">Login and chat password:
+                                            <?php echo $code_cloud ?></h6>
+
                                     </div>
                                     <!-- user profile nav tabs start -->
                                     <div class="card-body px-0">
@@ -342,7 +343,9 @@ if (isset($_GET['ktsp'])) {
                                                                 <h6 class="media-heading mb-0">
                                                                     <small><?php echo $classe_name; ?></small>
                                                                 </h6>
-                                                                <small class="text-muted">Niveau :
+                                                                <small
+                                                                    class="text-muted"><?php echo $retVal = ($statut == 1) ? "SECTION" : "LEVEL" ; ?>
+                                                                    :
                                                                     <?php echo $niveau_name; ?></small><br>
                                                                 <?php echo $discipline_name; ?>
                                                             </div>

@@ -1,42 +1,39 @@
-<?php
-/**
- * scolaricx
- *
- * An open source application development framework for PHP
- *
- * This content is released under the MIT License (MIT)
- *
- * Copyright (c) 2002 - 2022, Personnal project
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * @package	scolaricx
- * @author	carelii dev
- * @copyright	Copyright (c) 2020 - 2022, Carleii, Inc. (https://github.com/carleii)
- * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	https://scolaricx.com
- * @since	Version 1.0.0
- * @filesource
- */
-
-?>
-<?php
+<?php 
+// * scolaricx
+//  *
+//  * An open source application development framework for PHP
+//  *
+//  * This content is released under the MIT License (MIT)
+//  *
+//  * Copyright (c) 2002 - 2022, Personnal project
+//  *
+//  * Permission is hereby granted, free of charge, to any person obtaining a copy
+//  * of this software and associated documentation files (the "Software"), to deal
+//  * in the Software without restriction, including without limitation the rights
+//  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  * copies of the Software, and to permit persons to whom the Software is
+//  * furnished to do so, subject to the following conditions:
+//  *
+//  * The above copyright notice and this permission notice shall be included in
+//  * all copies or substantial portions of the Software.
+//  *
+//  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  * THE SOFTWARE.
+//  *
+//  * @package	scolaricx
+//  * @author	carelii dev
+//  * @copyright	Copyright (c) 2020 - 2022, Carleii, Inc. (https://github.com/carleii)
+//  * @license	http://opensource.org/licenses/MIT	MIT License
+//  * @link	http://scolaricx.lescigales.org/
+//  * @since	Version 1.0.0
+//  * @filesource
+//  */
+?><?php
 
 /**
  * User class
@@ -51,9 +48,9 @@ class user
 	public $telephone = null;
 	public $role = null;
 	public $host = "localhost";
-	public $user = "root";
-	public $pssw = "";
-	public $db = "scolaricxv1";
+	public $user = "tqp_root";
+	public $pssw = "ERzmLz4M";
+	public $db = "tqp_root";
 	public $query_1 = null;
 	public $matricule_etablissement = null;
 	public $date_academique = null;
@@ -432,7 +429,7 @@ class admin extends headmaster
 				// INSERT INTO THE DATABASE
 				$query = mysqli_query($this->database, "INSERT INTO utilisateur values(null, '$Q_matr_user', '$nom', '$prenom', '$email', null, '$password', '$role', '$matricule_etablissement') ");
 				// ADD TO CHAT USERS
-				// $query = mysqli_query($this->database, "INSERT INTO users VALUE (null,'$Q_matr_user', '$nom', '$prenom', '$email', '$password','', 'Offline', '$matricule_etablissement' )");
+				$query = mysqli_query($this->database, "INSERT INTO users VALUE (null,'$Q_matr_user', '$nom', '$prenom', '$email', '$password','', 'Offline now', '$matricule_etablissement' )");
 				if (!$query) {
 					return 2;
 					# code...
@@ -455,6 +452,7 @@ class admin extends headmaster
 		if (1 == 1) {
 
 			$pass = base64_encode($pass);
+			$pass = str_replace("=", "", $pass);
 			$query = mysqli_query($this->database, "INSERT INTO apprenant values(null, '$matricule_apprenant', '$code_classe', '$matricule_etablissement', '$manage_year', '$nom_apprenant', '$prenom_apprenant', '$telephone_apprenant', '$adresse_apprenant', '$tutor_apprenant', '$other_info_apprenant', '$pass') ");
 			if ($query) {
 				return 1;
@@ -529,6 +527,7 @@ class headmaster extends user
 			# code...
 		}
 		$pass = base64_encode($pass);
+		$pass = str_replace("=", "", $pass);
 		$class_name .= " ".$nom_niveau;
 		$query = mysqli_query($this->database, "INSERT INTO users VALUE (null,'$code_classe', '$class_name', 'STUDENTS', 'class@class.class', '$pass','', 'Online now', '$matricule_etablissement' )");
 		if ($query) {
@@ -649,7 +648,10 @@ class headmaster extends user
 			# code...
 		}
 		$pass = base64_encode($pass);
+		$pass = str_replace("=", "", $pass);
 		$query = mysqli_query($this->database, "INSERT INTO enseignant values(null, '$matri_teacher', '$first_name', '$last_name', '$telephone', '$email', '$adresse', '$disponibilite', '$matricule_etablissement', '$date_academique', '$pass') ");
+		// ADD TO CHAT USERS
+		$query = mysqli_query($this->database, "INSERT INTO users VALUE (null,'$matri_teacher', '$first_name', '$last_name', '$email', '$pass','', 'Offline now', '$matricule_etablissement' )");
 		if ($query) {
 			return 1;
 			# code...
@@ -663,6 +665,7 @@ class headmaster extends user
 	{
 		$teacher_matri = addslashes($teacher_matri);
 		$query = mysqli_query($this->database, "DELETE FROM enseignant WHERE matricule_enseignant  = '$teacher_matri' AND matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' ");
+		$query = mysqli_query($this->database,"DELETE FROM users where unique_id = '$teacher_matri' ");
 		if ($query) {
 			return 1;
 			# code...
@@ -741,7 +744,7 @@ class headmaster extends user
 			# code...
 		}
 		if (1 == 1) {
-			$matricule_apprenant = date("y") . "THIB" . $ini . "0" .substr(random_int(0, 9999), 0, 5);
+			$matricule_apprenant = date("y") . "SCLRX" . $ini . "0" .substr(random_int(0, 9999), 0, 5);
 			// get random password
 			$bytes = openssl_random_pseudo_bytes(random_int(4, 10));
 			$pass = bin2hex($bytes);
@@ -750,6 +753,7 @@ class headmaster extends user
 				# code...
 			}
 			$pass = base64_encode($pass);
+			$pass = str_replace("=", "", $pass);
 			try {
 			$query = mysqli_query($this->database, "INSERT INTO apprenant values(null, '$matricule_apprenant', '$code_classe', '$matricule_etablissement', '$date_academique', '$nom_apprenant', '$prenom_apprenant', '$telephone_apprenant', '$adresse_apprenant', '$tutor_apprenant', '$other_info_apprenant', '$pass') ");
 			while (!$query) {
