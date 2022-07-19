@@ -48,9 +48,9 @@ class user
 	public $telephone = null;
 	public $role = null;
 	public $host = "localhost";
-	public $user = "tqp_root";
-	public $pssw = "ERzmLz4M";
-	public $db = "tqp_root";
+	public $user = "root";
+	public $pssw = "";
+	public $db = "scolaricxv1";
 	public $query_1 = null;
 	public $matricule_etablissement = null;
 	public $date_academique = null;

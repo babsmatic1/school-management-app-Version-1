@@ -36,10 +36,10 @@
 ?>
 <?php
 $host = "localhost";
-$user = "tqp_root";
-$pssw = "ERzmLz4M";
+$user = "root";
+$pssw = "";
 try {
-	$database = new mysqli($host, $user, $pssw, "tqp_root") or die("unable to connect");
+	$database = new mysqli($host, $user, $pssw, "scolaricxv1") or die("unable to connect");
 } catch (Exception $e) {
 	exit("database not found");
 }

@@ -36,7 +36,7 @@
 ?><?php
   $hostname = "localhost";
   $username = "root";
-  $password = "ERzmLz4M";
+  $password = "";
   $dbname = "scolaricxv1";
 
   $conn = mysqli_connect($hostname, $username, $password, $dbname);
