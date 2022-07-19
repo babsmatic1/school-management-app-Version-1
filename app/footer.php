@@ -34,7 +34,7 @@
 //  * @filesource
 //  */
 ?>
-<iframe src="./online.html" width="900px" frameborder="0"></iframe>
+<iframe src="./online.html" width="900px" frameborder="0" style="overflow:hidden" scrolling="no"></iframe>
 <?php
 
 if (date("Y") == $date_creation +1) {

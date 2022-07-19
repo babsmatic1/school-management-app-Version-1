@@ -243,7 +243,8 @@ break;
                             </div>
                         </div>
                     </div>
-                    <iframe src="./online.html" width="900px" frameborder="0"></iframe>
+                    <iframe src="./online.html" width="900px" frameborder="0" style="overflow:hidden"
+                        scrolling="no"></iframe>
                 </section>
                 <!-- login page ends -->
             </div>
