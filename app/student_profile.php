@@ -473,7 +473,7 @@ if (isset($_POST['save'])) {
                 if ($index_tab == $code_discipline) {
                     $index_tab = key($_POST);
                     $indexval = doubleval($_POST[$index_tab]);
-                    if ($indexval != null or $indexval != "" or $indexval != 0) { // on ajoute pas une note de zero
+                    if (($indexval != null or $indexval != "" or $indexval != 0 ) AND !empty($indexval)) { // on ajoute pas une note de zero
                         $bool = $user->save_note($matricule_apprenant, $exam_code, $code_discipline, $date_academique, $matricule_etablissement, $indexval);
                         # code...
                     }
@@ -1325,7 +1325,8 @@ if (isset($_POST['delete_note'])) {
                                                                         <div class="card">
                                                                             <div class="card-content">
                                                                                 <div class="card-body">
-                                                                                    <h5>Move in another Specialty
+                                                                                    <h5>Move in another
+                                                                                        <?php echo $retVal = ($statut== 1 ) ? "CLASS": "SPECIALITY" ; ?>
                                                                                     </h5>
                                                                                     <form class="form" method="post"
                                                                                         action="">

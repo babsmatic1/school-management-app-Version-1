@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Bienvenue chez Scolaricx &mdash; Scolaricx 1.0 documentation</title>
+    <title>Credits &mdash; scolaricx 1.0 documentation</title>
 
 
 
@@ -35,9 +35,8 @@
 
     <link rel="index" title="Index" href="../genindex.php" />
     <link rel="search" title="Search" href="../search.php" />
-    <link rel="top" title="Scolaricx 1.0 documentation" href="../index.php" />
-    <link rel="next" title="Installation Instructions" href="../installation/index.php" />
-    <link rel="prev" title="Scolaricx User Guide" href="../index.php" />
+    <link rel="top" title="scolaricx 1.0 documentation" href="../index.php" />
+    <link rel="prev" title="Recommandations Serveur" href="./requirements.php" />
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -59,9 +58,12 @@
 
         <nav data-toggle="wy-nav-shift" class="wy-nav-side">
             <div class="wy-side-nav-search">
-                <a href="../index.php" class="fa fa-home"> Scolaricx</a>
+
+                <a href="../index.html" class="fa fa-home"> scolaricx</a>
+
+
                 <div role="search">
-                    <form id="rtd-search-form" class="wy-form" action="../search.php" method="get">
+                    <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
                         <input type="text" name="q" placeholder="Search docs" />
                         <input type="hidden" name="check_keywords" value="yes" />
                         <input type="hidden" name="area" value="default" />
@@ -73,11 +75,9 @@
         </nav>
 
         <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-
             <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
                 <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-                <a href="../index.php">Scolaricx</a>
+                <a href="../index.php">scolaricx</a>
             </nav>
 
 
@@ -88,7 +88,7 @@
                         <ul class="wy-breadcrumbs">
                             <li><a href="../index.php">Docs</a> &raquo;</li>
 
-                            <li>Bienvenu chez Scolaricx</li>
+                            <li>Credits</li>
                             <li class="wy-breadcrumbs-aside">
 
                             </li>
@@ -101,49 +101,36 @@
                     </div>
                     <div role="main" class="document">
 
-                        <div class="section" id="welcome-to-scolaricx">
-                            <h1>Bienvenu chez Scolaricx<a class="headerlink" href="#welcome-to-scolaricx"
-                                    title="Permalink to this headline">¶</a></h1>
-                            <p>Scolaricx est un logiciel open source de gestion d'etablissement scolaire tout en un. Il
-                                a été concu dans le contexte de resourdre les
-                                difficultés liées à la gestion quotidienne des etablissements scolaires; que ce soit des
-                                colleges, des lycees, des universités,
-                                des centres ou ecoles de formation professionnelle, et qu'ils soient public, privé ou
-                                para-public. <br>
-                                Scolaricx integre parfaitement la gestion academique, comptable et administrative.
+                        <div class="section" id="credits">
+                            <h1>Credits<a class="headerlink" href="#credits" title="Permalink to this headline">¶</a>
+                            </h1>
+                            <p>Scolaricx a été originalement developpé par <a class="reference external"
+                                    href="https://github.com/carleii/">Carleii
+                                    Dev</a>.
+                                Ce logiciel avait été concu à la base pour <strong>TCHONANG HIGHER INSTITUTE</strong>
+                                dans la ville de Bafoussam au Cameroun.
                             </p>
-                            <div class="section" id="who-is-scolaricx-for">
-                                <h2>Qui peut utiliser Scolaricx ?<a class="headerlink" href="#who-is-scolaricx-for"
-                                        title="Permalink to this headline">¶</a></h2>
-                                <p>Scolaricx est parfaitement adaptée pour vous si:</p>
-                                <ul class="simple">
-                                    <li>Vous recherchez un logiciel libre Open source et gratuit</li>
-                                    <li>Vous etes un directeur ou un responsable d'etablissement d'enseignement</li>
-                                    <li>Vous avez besoin d'un logiciel à l'utilisation facile et intuitive</li>
-                                    <li>Vous recherchez un logiciel ergonome sans contrainte majeure d'installation</li>
-                                    <li>Vous avez besoin d'un logiciel en constante evolution</li>
-                                    <li>Vous etes un simple utilisateur de logiciel qui souhaite faciliter son travail
-                                    </li>
-                                    <li>Vous etes un developpeur qui souhaite apporter sa contribution à l'amelioration
-                                        du logiciel</li>
-                                    <li>Vous etes à la recherche d'un logiciel template pour votre project</li>
-                                </ul>
-                            </div>
+                            <p>Il a été pendant des années developpé et maintenue par Carleii.</p>
+                            <p>En 2020 le project vois le jour sur internet et est disponible Open source sur github
+                                sous le nom <a href="https://github.com/carleii/school-management-app-Version-1">
+                                    School-management-app-Version-1</a>
+                            </p>
+                            <p>Jusqu'à nos jour en attente de contribution.</p>
                         </div>
 
 
                     </div>
                     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
 
-                        <a href="../installation/index.php" class="btn btn-neutral float-right"
-                            title="Installation Instructions">Next <span class="fa fa-arrow-circle-right"></span></a>
 
-
-                        <a href="../index.php" class="btn btn-neutral" title="Scolaricx User Guide"><span
-                                class="fa fa-arrow-circle-left"></span> Previous</a>
+                        <a href="requirements.php" class="btn btn-neutral" title="Recommandations Serveur"><span
+                                class=" fa fa-arrow-circle-left"></span> Previous</a>
 
                     </div>
+
+
                     <hr />
+
                     <?php include '../include/footer.html' ?>
                 </div>
             </div>

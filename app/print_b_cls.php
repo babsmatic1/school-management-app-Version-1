@@ -1,4 +1,4 @@
-<?php 
+<?php
 // * scolaricx
 //  *
 //  * An open source application development framework for PHP
@@ -34,65 +34,122 @@
 //  * @filesource
 //  */
 ?><?php require 'index_php.php';
-include('phpqrcode/qrlib.php');
-// delete previous qrcode
-// $dir = 'qrcode_saved';
-// array_map('unlink', glob("{$dir}*.png"));
-
-// function for appreciation
-
-function appreciation(float $value): string
-{
-    if ($value >= 18) {
-        return "Excellent";
-        # code...
-    } elseif ($value < 18 and $value >= 16) {
-        return "Very good";
-        # code...
-    } elseif ($value < 16 and $value >= 14) {
-        return "Good";
-        # code...
-    } elseif ($value < 14 and $value > 11) {
-        return "Quite well";
-        # code...
-    } elseif ($value == 10 or $value == 1) {
-        return "Passable";
-    } elseif ($value < 10 and $value >= 8) {
-        return "Insufficient";
-        # code...
-    } elseif ($value < 8 and $value >= 5) {
-        return "Poor";
-        # code...
-    } else {
-        return "Very Poor";
+    include('phpqrcode/qrlib.php');
+    // delete previous qrcode
+    // $dir = 'qrcode_saved';
+    // array_map('unlink', glob("{$dir}*.png"));
+    if (isset($_POST['print_note'])) {
+        $rang = array();
+        $code_classe = base64_decode($_GET['ktsp']);
+        $code_exams1 = $_POST['s1'];
+        $code_exams2 = $_POST['s2'];
+        $id_niveau = $_POST['id_niveau'];
+        $query = mysqli_query($database, "SELECT * FROM classe WHERE code_classe = '$code_classe' and id_niveau =  '$id_niveau' AND matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' ");
+        while ($result = mysqli_fetch_assoc($query)) {
+            $nom_classe = $result['nom_classe'];
+            $query_1 = mysqli_query($database, "SELECT * FROM apprenant WHERE code_classe = '$code_classe' AND matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' order by nom_apprenant ");
+            while ($result_1 = mysqli_fetch_assoc($query_1)) {
+                $matricule_apprenant = addslashes($result_1['matricule_apprenant']);
+                $somme_de_cours = 1;
+                $somme_de_credit = 0;
+                $somme_notes1 = 0;
+                $somme_notes2 = 0;
+                $sommme_credit = 0;
+                $note_trimestre = 0;
+                $query0 = mysqli_query($database, "SELECT * FROM discipline_classe WHERE code_classe = '$code_classe' AND matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' ");
+                while ($result0 = mysqli_fetch_assoc($query0)) {
+                    $code_discipline = addslashes($result0['code_discipline']);
+                    if (1) {
+                        //get the name
+                        $querya = mysqli_query($database, "SELECT * FROM discipline WHERE code_discipline = '$code_discipline' AND matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' ");
+                        $resulta = mysqli_fetch_assoc($querya);
+                        $nom_discipline = $resulta['nom_discipline'];
+                        //get note controle continue
+                        $query00 = mysqli_query($database, "SELECT * FROM note WHERE code_examen = '{$code_exams1}' AND code_discipline = '$code_discipline' AND matricule_apprenant = '$matricule_apprenant' AND matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' ");
+                        $result00 = mysqli_fetch_assoc($query00);
+                        $notes1 = (isset($result00['note'])) ? $result00['note'] : 0;
+                        //get note normalizer_normalize
+                        $query000 = mysqli_query($database, "SELECT * FROM note WHERE code_examen = '{$code_exams2}' AND code_discipline = '$code_discipline' AND matricule_apprenant = '$matricule_apprenant' AND matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' ");
+                        $result000 = mysqli_fetch_assoc($query000);
+                        $notes2 = (isset($result000['note'])) ? $result000['note'] : 0;
+                        if ($notes1 == 0 and $notes2 == 0) {
+                            continue;
+                            # code...
+                        }
+                        $credit_discipline = $result0['heure'];
+                        $somme_de_credit = $somme_de_credit + $credit_discipline;
+                        $somme_de_cours++;
+                        $somme_notes1 += $notes1;
+                        $somme_notes2 += $notes2;
+                        // note du trimestre de la discipline
+                        $note_trimestre = ($notes1 + $notes2) / 2;
+                    }
+                    # code...
+                    // code...
+                }
+                $moyenne_generale = (($somme_notes2 / $somme_de_cours) + ($somme_notes1 / $somme_de_cours)) / 2;
+                // $moyenne_notes1 =$somme_notes1/$somme_de_cours;
+                // $moyenne_notes2 =$somme_notes2/$somme_de_cours;
+                $rang[$matricule_apprenant] = $moyenne_generale;
+            }
+        }
     }
-}
+    // Order the rang array by desc value
+    arsort($rang);
+    // get index of each value
+    $arr = array_keys($rang);
 
-?>
-<?php
-if (isset($_POST['print_note'])) {
-    $code_classe = base64_decode($_GET['ktsp']);
-    $trnmae = $_POST['trnmae'];
-    $code_exams1 = $_POST['s1'];
-    $query = mysqli_query($database, "SELECT * FROM examen WHERE code_examen = '{$code_exams1}' ");
-    $result = mysqli_fetch_assoc($query);
-    $nom_exams1 = $result['nom_examen'];
-    $code_exams2 = $_POST['s2'];
-    $query = mysqli_query($database, "SELECT * FROM examen WHERE code_examen = '{$code_exams2}' ");
-    $result = mysqli_fetch_assoc($query);
-    $nom_exams2 = $result['nom_examen'];
-    $id_niveau = $_POST['id_niveau'];
-    $query = mysqli_query($database, "SELECT * FROM niveau WHERE id = '{$id_niveau}' ");
-    $result = mysqli_fetch_assoc($query);
-    $nom_niveau = $result['nom_niveau'];
+    // function for appreciation
+
+    function appreciation(float $value): string
+    {
+        if ($value >= 18) {
+            return "Excellent";
+            # code...
+        } elseif ($value < 18 and $value >= 16) {
+            return "Very good";
+            # code...
+        } elseif ($value < 16 and $value >= 14) {
+            return "Good";
+            # code...
+        } elseif ($value < 14 and $value >= 12) {
+            return "Quite well";
+            # code...
+        } elseif ($value < 12 and $value >= 10) {
+            return "Passable";
+        } elseif ($value < 10 and $value >= 8) {
+            return "Insufficient";
+            # code...
+        } elseif ($value < 8 and $value >= 5) {
+            return "Poor";
+            # code...
+        } else {
+            return "Very Poor";
+        }
+    }
+    if (isset($_POST['print_note'])) {
+        $code_classe = base64_decode($_GET['ktsp']);
+        $trnmae = $_POST['trnmae'];
+        $code_exams1 = $_POST['s1'];
+        $query = mysqli_query($database, "SELECT * FROM examen WHERE code_examen = '{$code_exams1}' ");
+        $result = mysqli_fetch_assoc($query);
+        $nom_exams1 = $result['nom_examen'];
+        $code_exams2 = $_POST['s2'];
+        $query = mysqli_query($database, "SELECT * FROM examen WHERE code_examen = '{$code_exams2}' ");
+        $result = mysqli_fetch_assoc($query);
+        $nom_exams2 = $result['nom_examen'];
+        $id_niveau = $_POST['id_niveau'];
+        $query = mysqli_query($database, "SELECT * FROM niveau WHERE id = '{$id_niveau}' ");
+        $result = mysqli_fetch_assoc($query);
+        $nom_niveau = $result['nom_niveau'];
 
 
-    // code...
-} else {
-    header("Location: classe.php");
-}
+        // code...
+    } else {
+        header("Location: classe.php");
+    }
 
-?>
+    ?>
 
 
 <?php
@@ -118,8 +175,30 @@ while ($result = mysqli_fetch_assoc($query)) {
     <title>Notes Reports | <?php echo $nom_classe . " " . $nom_niveau; ?></title>
     <style type="text/css">
     @media print {
+        @page {
+            size: 210mm 297mm;
+            margin: auto;
+        }
+
         footer {
             page-break-after: always;
+        }
+
+        table {
+            page-break-inside: auto;
+        }
+
+        tr {
+            page-break-inside: avoid;
+            page-break-after: auto;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tfoot {
+            display: table-footer-group;
         }
     }
     </style>
@@ -211,15 +290,18 @@ while ($result = mysqli_fetch_assoc($query)) {
                             </span>
                             <div class="media-body ml-1">
                                 <h6 class="media-heading mb-0" style="text-align:justify;">
-                                    <?php echo strtoupper($nom_apprenant . "  " . $prenom_apprenant); ?></h6>
+                                    <?php echo strtoupper($nom_apprenant . "  " . $prenom_apprenant); ?>
+                                </h6>
                             </div>
                         </div>
                         <div class="media d-flex align-items-center mb-1">
                             <span class="float-right" style="margin-left: 60px">
-                                <strong>DATE ET LIEU DE NAISSANCE (DATE AND PLACE OF BIRTH)</strong>
+                                <strong>DATE ET LIEU DE NAISSANCE (DATE AND PLACE OF
+                                    BIRTH)</strong>
                             </span>
                             <div class="media-body ml-1">
-                                <h6 class="media-heading mb-0" style="text-align:justify;"><?php echo $adresse; ?></h6>
+                                <h6 class="media-heading mb-0" style="text-align:justify;">
+                                    <?php echo $adresse; ?></h6>
                             </div>
                         </div>
                         <div class="media d-flex align-items-center mb-1">
@@ -227,7 +309,8 @@ while ($result = mysqli_fetch_assoc($query)) {
                                 <strong><?php echo $retVal = ($statut == 1) ? "CLASSE (CLASS)" : "SPECIALITE (SPECIALITY)"; ?></strong>
                             </span>
                             <div class="media-body ml-1">
-                                <h6 class="media-heading mb-0" style="text-align:justify;"><?php echo $nom_classe; ?>
+                                <h6 class="media-heading mb-0" style="text-align:justify;">
+                                    <?php echo $nom_classe; ?>
                                 </h6>
                             </div>
                         </div>
@@ -236,7 +319,8 @@ while ($result = mysqli_fetch_assoc($query)) {
                                 <strong><?php echo $retVal = ($statut == 1) ? "SECTION (SECTION)" : "NIVEAU (LEVEL)"; ?></strong>
                             </span>
                             <div class="media-body ml-1">
-                                <h6 class="media-heading mb-0" style="text-align:justify; "><?php echo $nom_niveau; ?>
+                                <h6 class="media-heading mb-0" style="text-align:justify; ">
+                                    <?php echo $nom_niveau; ?>
                                 </h6>
                             </div>
                         </div>
@@ -265,7 +349,7 @@ while ($result = mysqli_fetch_assoc($query)) {
                             // we need to generate filename somehow,
                             // with md5 or with database ID used to obtains $codeContents...
                             $fileName = base64_encode($codeContents) . '.png';
-                            $realcontent = $web."/app/qrcode_saved/".$fileName;
+                            $realcontent = $web . "/app/qrcode_saved/" . $fileName;
                             // $fileName = uniqid() . base64_encode($codeContents) . '.png';
                             $pngAbsoluteFilePath = $tempDir . $fileName;
                             $urlRelativeFilePath = $tempDir . $fileName;
@@ -290,38 +374,47 @@ while ($result = mysqli_fetch_assoc($query)) {
                                         <table class="table-bordered" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th colspan="9" style="justify-content: center;">
-                                                        <center><?php echo strtoupper($trnmae) ?></center>
+                                                    <th colspan="9" style="text-align: center;">
+                                                        <center>
+                                                            <?php echo strtoupper($trnmae) ?>
+                                                        </center>
                                                     </th>
                                                 </tr>
                                                 <tr>
-                                                    <th style="text-align: center;" rowspan="3">Sujets / <br> subjects
+                                                    <th style="text-align: center;" rowspan="3">
+                                                        Sujets / <br> subjects
                                                     </th>
                                                     <th style="text-align: center;" colspan="3">
                                                         <?php echo $nom_exams1; ?> </th>
                                                     <th style="text-align: center;" colspan="3">
                                                         <?php echo $nom_exams2; ?></th>
-                                                    <th style="text-align: center;" rowspan="3">Moyenne / <br> Average
+                                                    <th style="text-align: center;" rowspan="3">
+                                                        Moyenne / <br> Average
                                                     </th>
-                                                    <th style="text-align: center;" rowspan="3">Observations</th>
+                                                    <th style="text-align: center;" rowspan="3">
+                                                        Observations</th>
                                                 </tr>
                                                 <tr>
-                                                    <th style="text-align: center;" colspan="3">50%</th>
-                                                    <th style="text-align: center;" colspan="3">50%</th>
+                                                    <th style="text-align: center;" colspan="3">
+                                                        50%</th>
+                                                    <th style="text-align: center;" colspan="3">
+                                                        50%</th>
                                                 </tr>
                                                 <tr>
                                                     <th style="text-align: center;">NOTE</th>
-                                                    <th style="text-align: center;">CREDIT/COEF</th>
+                                                    <th style="text-align: center;">CREDIT/COEF
+                                                    </th>
                                                     <th style="text-align: center;">TOTAL</th>
                                                     <th style="text-align: center;">NOTE</th>
-                                                    <th style="text-align: center;">CREDIT/COEF</th>
+                                                    <th style="text-align: center;">CREDIT/COEF
+                                                    </th>
                                                     <th style="text-align: center;">TOTAL</th>
 
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                        $somme_de_cours = 0;
+                                                        $somme_de_cours = 1;
                                                         $somme_de_credit = 0;
                                                         $somme_notes1 = 0;
                                                         $somme_notes2 = 0;
@@ -355,20 +448,23 @@ while ($result = mysqli_fetch_assoc($query)) {
                                                                 // note du trimestre de la discipline
                                                                 $note_trimestre = ($notes1 + $notes2) / 2;
 
-                                                ?>
+                                                        ?>
                                                 <tr>
                                                     <td style="text-transform: uppercase;">
                                                         <?php echo $nom_discipline; ?></td>
 
                                                     <td><?php echo $notes1; ?></td>
                                                     <td><?php echo $credit_discipline; ?></td>
-                                                    <td><?php echo $notes1 * $credit_discipline ?></td>
+                                                    <td><?php echo $notes1 * $credit_discipline ?>
+                                                    </td>
 
                                                     <td><?php echo $notes2; ?></td>
                                                     <td><?php echo $credit_discipline; ?></td>
-                                                    <td><?php echo $notes2 * $credit_discipline ?></td>
+                                                    <td><?php echo $notes2 * $credit_discipline ?>
+                                                    </td>
                                                     <td><?php echo $note_trimestre ?></td>
-                                                    <td><?php echo appreciation($note_trimestre) ?></td>
+                                                    <td><?php echo appreciation($note_trimestre) ?>
+                                                    </td>
                                                 </tr>
 
                                                 <?php
@@ -377,9 +473,9 @@ while ($result = mysqli_fetch_assoc($query)) {
                                                             # code...
                                                             // code...
                                                         }
-                                                        $moyenne_generale = (($somme_notes2/$somme_de_cours) + ($somme_notes1/$somme_de_cours))/2;
-                                                        $moyenne_notes1 =$somme_notes1/$somme_de_cours;
-                                                        $moyenne_notes2 =$somme_notes2/$somme_de_cours;
+                                                        $moyenne_generale = (($somme_notes2 / $somme_de_cours) + ($somme_notes1 / $somme_de_cours)) / 2;
+                                                        $moyenne_notes1 = $somme_notes1 / $somme_de_cours;
+                                                        $moyenne_notes2 = $somme_notes2 / $somme_de_cours;
                                                         ?>
                                                 <tr style="background-color: grey;">
                                                     <td style="text-transform: uppercase;">
@@ -388,16 +484,17 @@ while ($result = mysqli_fetch_assoc($query)) {
 
                                                     <td><?php echo $moyenne_notes1 ?></td>
                                                     <td><?php echo $somme_de_credit ?></td>
-                                                    <td><?php echo ($somme_notes1/$somme_de_cours)*$somme_de_credit ?>
+                                                    <td><?php echo ($somme_notes1 / $somme_de_cours) * $somme_de_credit ?>
                                                     </td>
 
                                                     <td><?php echo $moyenne_notes2 ?></td>
                                                     <td><?php echo $somme_de_credit ?></td>
-                                                    <td><?php echo ($somme_notes2/$somme_de_cours)*$somme_de_credit ?>
+                                                    <td><?php echo ($somme_notes2 / $somme_de_cours) * $somme_de_credit ?>
                                                     </td>
                                                     <td><?php echo $moyenne_generale; ?>
                                                     </td>
-                                                    <td><?php echo appreciation($moyenne_generale) ?>
+                                                    <td>
+                                                        <?php echo appreciation($moyenne_generale) ?>
                                                     </td>
 
                                                 </tr>
@@ -405,13 +502,18 @@ while ($result = mysqli_fetch_assoc($query)) {
 
                                             <tfoot>
                                                 <tr>
-                                                    <th style="text-align: center;">Sujets / <br> subjects</th>
+                                                    <th style="text-align: center;">Sujets /
+                                                        <br> subjects
+                                                    </th>
                                                     <th style="text-align: center;" colspan="3">
                                                         <?php echo $nom_exams1; ?> </th>
                                                     <th style="text-align: center;" colspan="3">
                                                         <?php echo $nom_exams2; ?></th>
-                                                    <th style="text-align: center;">Moyenne / <br> Average </th>
-                                                    <th style="text-align: center;">Observations</th>
+                                                    <th style="text-align: center;">Moyenne /
+                                                        <br> Average
+                                                    </th>
+                                                    <th style="text-align: center;">Observations
+                                                    </th>
                                                 </tr>
                                             </tfoot>
 
@@ -422,33 +524,183 @@ while ($result = mysqli_fetch_assoc($query)) {
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table-bordered" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align: center;">
+                                                        Student/ Class
+                                                    </th>
+                                                    <th style="text-align: center;">
+                                                        Mention
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th style="text-align: center;">
+                                                        Rang :
+                                                        <?php echo array_search($matricule_apprenant, $arr) + 1;
+                                                                echo " / " . count($arr) ?><br>
+                                                        Max :<?php echo max($rang) ?> <br>
+                                                        Min :<?php echo min($rang) ?> <br>
+                                                        General Avg :<?php echo array_sum($rang) / count($rang) ?> <br>
+                                                    </th>
+                                                    <th style="text-align: center;">
+
+                                                    </th>
+
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align: center;">
+                                                        Observations et Visa du surveillant General
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align: center;">
+                                                        <textarea name="" id="" cols="30" rows="3" readonly
+                                                            style="background-color: transparent; border:none;"></textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align: center;">
+                                                        Visa du Principal
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align: center;">
+                                                        <textarea readonly name="" id="" cols="30" rows="3"
+                                                            style="background-color: transparent; border:none;"><?php echo date('r'); ?></textarea>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table-bordered" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="7" style="text-align: center;">
+                                                        Decisions du conseil de classe
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th style="text-align: center;" colspan="3">
+                                                        DISCIPLINE
+                                                    </th>
+                                                    <th style="text-align: center;" colspan="4">
+                                                        TRAVAIL/WORK
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="text-align: center;" rowspan="2">Absences</td>
+                                                    <td style="text-align: center;">J</td>
+                                                    <td style="text-align: center;" style="color:none;"> _____
+                                                    </td>
+                                                    <td style=" text-align: center;" colspan="4" rowspan="2">
+                                                        <?php echo appreciation($rang[$matricule_apprenant]) ?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: center;">NJ</td>
+                                                    <td style="text-align: center;"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: center;" rowspan="2">Retards</td>
+                                                    <td style="text-align: center;">J</td>
+                                                    <td style="text-align: center;"></td>
+                                                    <td rowspan="5" colspan="4">Un effort
+                                                        s'impose en: <br>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: center;">NJ</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: center;" colspan="2">Avertissements</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: center;" style="text-align: center;"
+                                                        colspan="2">Blames de conduite</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: center;" colspan="2">Exclusions</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: center;" colspan="3">Visa des Parents ou
+                                                        Tuteurs</td>
+                                                    <td style="text-align: center;" olspan="4">Observations et Visa du
+                                                        Professeur Principal</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3"><textarea readonly
+                                                            style="background-color: transparent; border:none;" name=""
+                                                            id="" cols="25" rows="2"></textarea></td>
+                                                    <td colspan="4"></td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </section>
             <!--/ Complex headers table -->
-            <div class="row" style="position: fixed; bottom:0; width:100%">
+            <div class=" row" style="position: fixed; bottom:0; width:100%">
                 <hr>
                 <div class="col-1">
                     <div class="user-profile-images">
-                        <img src="logo_data/<?php echo "$logo" ?>" style="margin-left: 50px;"
-                            class="user-profile-image rounded" alt="user profile image" height="57" width="50">
+                        <img src="logo_data/<?php echo "$logo" ?>" style="80px;" class="user-profile-image rounded"
+                            alt="user profile image" height="77" width="70">
                     </div>
                 </div>
                 <div class="col-11">
                     <center>
-                        <span style="font-size: 20px;">
-                            <h6 style="color : red"><b><i><?php echo htmlspecialchars_decode ($slogan) ?></i></b></h6>
+                        <span style="font-size: 17px; ">
+                            <h6 style="color : red">
+                                <b><i><?php echo htmlspecialchars_decode($slogan) ?></i></b>
+                            </h6>
                         </span>
-                        <span style="font-size: 20px;">
-                            <h6><b><i><?php echo htmlspecialchars_decode ($location) ?></i>
-                                    <!-- Campus de Douala / Village, face PICASO --></i></b></h6>
+                        <span style="font-size: 17px; ">
+                            <h6><b><i><?php echo htmlspecialchars_decode($location) ?>
+                                        Email:
+                                        <i><?php echo $email_s ?></i>
+                                        <!-- Campus de Douala / Village, face PICASO --></i></b>
+                            </h6>
 
                         </span>
-                        <span style="font : cursive 20px">
-                            <h6><b><i> Email: <i><?php echo "$email_s "?> telephone :<strong><?php echo $tel ?> web
-                                                : </strong><?php echo $web ?> <strong>
-                                                .</strong></i></b></h6>
-                        </span> <br>
-                        <small><strong> <a href="http://scolaricx.lescigales.org"> Made by scolaricx</a>
+                        <span style="font : cursive 17px">
+                            <h6><b><i><strong><?php echo $tel ?> web
+                                            :</strong><?php echo $web ?> <strong>
+                                            <?php echo $tel ?>.</strong></i></b></h6>
+                        </span><br>
+                        <small><strong> <a href="http://scolaricx.lescigales.org"> Made by
+                                    scolaricx</a>
                             </strong></small>
+
 
                     </center>
                 </div>
@@ -504,6 +756,8 @@ while ($result = mysqli_fetch_assoc($query)) {
     // code...
 }
 ?>
+
+
 <script type="text/javascript">
 window.print();
 </script>

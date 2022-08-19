@@ -34,6 +34,7 @@
 //  * @filesource
 //  */
 ?><?php 
+    require '../../function.php';
     session_start();
     if(isset($_SESSION['unique_id'])){
         include_once "config.php";
@@ -43,17 +44,43 @@
         if(!empty($message)){
             $sql = mysqli_query($conn, "INSERT INTO messages (incoming_msg_id, outgoing_msg_id, msg)
                                         VALUES ('$incoming_id', '$outgoing_id', '$message')") or die();
+            #check if it is a class then send the message to each student
             $query = mysqli_query($conn, "SELECT * FROM classe WHERE code_classe = '$incoming_id'");
             if (mysqli_num_rows($query)==1) {
                 $query = mysqli_query($conn, "SELECT * FROM apprenant WHERE code_classe = '$incoming_id' ");
                 while ($result = mysqli_fetch_assoc($query)) {
                     $incoming_id = $result['matricule_apprenant'];
+                    $email = $result['telephone'];
                     $sql = mysqli_query($conn, "INSERT INTO messages (incoming_msg_id, outgoing_msg_id, msg)
                                         VALUES ('$incoming_id', '$outgoing_id', '$message')") or die();
+                    send_message($email, $message, "MESSAGE FROM SCHOOL");
                     # code...
                 }
                 # code...
             }
+
+            #check if it is for one student
+            $query = mysqli_query($conn, "SELECT * FROM apprenant WHERE matricule_apprenant = '$incoming_id' ");
+            if (mysqli_num_rows($query)==1) {
+                $result = mysqli_fetch_assoc($query);
+                $email = $result['telephone'];
+                $sql = mysqli_query($conn, "INSERT INTO messages (incoming_msg_id, outgoing_msg_id, msg)
+                                        VALUES ('$incoming_id', '$outgoing_id', '$message')") or die();
+                send_message($email, $message, "MESSAGE FROM SCHOOL");
+                # code...
+            }
+
+            #check if it is for a staff
+            $query = mysqli_query($conn, "SELECT * FROM utilisateur WHERE matricule_utilisateur = '$incoming_id' ");
+            if (mysqli_num_rows($query)==1) {
+                $result = mysqli_fetch_assoc($query);
+                $email = $result['email_utilisateur'];
+                $sql = mysqli_query($conn, "INSERT INTO messages (incoming_msg_id, outgoing_msg_id, msg)
+                                        VALUES ('$incoming_id', '$outgoing_id', '$message')") or die();
+                send_message($email, $message, "MESSAGE FROM SCHOOL");
+                # code...
+            }
+
             
         }
     }else{

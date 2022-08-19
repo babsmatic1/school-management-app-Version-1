@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Bienvenue chez Scolaricx &mdash; Scolaricx 1.0 documentation</title>
+    <title>Server Requirements &mdash; scolaricx 1.0 documentation</title>
 
 
 
@@ -35,9 +35,9 @@
 
     <link rel="index" title="Index" href="../genindex.php" />
     <link rel="search" title="Search" href="../search.php" />
-    <link rel="top" title="Scolaricx 1.0 documentation" href="../index.php" />
-    <link rel="next" title="Installation Instructions" href="../installation/index.php" />
-    <link rel="prev" title="Scolaricx User Guide" href="../index.php" />
+    <link rel="top" title="scolaricx 1.0 documentation" href="../index.php" />
+    <link rel="next" title="Credits" href="credits.php" />
+    <link rel="prev" title="The MIT License (MIT)" href="../license.php" />
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -59,7 +59,10 @@
 
         <nav data-toggle="wy-nav-shift" class="wy-nav-side">
             <div class="wy-side-nav-search">
-                <a href="../index.php" class="fa fa-home"> Scolaricx</a>
+
+                <a href="../index.php" class="fa fa-home"> scolaricx</a>
+
+
                 <div role="search">
                     <form id="rtd-search-form" class="wy-form" action="../search.php" method="get">
                         <input type="text" name="q" placeholder="Search docs" />
@@ -68,6 +71,7 @@
                     </form>
                 </div>
             </div>
+
             <?php require '../include/navigation.html'; ?>
             &nbsp;
         </nav>
@@ -77,7 +81,7 @@
 
             <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
                 <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-                <a href="../index.php">Scolaricx</a>
+                <a href="../index.php">scolaricx</a>
             </nav>
 
 
@@ -88,7 +92,7 @@
                         <ul class="wy-breadcrumbs">
                             <li><a href="../index.php">Docs</a> &raquo;</li>
 
-                            <li>Bienvenu chez Scolaricx</li>
+                            <li>Recommandation Serveur</li>
                             <li class="wy-breadcrumbs-aside">
 
                             </li>
@@ -101,49 +105,59 @@
                     </div>
                     <div role="main" class="document">
 
-                        <div class="section" id="welcome-to-scolaricx">
-                            <h1>Bienvenu chez Scolaricx<a class="headerlink" href="#welcome-to-scolaricx"
+                        <div class="section" id="server-requirements">
+                            <h1>Recommandation Serveur<a class="headerlink" href="#server-requirements"
                                     title="Permalink to this headline">¶</a></h1>
-                            <p>Scolaricx est un logiciel open source de gestion d'etablissement scolaire tout en un. Il
-                                a été concu dans le contexte de resourdre les
-                                difficultés liées à la gestion quotidienne des etablissements scolaires; que ce soit des
-                                colleges, des lycees, des universités,
-                                des centres ou ecoles de formation professionnelle, et qu'ils soient public, privé ou
-                                para-public. <br>
-                                Scolaricx integre parfaitement la gestion academique, comptable et administrative.
+                            <p><a class="reference external" href="http://php.net/">PHP</a> version 7.4 ou plus recent
+                                est fortement recommandé</p>
+                            <p>Ceci fonctionnerait parfaitement sur 7.4, cependant nous vous decourageons fortement de
+                                l'utiliser sur une version plus ancienne, à cause de potentiel crash de securité et de
+                                performance due à des fonctionnalités absentes.
                             </p>
-                            <div class="section" id="who-is-scolaricx-for">
-                                <h2>Qui peut utiliser Scolaricx ?<a class="headerlink" href="#who-is-scolaricx-for"
-                                        title="Permalink to this headline">¶</a></h2>
-                                <p>Scolaricx est parfaitement adaptée pour vous si:</p>
-                                <ul class="simple">
-                                    <li>Vous recherchez un logiciel libre Open source et gratuit</li>
-                                    <li>Vous etes un directeur ou un responsable d'etablissement d'enseignement</li>
-                                    <li>Vous avez besoin d'un logiciel à l'utilisation facile et intuitive</li>
-                                    <li>Vous recherchez un logiciel ergonome sans contrainte majeure d'installation</li>
-                                    <li>Vous avez besoin d'un logiciel en constante evolution</li>
-                                    <li>Vous etes un simple utilisateur de logiciel qui souhaite faciliter son travail
-                                    </li>
-                                    <li>Vous etes un developpeur qui souhaite apporter sa contribution à l'amelioration
-                                        du logiciel</li>
-                                    <li>Vous etes à la recherche d'un logiciel template pour votre project</li>
-                                </ul>
-                            </div>
+                            <p>Une base de données est requise pour ce logiciel.
+                                Les bases de données actuellement supporteés sont:</p>
+                            <blockquote>
+                                <div>
+                                    <ul class="simple">
+                                        <li>MySQL (5.1+) via the <em>mysql</em> (obsolete), <em>mysqli</em> et
+                                            <em>pdo</em> drivers <strong>(recommandé)</strong>
+                                        </li>
+                                        <li>Oracle via <em>oci8</em> et <em>pdo</em> drivers</li>
+                                        <li>PostgreSQL via <em>postgre</em> et <em>pdo</em> drivers</li>
+                                        <li>MS SQL via <em>mssql</em>, <em>sqlsrv</em> (version 2005 et proche
+                                            seulement)
+                                            et <em>pdo</em> drivers</li>
+                                        <li>SQLite via <em>sqlite</em> (version 2), <em>sqlite3</em> (version 3) et
+                                            <em>pdo</em> drivers
+                                        </li>
+                                        <li>ODBC via <em>odbc</em> et <em>pdo</em> drivers </li>
+                                    </ul>
+                                </div>
+                            </blockquote>
+                            <p>Activer la librairie GD dans les fichiers de configurations php pour la creation des
+                                fichiers. <br>
+                                Il est egalement recommandé d'augmenter le temps d'execution des requetes si vous
+                                traitez un grand nombre de données simultanement.
+
+                            </p>
                         </div>
 
 
                     </div>
                     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
 
-                        <a href="../installation/index.php" class="btn btn-neutral float-right"
-                            title="Installation Instructions">Next <span class="fa fa-arrow-circle-right"></span></a>
+                        <a href="credits.php" class="btn btn-neutral float-right" title="Credits">Next <span
+                                class="fa fa-arrow-circle-right"></span></a>
 
 
-                        <a href="../index.php" class="btn btn-neutral" title="Scolaricx User Guide"><span
+                        <a href="../license.php" class="btn btn-neutral" title="The MIT License (MIT)"><span
                                 class="fa fa-arrow-circle-left"></span> Previous</a>
 
                     </div>
+
+
                     <hr />
+
                     <?php include '../include/footer.html' ?>
                 </div>
             </div>

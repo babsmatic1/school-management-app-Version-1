@@ -37,7 +37,7 @@
     <link rel="search" title="Search" href="../search.php" />
     <link rel="top" title="scolaricx 1.0 documentation" href="../index.php" />
     <link rel="up" title="Upgrading From a Previous Version" href="upgrading.php" />
-    <link rel="next" title="Troubleshooting" href="troubleshooting.php" />
+    <link rel="next" title="Tutorial" href="../tutorial/" />
     <link rel="prev" title="Upgrading From Beta 1.0 to Final 1.2" href="upgrading.php" />
 
 
@@ -60,11 +60,11 @@
         <nav data-toggle="wy-nav-shift" class="wy-nav-side">
             <div class="wy-side-nav-search">
 
-                <a href="../index.html" class="fa fa-home"> scolaricx</a>
+                <a href="../index.php" class="fa fa-home"> scolaricx</a>
 
 
                 <div role="search">
-                    <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+                    <form id="rtd-search-form" class="wy-form" action="../search.php" method="get">
                         <input type="text" name="q" placeholder="Search docs" />
                         <input type="hidden" name="check_keywords" value="yes" />
                         <input type="hidden" name="area" value="default" />
@@ -81,7 +81,7 @@
 
             <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
                 <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-                <a href="../index.html">scolaricx</a>
+                <a href="../index.php">scolaricx</a>
             </nav>
 
 
@@ -90,11 +90,11 @@
                 <div class="rst-content">
                     <div role="navigation" aria-label="breadcrumbs navigation">
                         <ul class="wy-breadcrumbs">
-                            <li><a href="../index.html">Docs</a> &raquo;</li>
+                            <li><a href="../index.php">Docs</a> &raquo;</li>
 
-                            <li><a href="index.html">Installation Instructions</a> &raquo;</li>
+                            <li><a href="index.php">Installation Instructions</a> &raquo;</li>
 
-                            <li><a href="upgrading.html">Upgrading From a Previous Version</a> &raquo;</li>
+                            <li><a href="upgrading.php">Upgrading From a Previous Version</a> &raquo;</li>
 
                             <li>Upgrading From Beta 1.0 to Beta 1.1</li>
                             <li class="wy-breadcrumbs-aside">
@@ -206,12 +206,12 @@
                     </div>
                     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
 
-                        <a href="../overview/index.php" class="btn btn-neutral float-right" title="Troubleshooting">Next
+                        <a href="../tutorial/index.php" class="btn btn-neutral float-right" title="Tutoriel">Next
                             <span class="fa fa-arrow-circle-right"></span></a>
 
 
-                        <a href="upgrading.html" class="btn btn-neutral"
-                            title="Upgrading From Beta 1.0 to Final 1.2"><span class="fa fa-arrow-circle-left"></span>
+                        <a href="upgrading.php" class="btn btn-neutral" title="Upgrading"><span
+                                class="fa fa-arrow-circle-left"></span>
                             Previous</a>
 
                     </div>

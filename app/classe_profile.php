@@ -1,4 +1,4 @@
-<?php 
+<?php
 // * scolaricx
 //  *
 //  * An open source application development framework for PHP
@@ -63,11 +63,11 @@ if (isset($_GET['ktsp'])) {
         $query = mysqli_query($database, "SELECT * FROM niveau WHERE id = '$id_niveau' AND matricule_etablissement =
         '$matricule_etablissement' AND date_academique = '$date_academique' ");
         if (mysqli_num_rows($query) == 1) {
-        $result = mysqli_fetch_assoc($query);
-        $nom_niveau = $result['nom_niveau'];
-        # code...
+            $result = mysqli_fetch_assoc($query);
+            $nom_niveau = $result['nom_niveau'];
+            # code...
         } else {
-        $nom_niveau = "The level have been deleted";
+            $nom_niveau = "The level have been deleted";
         }
         $query = mysqli_query($database, "SELECT COUNT(id) AS max_a FROM apprenant WHERE code_classe = '$code_classe' AND
         matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' ");
@@ -78,8 +78,8 @@ if (isset($_GET['ktsp'])) {
         if (isset($_POST['delete_s'])) {
             if ($role == "admin" or $role == "headmaster") {
                 $result = $user->delete_class($code_classe, $matricule_etablissement, $date_academique);
-        switch ($result) {
-            case 0: ?>
+                switch ($result) {
+                    case 0: ?>
 <div class="swal2-container swal2-center swal2-fade swal2-shown" style="overflow-y: auto;">
     <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show"
         tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: flex;">
@@ -136,71 +136,70 @@ if (isset($_GET['ktsp'])) {
     </div>
 </div>
 <?php
-# code...
-break;
+                        # code...
+                        break;
 
-default:
-# code...
-break;
-}
-header("Location: ./classe.php");
-# code...
-} else {
-include 'access_denieted.php';
-# code...
-}
-# code...
-}
+                    default:
+                        # code...
+                        break;
+                }
+                header("Location: ./classe.php");
+                # code...
+            } else {
+                include 'access_denieted.php';
+                # code...
+            }
+            # code...
+        }
 
-// UPDATE CLASS INFOS
-if (isset($_POST['update_sp'])) {
-if ($role == "admin" or $role == "headmaster") {
-$nom_classe = get_safe_input($_POST['nom_classe']);
-$scolarite =get_safe_input( $_POST['tuition']);
-$ini = get_safe_input($_POST['init']);
-$code_cloud = get_safe_input(base64_encode($_POST['password']));
-$query = mysqli_query($database, "UPDATE classe SET nom_classe = '$nom_classe', scolarite = '$scolarite', pssw =
+        // UPDATE CLASS INFOS
+        if (isset($_POST['update_sp'])) {
+            if ($role == "admin" or $role == "headmaster") {
+                $nom_classe = get_safe_input($_POST['nom_classe']);
+                $scolarite = get_safe_input($_POST['tuition']);
+                $ini = get_safe_input($_POST['init']);
+                $code_cloud = get_safe_input(base64_encode($_POST['password']));
+                $query = mysqli_query($database, "UPDATE classe SET nom_classe = '$nom_classe', scolarite = '$scolarite', pssw =
 '$code_cloud', ini = '$ini' WHERE code_classe = '$code_classe'");
-$code_cloud = base64_decode($code_cloud);
-// hey
-# code...
-} else {
-include 'access_denieted.php';
-# code...
-}
-# code...
-}
-if (isset($_POST['change_level'])) {
-if ($role == "admin" or $role == "headmaster") {
-$id_niveau = $_POST['new_level'];
-$query = mysqli_query($database, "SELECT * FROM niveau WHERE id = '$id_niveau' AND matricule_etablissement =
+                $code_cloud = base64_decode($code_cloud);
+                // hey
+                # code...
+            } else {
+                include 'access_denieted.php';
+                # code...
+            }
+            # code...
+        }
+        if (isset($_POST['change_level'])) {
+            if ($role == "admin" or $role == "headmaster") {
+                $id_niveau = $_POST['new_level'];
+                $query = mysqli_query($database, "SELECT * FROM niveau WHERE id = '$id_niveau' AND matricule_etablissement =
 '$matricule_etablissement' AND date_academique = '$date_academique' ");
-if (mysqli_num_rows($query) == 1) {
-$result = mysqli_fetch_assoc($query);
-$nom_niveau = $result['nom_niveau'];
-# code...
-} else {
-$nom_niveau = "The level have been deleted";
-}
+                if (mysqli_num_rows($query) == 1) {
+                    $result = mysqli_fetch_assoc($query);
+                    $nom_niveau = $result['nom_niveau'];
+                    # code...
+                } else {
+                    $nom_niveau = "The level have been deleted";
+                }
 
-$name = $nom_classe." ".$nom_niveau;
-$query = mysqli_query($database, "UPDATE users SET fname = '$name' WHERE matricule_etablissement =
+                $name = $nom_classe . " " . $nom_niveau;
+                $query = mysqli_query($database, "UPDATE users SET fname = '$name' WHERE matricule_etablissement =
 '$matricule_etablissement' and unique_id = '$code_classe' ");
-$query = mysqli_query($database, "UPDATE classe SET id_niveau = '$id_niveau' WHERE code_classe = '$code_classe' AND matricule_etablissement =
+                $query = mysqli_query($database, "UPDATE classe SET id_niveau = '$id_niveau' WHERE code_classe = '$code_classe' AND matricule_etablissement =
 '$matricule_etablissement' AND date_academique = '$date_academique' ");
 
-# code...
+                # code...
+            } else {
+                include './access_denieted.php';
+            }
+            # code...
+        }
+    }
+    # code...
 } else {
-include './access_denieted.php';
-}
-# code...
-}
-
-}
-# code...
-} else {
-header("Location: classe.php");
-exit();
+    header("Location: classe.php");
+    exit();
 }
 
 ?>
@@ -251,9 +250,9 @@ exit();
 <?php
 if (isset($_POST['add_dis_class'])) {
     if ($role == 'admin' or $role == 'headmaster') {
-        $code_dis = ( $_POST['dis_name']);
+        $code_dis = ($_POST['dis_name']);
         $code_teacher =  ($_POST['dis_teacher']);
-        $hour =get_safe_input ( $_POST['dis_hour']);
+        $hour = get_safe_input($_POST['dis_hour']);
         $result = $user->add_dis_class($code_dis, $code_classe, $code_teacher, $hour, $matricule_etablissement, $date_academique);
         switch ($result) {
             case 0: ?>
@@ -483,12 +482,12 @@ if (isset($_POST['update_dis_class'])) {
 //ADD A STUDENT TO THE CLASS TREATMENT
 if (isset($_POST['add_student'])) {
     if ($role == 'admin' or $role == 'headmaster') {
-        $nom_apprenant = get_safe_input ($_POST['nom_apprenant']);
-        $prenom_apprenant = get_safe_input ($_POST['prenom_apprenant']);
-        $telephone_apprenant = get_safe_input ($_POST['telephone_apprenant']);
-        $adresse_apprenant = get_safe_input ($_POST['adresse_apprenant']);
-        $other_info_apprenant = get_safe_input ($_POST['other_info_apprenant']);
-        $tutor_apprenant = get_safe_input ($_POST['tutor_apprenant']);
+        $nom_apprenant = get_safe_input($_POST['nom_apprenant']);
+        $prenom_apprenant = get_safe_input($_POST['prenom_apprenant']);
+        $telephone_apprenant = get_safe_input($_POST['telephone_apprenant']);
+        $adresse_apprenant = get_safe_input($_POST['adresse_apprenant']);
+        $other_info_apprenant = get_safe_input($_POST['other_info_apprenant']);
+        $tutor_apprenant = get_safe_input($_POST['tutor_apprenant']);
         $result = $user->add_student($nom_apprenant, $prenom_apprenant, $telephone_apprenant, $adresse_apprenant, $other_info_apprenant, $tutor_apprenant, $matricule_etablissement, $code_classe, $date_academique, $ini);
         # code...
     } else {
@@ -618,11 +617,17 @@ if (isset($_POST['week_del'])) {
     # code...
 }
 
+// SEND THE TIME TABLE PROGRAMM TO EACH STUDENT
+if (isset($_POST['send_programm'])) {
+    $week = $_POST['week_view'];
+    # code...
+}
+
 //ADD TRANCHE DE PAIEMENT
 if (isset($_POST['add_tranche'])) {
     if ($role == 'comptable' or $role == "admin") {
-        $nom_tranche = get_safe_input ($_POST['nom_tranche']);
-        $montant_tranche = get_safe_input ($_POST['montant_tranche']);
+        $nom_tranche = get_safe_input($_POST['nom_tranche']);
+        $montant_tranche = get_safe_input($_POST['montant_tranche']);
         $echeance_tranche = $_POST['echeance_tranche'];
         $result = $user->add_tranche($nom_tranche, $montant_tranche, $echeance_tranche, $code_classe, $matricule_etablissement, $date_academique);
         // code...
@@ -696,8 +701,8 @@ if (isset($_POST['delete_tranche'])) {
     if ($role == "comptable" or $role == "admin") {
         $id_tranche = $_POST['delete_tranche'];
         $result = $user->delete_tranche($id_tranche, $code_classe, $date_academique, $matricule_etablissement);
-                if ($result == 0) {
-            ?>
+        if ($result == 0) {
+        ?>
 <div class="swal2-container swal2-center swal2-fade swal2-shown" style="overflow-y: auto;">
     <div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show"
         tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: flex;">
@@ -754,8 +759,8 @@ if (isset($_POST['delete_tranche'])) {
 </div>
 <?php
 
-    } 
-}else {
+        }
+    } else {
         include 'access_denieted.php';
     }
 }
@@ -773,13 +778,13 @@ if (isset($_POST['csv_upload'])) {
                 $i++;
                 continue;
             }
-            $result = $user->add_student(get_safe_input( $cont[1]), get_safe_input( $cont[2]), get_safe_input( $cont[3]), get_safe_input( $cont[4]) . " " . get_safe_input( $cont[5]),get_safe_input( $cont[6]), get_safe_input( $cont[7]),  $matricule_etablissement, $code_classe, $date_academique, $ini);
+            $result = $user->add_student(get_safe_input($cont[1]), get_safe_input($cont[2]), get_safe_input($cont[3]), get_safe_input($cont[4]) . " " . get_safe_input($cont[5]), get_safe_input($cont[6]), get_safe_input($cont[7]),  $matricule_etablissement, $code_classe, $date_academique, $ini);
             $i++;
             # code...
         }
         # code...
     } else {
-    ?>
+        ?>
 <script type="text/javascript" language="javascript">
 alert("Fatal error: incorrect file format \n Download the template and use it.");
 </script>
@@ -1048,9 +1053,9 @@ alert(
                                                                                         $nom_tranche = $result0['nom_tranche'];
                                                                                         $querypp = mysqli_query($database, "SELECT SUM(montant) As mont FROM compta WHERE id_tranche = '$id_tranche' AND matricule_apprenant = '$matricule_apprenant' AND matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' ");
                                                                                         $resultpp =  mysqli_fetch_assoc($querypp);
-                                                                                        $count = $resultpp['mont'] +0;
+                                                                                        $count = $resultpp['mont'] + 0;
 
-                                                                                         ?>
+                                                                                ?>
                                                                                 <tr>
                                                                                     <td> <a
                                                                                             href="student_profile.php?ktsp=<?php echo base64_encode($result['matricule_apprenant']);  ?>">
@@ -1061,7 +1066,7 @@ alert(
                                                                                                     <i
                                                                                                         class="bx bxs-left-top-arrow-circle"></i>
                                                                                                     </i>
-                                                                                                    <?php echo  $result['nom_apprenant']." "; ?>
+                                                                                                    <?php echo  $result['nom_apprenant'] . " "; ?>
                                                                                                     <?php echo $result['prenom_apprenant']; ?>
 
                                                                                                 </span>
@@ -1263,7 +1268,7 @@ alert(
                                                                                                                                 class="form-control border-1 shadow-none"
                                                                                                                                 id="user-post-textarea"
                                                                                                                                 rows="3"
-                                                                                                                                <?php echo $retVal = ($statut == 1) ? "required" : "" ;  ?>></input>
+                                                                                                                                <?php echo $retVal = ($statut == 1) ? "required" : "";  ?>></input>
 
                                                                                                                         </div>
                                                                                                                     </div>
@@ -1961,7 +1966,17 @@ alert(
                                                                                     }
                                                                                     ?>
 
-                                                                                </select>
+                                                                                </select><br>
+                                                                                <!-- <button type="submit"
+                                                                                    name="send_programm"
+                                                                                    class="btn btn-success"
+                                                                                    onclick="alert('Wait while we are sending Email to each student.')">Send
+                                                                                    this
+                                                                                    program to
+                                                                                    students.
+                                                                                </button> <small>need internet
+                                                                                    connection</small> -->
+
                                                                             </fieldset>
                                                                         </div>
                                                                     </div>

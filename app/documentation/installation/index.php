@@ -137,9 +137,8 @@
                             </p>
                             <p>Et voila!</p>
                             <p>Si vous etes tout nouveau et que vous etes developpeur avec Scolaaricx allez voir la
-                                section <a class="reference internal" href="../overview/getting_started.php"><span
-                                        class="doc">Commencez
-                                        maintenant</span></a>.
+                                section <a class="reference internal" href="../tutorial/"><span class="doc"> Tutoriel
+                                    </span></a>.
                                 Enjoy!</p>
                             <div class="toctree-wrapper compound">
                             </div>
