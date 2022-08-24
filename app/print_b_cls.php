@@ -87,7 +87,7 @@
                     # code...
                     // code...
                 }
-                $moyenne_generale = (($somme_notes2 / $somme_de_cours) + ($somme_notes1 / $somme_de_cours)) / 2;
+                $moyenne_generale = (($somme_notes2) + ($somme_notes1)) / 2;
                 // $moyenne_notes1 =$somme_notes1/$somme_de_cours;
                 // $moyenne_notes2 =$somme_notes2/$somme_de_cours;
                 $rang[$matricule_apprenant] = $moyenne_generale;
@@ -473,7 +473,7 @@ while ($result = mysqli_fetch_assoc($query)) {
                                                             # code...
                                                             // code...
                                                         }
-                                                        $moyenne_generale = (($somme_notes2 / $somme_de_cours) + ($somme_notes1 / $somme_de_cours)) / 2;
+                                                        $moyenne_generale = (($somme_notes2) + ($somme_notes1)) / 2;
                                                         $moyenne_notes1 = $somme_notes1 / $somme_de_cours;
                                                         $moyenne_notes2 = $somme_notes2 / $somme_de_cours;
                                                         ?>
@@ -482,14 +482,14 @@ while ($result = mysqli_fetch_assoc($query)) {
                                                         TOTAL
                                                     </td>
 
-                                                    <td><?php echo $moyenne_notes1 ?></td>
+                                                    <td><?php echo $somme_notes1 ?></td>
                                                     <td><?php echo $somme_de_credit ?></td>
-                                                    <td><?php echo ($somme_notes1 / $somme_de_cours) * $somme_de_credit ?>
+                                                    <td><?php echo ($somme_notes1) * $somme_de_credit ?>
                                                     </td>
 
-                                                    <td><?php echo $moyenne_notes2 ?></td>
+                                                    <td><?php echo $somme_notes2 ?></td>
                                                     <td><?php echo $somme_de_credit ?></td>
-                                                    <td><?php echo ($somme_notes2 / $somme_de_cours) * $somme_de_credit ?>
+                                                    <td><?php echo ($somme_notes2) * $somme_de_credit ?>
                                                     </td>
                                                     <td><?php echo $moyenne_generale; ?>
                                                     </td>
