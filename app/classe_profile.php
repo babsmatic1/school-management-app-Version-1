@@ -1967,15 +1967,15 @@ alert(
                                                                                     ?>
 
                                                                                 </select><br>
-                                                                                <!-- <button type="submit"
+                                                                                <button type="submit"
                                                                                     name="send_programm"
                                                                                     class="btn btn-success"
-                                                                                    onclick="alert('Wait while we are sending Email to each student.')">Send
+                                                                                    onclick="alert('Wait while we are sending Email to each student.')">Email
                                                                                     this
                                                                                     program to
                                                                                     students.
                                                                                 </button> <small>need internet
-                                                                                    connection</small> -->
+                                                                                    connection</small>
 
                                                                             </fieldset>
                                                                         </div>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 // * scolaricx
 //  *
 //  * An open source application development framework for PHP
@@ -42,17 +42,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>Exams Results NIVEAU: <?php if (isset($_POST['report'])) {
-                                        $retVal = $_POST['niveau'];
-                                        $query = mysqli_query($database, "SELECT * FROM niveau WHERE id = '$retVal' AND matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' ");
-                                        $result = mysqli_fetch_assoc($query);
-                                        echo $result['nom_niveau'];
-                                        // code...
-                                    } else {
-                                        echo "All";
-                                    }
+    <title>Exams Results <?php echo $retVal = ($statut == 1) ? "Section" : "Level"; ?>: <?php if (isset($_POST['report'])) {
+                                                                                                $retVal = $_POST['niveau'];
+                                                                                                $query = mysqli_query($database, "SELECT * FROM niveau WHERE id = '$retVal' AND matricule_etablissement = '$matricule_etablissement' AND date_academique = '$date_academique' ");
+                                                                                                $result = mysqli_fetch_assoc($query);
+                                                                                                echo $result['nom_niveau'];
+                                                                                                // code...
+                                                                                            } else {
+                                                                                                echo "All";
+                                                                                            }
 
-                                    ?> | <?php echo $nom_etablissement . " "; ?></title>
+                                                                                            ?> |
+        <?php echo $nom_etablissement . " "; ?></title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700"
@@ -191,8 +192,10 @@
                                                     <tr>
                                                         <th>First Name</th>
                                                         <th>Last Name</th>
-                                                        <th>Specialty</th>
-                                                        <th>Level</th>
+                                                        <th><?php echo $retVal = ($statut == 1) ? "Class" : "Speciality"; ?>
+                                                        </th>
+                                                        <th><?php echo $retVal = ($statut == 1) ? "Section" : "Level"; ?>
+                                                        </th>
                                                         <th>Exam</th>
                                                         <th>Average</th>
                                                         <th>result</th>
@@ -366,4 +369,4 @@
 </body>
 <!-- END: Body-->
 
-</html><?="Execution time: ".round(microtime(true)- $start, 3);?>
+</html><?= "Execution time: " . round(microtime(true) - $start, 3); ?>

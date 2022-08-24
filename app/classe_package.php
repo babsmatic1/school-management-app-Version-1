@@ -344,6 +344,7 @@ class admin extends headmaster
 					$nom_niveau = $result['nom_niveau'];
 					$id = $result['id'];
 					$query_1 = mysqli_query($this->database, "INSERT INTO niveau values ('$id', '$matricule_etablissement', '$year', '$nom_niveau') ");
+
 					# code...
 				}
 				//4.classe
@@ -382,6 +383,7 @@ class admin extends headmaster
 					$matricule_enseignant = $result['matricule_enseignant'];
 					$heure = $result['heure'];
 					$query_1 = mysqli_query($this->database, "INSERT INTO discipline_classe values (null, '$code_discipline', '$code_classe', '$matricule_enseignant', '$matricule_etablissement', '$year', '$heure') ");
+
 					# code...
 				}
 
@@ -402,7 +404,7 @@ class admin extends headmaster
 
 			//code...
 		} catch (\Throwable $th) {
-			//throw $th;
+				throw $th;
 		}
 
 		# code...

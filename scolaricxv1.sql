@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 18 juil. 2022 à 17:48
+-- Généré le : mer. 24 août 2022 à 02:35
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 8.1.6
 
@@ -70,12 +70,12 @@ CREATE TABLE `classe` (
   `id` int(11) NOT NULL,
   `code_classe` varchar(250) NOT NULL,
   `id_niveau` int(250) DEFAULT NULL,
-  `matricule_etablissement` varchar(250) CHARACTER SET utf8 NOT NULL,
-  `date_academique` varchar(250) CHARACTER SET utf8 NOT NULL,
-  `nom_classe` varchar(250) CHARACTER SET utf8 NOT NULL,
-  `scolarite` varchar(250) CHARACTER SET utf8 NOT NULL,
-  `ini` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `pssw` varchar(250) CHARACTER SET utf8 NOT NULL
+  `matricule_etablissement` varchar(250) NOT NULL,
+  `date_academique` varchar(250) NOT NULL,
+  `nom_classe` varchar(250) NOT NULL,
+  `scolarite` varchar(250) NOT NULL,
+  `ini` varchar(50) NOT NULL,
+  `pssw` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -312,14 +312,14 @@ CREATE TABLE `users` (
 
 CREATE TABLE `utilisateur` (
   `id` int(11) NOT NULL,
-  `matricule_utlisateur` varchar(255) NOT NULL,
-  `nom_utilisateur` varchar(255) NOT NULL,
-  `prenom_utilisateur` varchar(255) NOT NULL,
-  `email_utilisateur` varchar(255) NOT NULL,
-  `telephone_utilisateur`  varchar(255) NULL,
-  `pssw` varchar(255) NOT NULL,
-  `role` varchar(255) NOT NULL,
-  `matricule_etablissement`  varchar(255) NULL
+  `matricule_utlisateur` mediumtext NOT NULL,
+  `nom_utilisateur` mediumtext NOT NULL,
+  `prenom_utilisateur` mediumtext NOT NULL,
+  `email_utilisateur` mediumtext NOT NULL,
+  `telephone_utilisateur` mediumtext DEFAULT NULL,
+  `pssw` mediumtext NOT NULL,
+  `role` mediumtext NOT NULL,
+  `matricule_etablissement` mediumtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -406,7 +406,6 @@ ALTER TABLE `examen`
 --
 ALTER TABLE `matiere`
   ADD PRIMARY KEY (`code_matiere`,`matricule_etablissement`,`date_academique`) USING BTREE,
-  ADD UNIQUE KEY `nom_matiere` (`nom_matiere`),
   ADD KEY `id` (`id`);
 
 --
