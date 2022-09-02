@@ -134,11 +134,14 @@
                                 niveau d'acces absolue du logiciel, du serveur et de la base de données.</p>
                             <p>L'administrateur dispose de fonctionnaltés exclusives:</p>
                             <ul class="simple">
-                                <li><a href="./admin.php">Ajouter ou Supprimer de nouveaux comptes utilisateur</a></li>
-                                <li><a href="./headmaster.php">Ajouter de nouvelles dates academiques</a></li>
-                                <li><a href="./teacher.php">Faire migrer des données d'une année à une autre</a></li>
-                                <li><a href="./comptable.php">Sauvegarder la base de données et faire des
+                                <li><a href="./admin.php#1t">Ajouter ou Supprimer de nouveaux comptes utilisateurs</a></li>
+                                <li><a href="./admin.php">Ajouter de nouvelles dates academiques</a></li>
+                                <li><a href="./admin.php">Faire migrer des données d'une année à une autre</a></li>
+                                <li><a href="./admin.php">Sauvegarder la base de données et faire des
                                         restaurations</a>
+                                </li>
+                                <li>
+                                    <a href="">Configuration de base</a>
                                 </li>
                             </ul>
                             <div class="toctree-wrapper compound">
@@ -156,7 +159,7 @@
                                 t </p>
                             <p>Le headmaster et l'administrateur disposent de fonctionnaltés exclusives:</p>
                             <ul class="simple">
-                                <li><a href="">Ajouter, Modifier, Supprimer les <em>SECTION (Lycee, college) /
+                                <li><a href="./headmaster.php#1t">Ajouter, Modifier, Supprimer les <em>SECTION (Lycee, college) /
                                             LEVEL (université, formation professionnelle)</em> </a>
                                 </li>
                             </ul>

@@ -26,7 +26,7 @@
 //  * THE SOFTWARE.
 //  *
 //  * @package	scolaricx
-//  * @author	carelii dev
+//  * @author	carleii dev
 //  * @copyright	Copyright (c) 2020 - 2022, Carleii, Inc. (https://github.com/carleii)
 //  * @license	http://opensource.org/licenses/MIT	MIT License
 //  * @link	http://scolaricx.lescigales.org/
@@ -39,7 +39,7 @@
 <!-- BEGIN: Head-->
 
 <head>
-    <title>Matter | <?php echo "$nom_etablissement"; ?></title>
+    <title>Subjects | <?php echo "$nom_etablissement"; ?></title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700"

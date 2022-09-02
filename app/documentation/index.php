@@ -178,7 +178,7 @@
                                                 <li class="toctree-l2"><a class="reference internal"
                                                         href="tutorial/admin.php">Admin</a></li>
                                                 <li class="toctree-l2"><a class="reference internal"
-                                                        href="tutorial/create_news_items.php">Headmaster</a>
+                                                        href="./tutorial/headmaster.php">Headmaster</a>
                                                 </li>
                                                 <li class="toctree-l2"><a class="reference internal"
                                                         href="tutorial/conclusion.php">Teacher</a></li>

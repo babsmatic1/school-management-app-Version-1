@@ -466,13 +466,16 @@ alert("Fatal error: incorrect file format \n Download the template and use it.")
                                     <i>Example:</i><br>
                                     <ul>
                                         <li>
-                                            Electrotechnique
+                                            Terminale C
                                         </li>
                                         <li>
                                             Science Economique
                                         </li>
                                         <li>
-                                            Mecanique auto
+                                            3ieme Allemand
+                                        </li>
+                                        <li>
+                                            Electrotechnique
                                         </li>
                                     </ul>
                                 </div>

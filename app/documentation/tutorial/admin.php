@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Installation Instructions &mdash; scolaricx 1.0 documentation</title>
+    <title>AdminTutorial &mdash; scolaricx 1.0 documentation</title>
 
 
 
@@ -107,90 +107,31 @@
                         <div class="section" id="codeigniter-user-guide">
                             <h1>Scolaricx User Guide<a class="headerlink" href="#codeigniter-user-guide"
                                     title="Permalink to this headline">¶</a></h1>
-                            <ul class="simple">
-                                <li><a class="reference internal" href="license.php"><span class="doc">License
-                                            Agreement</span></a></li>
-                                <li><a class="reference internal" href="changelog.php"><span class="doc">Change
-                                            Log</span></a></li>
-                            </ul>
-                            <div class="contents local topic" id="contents">
-                                <ul class="simple">
-                                    <li><a class="reference internal" href="#welcome" id="id1">Welcome</a></li>
-                                    <li><a class="reference internal" href="#basic-info" id="id2">Basic Info</a></li>
-                                    <li><a class="reference internal" href="#installation" id="id3">Installation</a>
-                                    </li>
-                                    <li><a class="reference internal" href="#tutorial" id="id5">Tutorial</a></li>
-                                </ul>
-                            </div>
-                            <div class="section" id="welcome">
-                                <h2><a class="toc-backref" href="#id1">Welcome</a><a class="headerlink" href="#welcome"
-                                        title="Permalink to this headline">¶</a></h2>
-                                <div class="toctree-wrapper compound">
-                                    <ul>
-                                        <li class="toctree-l1"><a class="reference internal"
-                                                href="general/welcome.php">Welcome to Scolaricx</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="section" id="basic-info">
-                                <h2><a class="toc-backref" href="#id2">Basic Info</a><a class="headerlink"
-                                        href="#basic-info" title="Permalink to this headline">¶</a></h2>
-                                <ul class="simple">
-                                    <li><a class="reference internal" href="general/requirements.php"><span
-                                                class="doc">Server Requirements</span></a></li>
-                                    <li><a class="reference internal" href="general/credits.php"><span
-                                                class="doc">Credits</span></a></li>
-                                </ul>
-                            </div>
-                            <div class="section" id="installation">
-                                <h2><a class="toc-backref" href="#id3">Installation</a><a class="headerlink"
-                                        href="#installation" title="Permalink to this headline">¶</a></h2>
-                                <div class="toctree-wrapper compound">
-                                    <ul>
-                                        <li class="toctree-l1"><a class="reference internal"
-                                                href="installation/index.php">Installation Instructions</a>
-                                            <ul>
-                                                <li class="toctree-l2"><a class="reference internal"
-                                                        href="installation/downloads.php">Downloading Scolaricx</a>
-                                                </li>
-                                                <li class="toctree-l2"><a class="reference internal"
-                                                        href="installation/index.php">Installation Instructions</a>
-                                                </li>
-                                                <li class="toctree-l2"><a class="reference internal"
-                                                        href="installation/upgrading.php">Upgrading From a Previous
-                                                        Version</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            
                             <div class="section" id="tutorial">
-                                <h2><a class="toc-backref" href="#id5">Tutorial</a><a class="headerlink"
+                                <h2><a class="toc-backref" href="#id5">AdminTutorial</a><a class="headerlink"
                                         href="#tutorial" title="Permalink to this headline">¶</a></h2>
                                 <div class="toctree-wrapper compound">
                                     <ul>
-                                        <li class="toctree-l1"><a class="reference internal"
-                                                href="tutorial/index.php">Tutorial</a>
-                                            <ul>
-                                                <li class="toctree-l2"><a class="reference internal"
-                                                        href="tutorial/static_pages.php">Telecharger, Installer et
-                                                        Configurer</a></li>
-                                                <li class="toctree-l2"><a class="reference internal"
-                                                        href="tutorial/admin.php">Admin</a></li>
-                                                <li class="toctree-l2"><a class="reference internal"
-                                                        href="tutorial/create_news_items.php">Headmaster</a>
-                                                </li>
-                                                <li class="toctree-l2"><a class="reference internal"
-                                                        href="tutorial/conclusion.php">Teacher</a></li>
-                                                <li class="toctree-l2"><a class="reference internal"
-                                                        href="tutorial/conclusion.php">Comptable</a></li>
-                                                <li class="toctree-l2"><a class="reference internal"
-                                                        href="tutorial/conclusion.php">Secretay</a></li>
-
-                                            </ul>
+                                        <li><a href="#1t">Ajouter ou Supprimer de nouveaux comptes utilisateurs</a></li>
+                                        <li><a href="./headmaster.php">Ajouter de nouvelles dates academiques</a></li>
+                                        <li><a href="./teacher.php">Faire migrer des données d'une année à une autre</a></li>
+                                        <li><a href="./comptable.php">Sauvegarder la base de données et faire des
+                                                restaurations</a>
+                                        </li>
+                                        <li>
+                                            <a href="">Configuration de base</a>
                                         </li>
                                     </ul>
                                 </div>
+                            </div>
+
+                            <div class="section" id="1t">
+                                <h2><a class="toc-backref" href="#1t">Ajouter ou Supprimer de nouveaux comptes utilisateurs</a><a class="headerlink"
+                                        href="#1t" title="Permalink to this headline">¶</a></h2>
+                                <div class="toctree-wrapper compound">
+                                <video src="../video/scolaricx_add_users.mp4" controls></video>
+
                             </div>
 
                         </div>
