@@ -465,7 +465,8 @@ ALTER TABLE `users`
 --
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`matricule_utlisateur`(250),`pssw`(250)) USING BTREE,
-  ADD UNIQUE KEY `id_2` (`id`) USING HASH;
+  ADD UNIQUE KEY `id_2` (`id`),
+  ADD UNIQUE KEY `email_utilisateur` (`email_utilisateur`) USING HASH;
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
