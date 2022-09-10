@@ -56,7 +56,6 @@ if (date("Y") == $date_creation +1) {
                 <h1>CLick-> make donation and continue your work</h1>
             </a>
         </span>
-
         <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="bx bx-up-arrow-alt"></i></button>
     </p>
 </footer>

@@ -134,7 +134,8 @@ class user
 			}
 		} catch (Exception $e) {
 			// IF SOMETHING WENT WRONG
-			return $e;
+			throw new Exception($e, 1);
+			 
 		}
 		# code...
 	}
@@ -418,7 +419,7 @@ class admin extends headmaster
 			return 0;
 			# code...
 		} elseif ($query and mysqli_num_rows($query) == 0) {
-			$query = mysqli_query($this->database, "SELECT * FROM utilisateur WHERE role = '$role' ");
+			$query = mysqli_query($this->database, "SELECT * FROM utilisateur WHERE role = '$role' and matricule_etablissement = '$matricule_etablissement' ");
 			//MORE THAN 3 PERSONS CANNOT HAVE DE SAME ROLE IN A SCHOOL
 			if ($query and mysqli_num_rows($query) >= 3) {
 				return -1;

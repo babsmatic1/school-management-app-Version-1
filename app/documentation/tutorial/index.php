@@ -134,7 +134,8 @@
                                 niveau d'acces absolue du logiciel, du serveur et de la base de données.</p>
                             <p>L'administrateur dispose de fonctionnaltés exclusives:</p>
                             <ul class="simple">
-                                <li><a href="./admin.php#1t">Ajouter ou Supprimer de nouveaux comptes utilisateurs</a></li>
+                                <li><a href="./admin.php#1t">Ajouter ou Supprimer de nouveaux comptes utilisateurs</a>
+                                </li>
                                 <li><a href="./admin.php">Ajouter de nouvelles dates academiques</a></li>
                                 <li><a href="./admin.php">Faire migrer des données d'une année à une autre</a></li>
                                 <li><a href="./admin.php">Sauvegarder la base de données et faire des
@@ -156,10 +157,11 @@
                                 a pour mission de gerer tous les aspects academiques du logciel.
                                 Sachant que Scolaricx est prevu pour tout type d'etablissement d'enseignement, il
                                 incombe au headmaster de strucuturer le logiciel tel quel dans a realité.
-                                t </p>
+                            </p>
                             <p>Le headmaster et l'administrateur disposent de fonctionnaltés exclusives:</p>
                             <ul class="simple">
-                                <li><a href="./headmaster.php#1t">Ajouter, Modifier, Supprimer les <em>SECTION (Lycee, college) /
+                                <li><a href="./headmaster.php#1t">Ajouter, Modifier, Supprimer les <em>SECTION (Lycee,
+                                            college) /
                                             LEVEL (université, formation professionnelle)</em> </a>
                                 </li>
                             </ul>

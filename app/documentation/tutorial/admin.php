@@ -107,15 +107,18 @@
                         <div class="section" id="codeigniter-user-guide">
                             <h1>Scolaricx User Guide<a class="headerlink" href="#codeigniter-user-guide"
                                     title="Permalink to this headline">¶</a></h1>
-                            
+
                             <div class="section" id="tutorial">
                                 <h2><a class="toc-backref" href="#id5">AdminTutorial</a><a class="headerlink"
                                         href="#tutorial" title="Permalink to this headline">¶</a></h2>
                                 <div class="toctree-wrapper compound">
                                     <ul>
+                                        <li><a href="#0t">Creation de l'etablissement, Secondaire et Universitaire</a>
+                                        </li>
                                         <li><a href="#1t">Ajouter ou Supprimer de nouveaux comptes utilisateurs</a></li>
                                         <li><a href="./headmaster.php">Ajouter de nouvelles dates academiques</a></li>
-                                        <li><a href="./teacher.php">Faire migrer des données d'une année à une autre</a></li>
+                                        <li><a href="./teacher.php">Faire migrer des données d'une année à une autre</a>
+                                        </li>
                                         <li><a href="./comptable.php">Sauvegarder la base de données et faire des
                                                 restaurations</a>
                                         </li>
@@ -126,30 +129,75 @@
                                 </div>
                             </div>
 
-                            <div class="section" id="1t">
-                                <h2><a class="toc-backref" href="#1t">Ajouter ou Supprimer de nouveaux comptes utilisateurs</a><a class="headerlink"
-                                        href="#1t" title="Permalink to this headline">¶</a></h2>
+                            <div class="section" id="0t">
+
+                                <p>
+                                    Lors de la creation de l'etablissement, la premiere année academique est
+                                    automatiquement créee et elle correspond à l'année en cours tiret l'année
+                                    prochaine. <br>
+                                    <em>
+                                        Ex: Si nous sommes en 2023 alors la date academique serait : 2023-2024. <br>
+                                        vous pourrez ajouter de nouvelles dates academiques dans le logiciel dans la
+                                        section "SCHOOL MANAGEMENT " tout en conservant les données en cours et
+                                        faire la migration de donnees. <br>
+
+                                        <strong>NE RECOMMENCER PAS L'ETAPE D'ENREGISTREMENT POUR CREER UNE NOUVELLE
+                                            DATE ACADEMIQUE!</strong> <br>
+                                    </em>
+
+                                    La date academique vous sera toujours demandez lors de l'authentification. Ne
+                                    l'oubliez pas.
+
+                                </p>
+                                <h2><a class="toc-backref" href="#0t">Creation de l'etablissement, Secondaire
+                                    </a><a class="headerlink" href="#0t" title="Permalink to this headline">¶</a></h2>
                                 <div class="toctree-wrapper compound">
-                                <video src="../video/scolaricx_add_users.mp4" controls></video>
+                                    <video src="../video/scolaricx_create_s.mp4" controls></video>
+
+                                </div>
 
                             </div>
+                            <div class="section" id="0t">
+                                <h2><a class="toc-backref" href="#0t">Creation de l'etablissement, université
+                                    </a><a class="headerlink" href="#0t" title="Permalink to this headline">¶</a></h2>
+                                <div class="toctree-wrapper compound">
+                                    <video src="../video/scolaricx_create_u.mp4" controls></video>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class=" section" id="1t">
+                                <h2><a class="toc-backref" href="#1t">Ajouter ou Supprimer de nouveaux comptes
+                                        utilisateurs</a><a class="headerlink" href="#1t"
+                                        title="Permalink to this headline">¶</a></h2>
+                                <div class="toctree-wrapper compound">
+                                    <p>
+                                        Lorsque vous avez créée les differents types d'utilisateurs,il faut leur donner
+                                        leurs identifiants de connexion (nom d'utilisateur ou email et mot de passe)
+                                        afin qu'ils puissent avoir acces.
+                                    </p>
+                                    <video src="../video/scolaricx_add_users.mp4" controls></video>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+
+                            <a href="general/welcome.html" class="btn btn-neutral float-right"
+                                title="Welcome to Scolaricx">Next <span class="fa fa-arrow-circle-right"></span></a>
+
 
                         </div>
 
 
+                        <?php include '../include/footer.html' ?>
                     </div>
-                    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-
-                        <a href="general/welcome.html" class="btn btn-neutral float-right"
-                            title="Welcome to Scolaricx">Next <span class="fa fa-arrow-circle-right"></span></a>
-
-
-                    </div>
-
-
-                    <?php include '../include/footer.html' ?>
                 </div>
-            </div>
 
         </section>
 
